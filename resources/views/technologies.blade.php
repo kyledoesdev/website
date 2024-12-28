@@ -3,7 +3,7 @@
     
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8">
         @foreach (App\Models\Technology::all() as $technology)
-            <div class="bg-zinc-100 rounded-lg shadow-md p-4">
+            <div class="bg-zinc-100 dark:bg-zinc-700 rounded-lg shadow-md p-4">
                 <div class="flex justify-center items-center">
                     <h5 class="text-center mb-2">{{ $technology->name }}</h5>
                 </div>
