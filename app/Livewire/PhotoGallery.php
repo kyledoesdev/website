@@ -12,7 +12,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-class PhotoUpload extends Component
+class PhotoGallery extends Component
 {
     use WithPagination;
     use WithFileUploads;

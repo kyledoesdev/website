@@ -20,7 +20,7 @@
             </flux:tab.panel>
 
             <flux:tab.panel name="blog">
-                Blog
+                <livewire:blog />
             </flux:tab.panel>
 
             <flux:tab.panel name="technologies">
@@ -28,7 +28,7 @@
             </flux:tab.panel>
 
             <flux:tab.panel name="photos">
-                <livewire:photo-upload />
+                <livewire:photo-gallery />
             </flux:tab.panel>
 
             <flux:tab.panel name="settings">

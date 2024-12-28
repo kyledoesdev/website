@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrezetShowController;
 use BenBjurstrom\Prezet\Http\Controllers\ImageController;
 use BenBjurstrom\Prezet\Http\Controllers\IndexController;
 use BenBjurstrom\Prezet\Http\Controllers\OgimageController;
@@ -21,7 +22,7 @@ Route::withoutMiddleware([ShareErrorsFromSession::class, VerifyCsrfToken::class]
     Route::get('/blog', IndexController::class)
         ->name('prezet.index');
 
-    Route::get('/blog/{slug}', ShowController::class)
+    Route::get('/blog/{slug}', PrezetShowController::class)
         ->name('prezet.show')
         ->where('slug', '.*'); // https://laravel.com/docs/11.x/routing#parameters-encoded-forward-slashes
 });

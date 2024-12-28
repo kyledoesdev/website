@@ -18,10 +18,10 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Panel::create(['name' => 'Bio', 'content' => null]);
-        Panel::create(['name' => 'Work History', 'content' => null]);
-        Panel::create(['name' => 'Education', 'content' => null]);
-        Panel::create(['name' => 'Projects', 'content' => null]);
+        Panel::create(['name' => 'bio', 'display_name' => 'Bio', 'content' => null]);
+        Panel::create(['name' => 'work_history', 'display_name' => 'Work History', 'content' => null]);
+        Panel::create(['name' => 'education', 'display_name' => 'Education', 'content' => null]);
+        Panel::create(['name' => 'projects', 'display_name' => 'Projects', 'content' => null]);
     }
 
     public function down(): void

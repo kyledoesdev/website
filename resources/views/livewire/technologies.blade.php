@@ -16,43 +16,47 @@
         <div class="max-w-7xl mx-auto">
             <div class="overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <flux:table :paginate="$this->technologies">
-                    <flux:columns>
-                        <flux:column sortable :sorted="$sortBy === 'icon'" :direction="$sortDirection" wire:click="sort('icon')">Icon</flux:column>
-                        <flux:column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:column>
-                        <flux:column sortable :sorted="$sortBy === 'description'" :direction="$sortDirection" wire:click="sort('description')">Description</flux:column>
-                        <flux:column>Actions</flux:column>
-                    </flux:columns>
+                    @forelse ($this->technologies as $technology)
+                        @if ($loop->first)
+                            <flux:columns>
+                                <flux:column sortable :sorted="$sortBy === 'icon'" :direction="$sortDirection" wire:click="sort('icon')">Icon</flux:column>
+                                <flux:column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:column>
+                                <flux:column sortable :sorted="$sortBy === 'description'" :direction="$sortDirection" wire:click="sort('description')">Description</flux:column>
+                                <flux:column>Actions</flux:column>
+                            </flux:columns>
+                        @endif
 
-                    <flux:rows>
-                        @forelse ($this->technologies as $technology)
-                            <flux:row :key="$technology->getKey()">
-                                <flux:cell>
-                                    <i class="text-4xl md:text-6xl px-1 {{ $technology->icon }}"></i>
-                                </flux:cell>
+                        <flux:row :key="$technology->getKey()">
+                            <flux:cell>
+                                <i class="text-4xl md:text-6xl px-1 {{ $technology->icon }}"></i>
+                            </flux:cell>
 
-                                <flux:cell>
-                                    {{ $technology->name }}
-                                </flux:cell>
+                            <flux:cell>
+                                {{ $technology->name }}
+                            </flux:cell>
 
-                                <flux:cell>
-                                    {{ $technology->description }}
-                                </flux:cell>
-                                
-                                <flux:cell>
-                                    <flux:dropdown>
-                                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
-
-                                        <flux:menu>
-                                            <flux:menu.item icon="pencil" wire:click="edit('{{ $technology->getKey() }}')">Edit</flux:menu.item>
-                                            <flux:menu.item icon="trash" wire:click="confirm('{{ $technology->getKey() }}')">Delete</flux:menu.item>
-                                        </flux:menu>
-                                    </flux:dropdown>
-                                </flux:cell>
-                            </flux:row>
-                        @empty
+                            <flux:cell>
+                                {{ $technology->description }}
+                            </flux:cell>
                             
-                        @endforelse
-                    </flux:rows>
+                            <flux:cell>
+                                <flux:dropdown>
+                                    <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+
+                                    <flux:menu>
+                                        <flux:menu.item icon="pencil" wire:click="edit('{{ $technology->getKey() }}')">Edit</flux:menu.item>
+                                        <flux:menu.item icon="trash" wire:click="confirm('{{ $technology->getKey() }}')">Delete</flux:menu.item>
+                                    </flux:menu>
+                                </flux:dropdown>
+                            </flux:cell>
+                        </flux:row>
+                    @empty
+                        <flux:card>
+                            <div class="flex justify-center my-4">
+                                <flux:badge>No Technologies found.</flux:badge>
+                            </div>
+                        </flux:card>
+                    @endforelse
                 </flux:table>
             </div>
         </div>

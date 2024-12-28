@@ -56,15 +56,24 @@
                 </div>
             </div>
             <ul class="divide-y divide-gray-200">
-                @foreach ($articles as $article)
+                @forelse ($articles as $article)
                     <li class="py-12">
                         <x-prezet::article :article="$article" />
                     </li>
-                @endforeach
+                @empty
+                    <div class="flex justify-center my-8">
+                        <flux:card>
+                            <flux:badge>I have no blog posts at this time.</flux:badge>
+                        </flux:card>
+                    </div>
+                @endforelse
             </ul>
-            <div class="pt-12">
-                {{ $paginator->links() }}
-            </div>
+            
+            @if (count($articles))
+                <div class="pt-12">
+                    {{ $paginator->links() }}
+                </div>
+            @endif
         </div>
     </section>
 </x-guest-layout>

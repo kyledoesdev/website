@@ -17,7 +17,7 @@
             </div>
         </flux:card>
 
-        <div class="flex flex-col mt-4 mb-4 md:mt-8 lg:mt-12 lg:items-center lg:text-center">
+        <div class="flex flex-col mt-4 mb-4 md:mt-8 lg:mt-12 items-center text-center">
             <div class="mb-2 w-full">
                 <span class="text-xs italic">
                     Do it right the first time · Less is more · The cake is a lie
