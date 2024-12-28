@@ -25,4 +25,9 @@ class Photo extends Model
             'captured_at' => 'date'
         ];
     }
+
+    public function getPathAttribute()
+    {
+        return asset('storage/' . $this->attributes['path']);
+    }
 }
