@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot name="header">Cool Photos</x-slot>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 space-y-4 mt-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 space-y-4 mt-4 mb-4">
         @php $photos = App\Models\Photo::paginate(4); @endphp
 
         @foreach ($photos as $photo)
