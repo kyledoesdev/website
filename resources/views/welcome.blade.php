@@ -2,7 +2,7 @@
     <x-slot name="header">Hi, I'm Kyle 👋</x-slot>
 
     <div class="mt-4">
-        <flux:card>
+        <flux:card class="dark:bg-zinc-700">
             <div class="flex">
                 <div class="hidden md:block mr-4">
                     <img class="rounded-xl max-w-32" src="{{ asset('me.jfif') }}" alt="Kyle Evangelisto Headshot">
