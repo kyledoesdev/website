@@ -13,7 +13,7 @@ export default defineConfig({
             refresh: true,
         }),
         prismjs({
-            languages: ['php', 'javascript', 'html', 'css', 'bash', 'typescript',], // Enables dynamic loading
+            languages: ['php', 'javascript', 'html', 'css', 'bash', 'typescript'],
             theme: 'tomorrow',
             css: true,
         })

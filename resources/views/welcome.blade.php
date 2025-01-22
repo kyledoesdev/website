@@ -2,27 +2,22 @@
     <x-slot name="header">Hi, I'm Kyle 👋</x-slot>
 
     <div class="mt-4">
-        <flux:card class="dark:bg-zinc-700">
-            <div class="flex">
-                <div class="hidden md:block mr-4">
-                    <img class="rounded-xl max-w-32" src="{{ asset('me.jfif') }}" alt="Kyle Evangelisto Headshot">
-                    <flux:button variant="primary" size="xs" class="mt-2">I'm feeling lucky!</flux:button>
-                </div>
+        <div class="flex flex-col md:flex-row">
+            <div class="w-full md:w-auto md:mr-4 mb-4 md:mb-0">
+                <img class="rounded-lg border-8 border-zinc-800 mx-auto md:mx-0 max-w-64" src="{{ asset('me.jfif') }}">
 
-                <flux:separator vertical class="hidden md:block" />
-
-                <div class="mx-4">
-                    <x-markdown-content :content="$bio->content" />
+                <div class="my-4 md:mt-4 items-center text-center hidden md:block">
+                    <span class="text-xs italic">
+                        Do it right the first time · Less is more · The cake is a lie
+                    </span>
                 </div>
             </div>
-        </flux:card>
 
-        <div class="flex flex-col mt-4 mb-4 md:mt-8 lg:mt-12 items-center text-center">
-            <div class="mb-2 w-full">
-                <span class="text-xs italic">
-                    Do it right the first time · Less is more · The cake is a lie
-                </span>
+            <flux:separator vertical class="hidden md:block" />
+
+            <div class="mx-4">
+                <x-markdown-content :content="$bio->content" />
             </div>
-        </div>                                                
+        </div>
     </div>
 </x-guest-layout>
