@@ -118,7 +118,7 @@ new class extends Component
                     Photo Gallery
                 </flux:navmenu.item>
                 <flux:navmenu.item icon="document-text" href="{{ $resume?->path }}">
-                    {{ $resume->name }}
+                    Resume
                 </flux:navmenu.item>
             </flux:navlist.group>
         </flux:navlist>
