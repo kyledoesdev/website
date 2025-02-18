@@ -21,7 +21,7 @@
     </div>
 
     <div class="flex justify-center mb-4">
-        <flux:button vairant="primary" size="sm" wire:click="store">Upload</flux:button>
+        <flux:button variant="primary" size="xs" wire:click="store" icon="arrow-up-tray">Upload</flux:button>
     </div>
 
     <flux:separator />

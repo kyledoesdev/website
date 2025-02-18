@@ -7,7 +7,7 @@
         </div>
         
         <div class="my-4">
-            <flux:button variant="primary" size="xs" wire:click="store">Upload</flux:button>
+            <flux:button variant="primary" size="xs" wire:click="store" icon="arrow-up-tray">Upload</flux:button>
         </div>
 
         <flux:separator />

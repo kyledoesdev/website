@@ -18,16 +18,6 @@ export default {
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
             },
-
-            colors: {
-                zinc: colors.slate,
-
-                accent: {
-                    DEFAULT: 'var(--color-accent)',
-                    content: 'var(--color-accent-content)',
-                    foreground: 'var(--color-accent-foreground)',
-                },
-            },
         },
     },
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Model;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class Photo extends Model
 {
@@ -16,7 +17,7 @@ class Photo extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('default_order', fn ($query) => $query->orderBy('captured_at', 'desc')->orderBy('id', 'desc'));
+        static::addGlobalScope('default_order', fn (Builder $query) => $query->orderBy('captured_at', 'desc')->orderBy('id', 'desc'));
     }
 
     public function casts(): array

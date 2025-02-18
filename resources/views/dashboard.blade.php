@@ -4,16 +4,17 @@
     <flux:card>
         <flux:tab.group>
             <div class="md:flex md:justify-center" style="overflow-x: auto;">
-                <flux:tabs variant="pills">
+                <flux:tabs>
                     <flux:tab name="panels" icon="pencil-square">Panels</flux:tab>
                     <flux:tab name="blog" icon="arrow-up-tray">Blog</flux:tab>
                     <flux:tab name="technologies" icon="command-line">Technologies</flux:tab>
                     <flux:tab name="photos" icon="photo">Photos</flux:tab>
+                    <flux:tab name="resume" icon="document-text">Resume</flux:tab>
                     <flux:tab name="settings" icon="cog-6-tooth">Settings</flux:tab>
                 </flux:tabs>
             </div>
 
-            <flux:separator class="my-2" />
+            {{-- <flux:separator class="my-2" /> --}}
 
             <flux:tab.panel name="panels">
                 <livewire:panels />
@@ -29,6 +30,10 @@
 
             <flux:tab.panel name="photos">
                 <livewire:photo-gallery />
+            </flux:tab.panel>
+
+            <flux:tab.panel name="resume">
+                <livewire:resume />
             </flux:tab.panel>
 
             <flux:tab.panel name="settings">

@@ -16,6 +16,8 @@ new class extends Component
     }
 }; ?>
 
+@php $resume = App\Models\Resume::latest()->first(); @endphp
+
 <flux:header container>
     <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
@@ -57,6 +59,9 @@ new class extends Component
                 </flux:navmenu.item>
                 <flux:navmenu.item icon="photo" href="{{ route('gallery') }}">
                     Photo Gallery
+                </flux:navmenu.item>
+                <flux:navmenu.item icon="document-text" href="{{ $resume->path }}" target="_blank">
+                    Resume
                 </flux:navmenu.item>
             </flux:navmenu>
         </flux:dropdown>
@@ -111,6 +116,9 @@ new class extends Component
                 </flux:navmenu.item>
                 <flux:navmenu.item icon="photo" href="{{ route('gallery') }}">
                     Photo Gallery
+                </flux:navmenu.item>
+                <flux:navmenu.item icon="document-text" href="{{ $resume->path }}">
+                    {{ $resume->name }}
                 </flux:navmenu.item>
             </flux:navlist.group>
         </flux:navlist>
