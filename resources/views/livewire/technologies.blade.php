@@ -14,32 +14,32 @@
     {{-- Table of Episodes --}}
     <div class="py-6">
         <div class="max-w-7xl mx-auto">
-            <div class="overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
                 <flux:table :paginate="$this->technologies">
                     @forelse ($this->technologies as $technology)
                         @if ($loop->first)
-                            <flux:columns>
-                                <flux:column sortable :sorted="$sortBy === 'icon'" :direction="$sortDirection" wire:click="sort('icon')">Icon</flux:column>
-                                <flux:column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:column>
-                                <flux:column sortable :sorted="$sortBy === 'description'" :direction="$sortDirection" wire:click="sort('description')">Description</flux:column>
-                                <flux:column>Actions</flux:column>
-                            </flux:columns>
+                            <flux:table.columns>
+                                <flux:table.column sortable :sorted="$sortBy === 'icon'" :direction="$sortDirection" wire:click="sort('icon')">Icon</flux:table.column>
+                                <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:table.column>
+                                <flux:table.column sortable :sorted="$sortBy === 'description'" :direction="$sortDirection" wire:click="sort('description')">Description</flux:table.column>
+                                <flux:table.column>Actions</flux:table.column>
+                            </flux:table.columns>
                         @endif
 
-                        <flux:row :key="$technology->getKey()">
-                            <flux:cell>
+                        <flux:table.row :key="$technology->getKey()">
+                            <flux:table.cell>
                                 <i class="text-4xl md:text-6xl px-1 {{ $technology->icon }}"></i>
-                            </flux:cell>
+                            </flux:table.cell>
 
-                            <flux:cell>
+                            <flux:table.cell>
                                 {{ $technology->name }}
-                            </flux:cell>
+                            </flux:table.cell>
 
-                            <flux:cell>
+                            <flux:table.cell>
                                 {{ $technology->description }}
-                            </flux:cell>
+                            </flux:table.cell>
                             
-                            <flux:cell>
+                            <flux:table.cell>
                                 <flux:dropdown>
                                     <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
 
@@ -48,8 +48,8 @@
                                         <flux:menu.item icon="trash" wire:click="confirm('{{ $technology->getKey() }}')">Delete</flux:menu.item>
                                     </flux:menu>
                                 </flux:dropdown>
-                            </flux:cell>
-                        </flux:row>
+                            </flux:table.cell>
+                        </flux:table.row>
                     @empty
                         <flux:card>
                             <div class="flex justify-center my-4">

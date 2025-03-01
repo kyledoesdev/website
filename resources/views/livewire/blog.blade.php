@@ -16,44 +16,44 @@
     <section>
         <div class="py-2">
             <div class="max-w-7xl mx-auto">
-                <div class="overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
                     <flux:table>
                         @forelse ($this->posts as $key => $data)
                             @php $fm = json_decode($data->frontmatter); @endphp
 
                             @if ($loop->first)
-                                <flux:columns>
-                                    <flux:column sortable :sorted="$sortBy === 'title'" :direction="$sortDirection" wire:click="sort('title')">Title</flux:column>
-                                    <flux:column sortable :sorted="$sortBy === 'slug'" :direction="$sortDirection" wire:click="sort('slug')">Slug</flux:column>
-                                    <flux:column sortable :sorted="$sortBy === 'category'" :direction="$sortDirection" wire:click="sort('category')">Category</flux:column>
-                                    <flux:column sortable :sorted="$sortBy === 'views'" :direction="$sortDirection" wire:click="sort('views')">Views</flux:column>
-                                    <flux:column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection" wire:click="sort('created_at')">Upload Date</flux:column>
-                                </flux:columns>
+                                <flux:table.columns>
+                                    <flux:table.column sortable :sorted="$sortBy === 'title'" :direction="$sortDirection" wire:click="sort('title')">Title</flux:table.column>
+                                    <flux:table.column sortable :sorted="$sortBy === 'slug'" :direction="$sortDirection" wire:click="sort('slug')">Slug</flux:table.column>
+                                    <flux:table.column sortable :sorted="$sortBy === 'category'" :direction="$sortDirection" wire:click="sort('category')">Category</flux:table.column>
+                                    <flux:table.column sortable :sorted="$sortBy === 'views'" :direction="$sortDirection" wire:click="sort('views')">Views</flux:table.column>
+                                    <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection" wire:click="sort('created_at')">Upload Date</flux:table.column>
+                                </flux:table.columns>
                             @endif
 
-                            <flux:rows>
-                                <flux:row>
-                                    <flux:cell>
+                            <flux:table.rows>
+                                <flux:table.row>
+                                    <flux:table.cell>
                                         {{ $fm->title }}
-                                    </flux:cell>
+                                    </flux:table.cell>
 
-                                    <flux:cell>
+                                    <flux:table.cell>
                                         {{ $fm->slug }}
-                                    </flux:cell>
+                                    </flux:table.cell>
 
-                                    <flux:cell>
+                                    <flux:table.cell>
                                         {{ $data->category }}
-                                    </flux:cell>
+                                    </flux:table.cell>
 
-                                    <flux:cell>
+                                    <flux:table.cell>
                                         {{ number_format($data->views) }}
-                                    </flux:cell>
+                                    </flux:table.cell>
 
-                                    <flux:cell>
+                                    <flux:table.cell>
                                         {{ Carbon\Carbon::parse($data->created_at)->tz('America/New_York')->format('m/d/Y') }}
-                                    </flux:cell>
-                                </flux:row>
-                            </flux:rows>
+                                    </flux:table.cell>
+                                </flux:table.row>
+                            </flux:table.rows>
                         @empty
                             <flux:card>
                                 <div class="flex justify-center my-4">

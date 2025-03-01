@@ -16,9 +16,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/prezet.css'])
-        @fluxStyles
+        @fluxAppearance
     </head>
-    <body class="min-h-screen" x-cloak x-data>
+    <body class="min-h-screen">
         <livewire:navigation />
 
         <!-- Page Content -->
