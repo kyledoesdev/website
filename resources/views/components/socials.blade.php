@@ -1,4 +1,4 @@
-<a class="p-2 mt-1" target="_blank" href="https://bsky.app/profile/kyledoes.dev">
+<a class="p-2" target="_blank" href="https://bsky.app/profile/kyledoes.dev">
     <h5>
         <img src="photos/bluesky-1.svg" width="24" height="25" />
     </h5>
