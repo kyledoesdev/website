@@ -10,13 +10,17 @@ use Livewire\Component;
 
 class Panels extends Component
 {
+    public string $type;
     public array $content = [];
 
     public function mount()
     {
-        foreach (Panel::all() as $panel) {
-            $this->content[$panel->name] = Str::of($panel->content)->markdown();
-        }
+        Panel::query()
+            ->where('type', $this->type)
+            ->get()
+            ->each(function (Panel $panel) {
+                $this->content[$panel->name] = Str::of($panel->content)->markdown();
+            });
     }
 
     public function render()
@@ -34,6 +38,6 @@ class Panels extends Component
     #[Computed]
     public function panels()
     {
-        return Panel::all();
+        return Panel::where('type', $this->type)->get();
     }
 }

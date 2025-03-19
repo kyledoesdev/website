@@ -1,66 +1,68 @@
 <div>
     {{-- Header & Create Model --}}
-    <div class="flex justify-between">
-        <div class="font-semibold text-xl leading-tight mt-2">
-            <h5>Technologies</h5>
-        </div>
-        <div>
-            <flux:modal.trigger name="create-technology">
-                <flux:button variant="primary" size="sm">Create</flux:button>
-            </flux:modal.trigger>
-        </div>
-    </div>
-
-    {{-- Table of Episodes --}}
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
-                <flux:table :paginate="$this->technologies">
-                    @forelse ($this->technologies as $technology)
-                        @if ($loop->first)
-                            <flux:table.columns>
-                                <flux:table.column sortable :sorted="$sortBy === 'icon'" :direction="$sortDirection" wire:click="sort('icon')">Icon</flux:table.column>
-                                <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:table.column>
-                                <flux:table.column sortable :sorted="$sortBy === 'description'" :direction="$sortDirection" wire:click="sort('description')">Description</flux:table.column>
-                                <flux:table.column>Actions</flux:table.column>
-                            </flux:table.columns>
-                        @endif
-
-                        <flux:table.row :key="$technology->getKey()">
-                            <flux:table.cell>
-                                <i class="text-4xl md:text-6xl px-1 {{ $technology->icon }}"></i>
-                            </flux:table.cell>
-
-                            <flux:table.cell>
-                                {{ $technology->name }}
-                            </flux:table.cell>
-
-                            <flux:table.cell>
-                                {{ $technology->description }}
-                            </flux:table.cell>
-                            
-                            <flux:table.cell>
-                                <flux:dropdown>
-                                    <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
-
-                                    <flux:menu>
-                                        <flux:menu.item icon="pencil" wire:click="edit('{{ $technology->getKey() }}')">Edit</flux:menu.item>
-                                        <flux:menu.item icon="trash" wire:click="confirm('{{ $technology->getKey() }}')">Delete</flux:menu.item>
-                                    </flux:menu>
-                                </flux:dropdown>
-                            </flux:table.cell>
-                        </flux:table.row>
-                    @empty
-                        <flux:card>
-                            <div class="flex justify-center my-4">
-                                <flux:badge>No Technologies found.</flux:badge>
-                            </div>
-                        </flux:card>
-                    @endforelse
-                </flux:table>
+    <flux:card>
+        <div class="flex justify-between">
+            <div class="font-semibold text-xl leading-tight mt-2">
+                <h5>Technologies</h5>
+            </div>
+            <div>
+                <flux:modal.trigger name="create-technology">
+                    <flux:button variant="primary" size="sm">Create</flux:button>
+                </flux:modal.trigger>
             </div>
         </div>
-    </div>
+    
+        {{-- Table of Episodes --}}
+        <div class="py-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
+                    <flux:table :paginate="$this->technologies">
+                        @forelse ($this->technologies as $technology)
+                            @if ($loop->first)
+                                <flux:table.columns>
+                                    <flux:table.column sortable :sorted="$sortBy === 'icon'" :direction="$sortDirection" wire:click="sort('icon')">Icon</flux:table.column>
+                                    <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:table.column>
+                                    <flux:table.column sortable :sorted="$sortBy === 'description'" :direction="$sortDirection" wire:click="sort('description')">Description</flux:table.column>
+                                    <flux:table.column>Actions</flux:table.column>
+                                </flux:table.columns>
+                            @endif
+    
+                            <flux:table.row :key="$technology->getKey()">
+                                <flux:table.cell>
+                                    <i class="text-4xl md:text-6xl px-1 {{ $technology->icon }}"></i>
+                                </flux:table.cell>
+    
+                                <flux:table.cell>
+                                    {{ $technology->name }}
+                                </flux:table.cell>
+    
+                                <flux:table.cell>
+                                    {{ $technology->description }}
+                                </flux:table.cell>
+                                
+                                <flux:table.cell>
+                                    <flux:dropdown>
+                                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+    
+                                        <flux:menu>
+                                            <flux:menu.item icon="pencil" wire:click="edit('{{ $technology->getKey() }}')">Edit</flux:menu.item>
+                                            <flux:menu.item icon="trash" wire:click="confirm('{{ $technology->getKey() }}')">Delete</flux:menu.item>
+                                        </flux:menu>
+                                    </flux:dropdown>
+                                </flux:table.cell>
+                            </flux:table.row>
+                        @empty
+                            <flux:card>
+                                <div class="flex justify-center my-4">
+                                    <flux:badge>No Technologies found.</flux:badge>
+                                </div>
+                            </flux:card>
+                        @endforelse
+                    </flux:table>
+                </div>
+            </div>
+        </div>
+    </flux:card>
 
     {{-- Create Modal --}}
     <flux:modal name="create-technology" variant="flyout" class="space-y-6">

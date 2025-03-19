@@ -1,43 +1,26 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Forms;
 
 use App\Models\Photo;
 use Flux\Flux;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\WithPagination;
+use Livewire\Form;
 
-class PhotoGallery extends Component
+class PhotoForm extends Form
 {
-    use WithPagination;
-    use WithFileUploads;
-
     #[Validate('required|string')]
-    public string $name;
+    public ?string $name;
 
     #[Validate('required|date')]
-    public string $capturedAt;
+    public ?string $capturedAt;
 
     #[Validate('image:mimes:png,jpg,jpeg,gif,jfif')]
     public $photo;
 
     public ?Photo $selectedPhoto = null;
-
-    public function render()
-    {
-        return view('livewire.photo-upload');
-    }
-
-    #[Computed]
-    public function photos()
-    {
-        return Photo::paginate(6);
-    }
 
     public function store()
     {

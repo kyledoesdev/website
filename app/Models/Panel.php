@@ -7,6 +7,7 @@ use App\Models\Model;
 class Panel extends Model
 {
     protected $fillable = [
+        'type',
         'name',
         'display_name',
         'content'

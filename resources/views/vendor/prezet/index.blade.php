@@ -5,7 +5,7 @@
         'url' => route('prezet.index'),
     ])
     <section>
-        <div class="divide-y divide-gray-200">
+        <div class="">
             <div class="space-y-2 md:space-y-5">
                 <x-slot name="header">My Writings</x-slot>
 
@@ -63,7 +63,7 @@
                 @empty
                     <div class="flex justify-center my-8">
                         <flux:card>
-                            <flux:badge>I have no blog posts at this time.</flux:badge>
+                            <flux:badge>I am currently working on an article about my work with the Spotify API. I'll release it some day.</flux:badge>
                         </flux:card>
                     </div>
                 @endforelse
@@ -71,7 +71,7 @@
             
             @if (count($articles))
                 <div class="pt-12">
-                    {{ $paginator->links() }}
+                    <flux:pagination :paginator="$paginator" />
                 </div>
             @endif
         </div>
