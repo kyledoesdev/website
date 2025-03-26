@@ -20,8 +20,6 @@ class PhotoForm extends Form
     #[Validate('image:mimes:png,jpg,jpeg,gif,jfif')]
     public $photo;
 
-    public ?Photo $selectedPhoto = null;
-
     public function store()
     {
         $this->validate();
@@ -43,22 +41,16 @@ class PhotoForm extends Form
         Flux::toast(variant: 'success', text: 'Photo Uploaded!', duration: 3000);
     }
 
-    public function confirm($id)
+    public function destroy($id)
     {
-        $this->selectedPhoto = Photo::findOrFail($id);
+        $photo = Photo::findOrFail($id);
 
-        Flux::modal('destroy-photo')->show();
-    }
-
-    public function destroy()
-    {
-        if (Storage::disk('public')->exists($this->selectedPhoto->path)) {            
-            Storage::disk('public')->delete($this->selectedPhoto->path);
+        if (Storage::disk('public')->exists($photo->path)) {            
+            Storage::disk('public')->delete($photo->path);
         }
 
-        $this->selectedPhoto->forceDelete();
-
-        Flux::modal('destroy-photo')->close();
+        $photo->forceDelete();
+        
         Flux::toast(variant: 'success', text: 'Photo Deleted!', duration: 3000);
     }
 }

@@ -27,11 +27,6 @@ class Gallery extends Component
         return Photo::paginate(6);
     }
 
-    public function confirm($id)
-    {
-        $this->form->confirm($id);
-    }
-
     public function destroy()
     {
         $this->form->destroy();

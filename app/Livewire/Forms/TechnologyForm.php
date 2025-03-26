@@ -59,8 +59,6 @@ class TechnologyForm extends Form
             'icon' => $this->icon,
         ]);
 
-
-        Flux::modal('edit-technology')->close();
         Flux::toast(variant: 'success', text: 'Technology Updated!', duration: 3000);
     }
 }

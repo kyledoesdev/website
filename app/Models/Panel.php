@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use App\Models\Model;
+use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Panel extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'type',
         'name',
@@ -17,6 +21,6 @@ class Panel extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('default_order', fn ($q) => $q->orderBy('name', 'asc'));
+        static::addGlobalScope('default_order', fn (Builder $query) => $query->orderBy('name', 'asc'));
     }
 }

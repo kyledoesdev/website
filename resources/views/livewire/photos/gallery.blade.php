@@ -14,7 +14,13 @@
 
                 @auth
                     <div class="flex justify-center">
-                        <flux:button variant="danger" size="sm" icon="trash" wire:click="confirm({{ $photo->getKey() }})" />
+                        <flux:button
+                            variant="danger"
+                            size="sm"
+                            icon="trash"
+                            wire:click="destroy({{ $photo->getKey() }})" 
+                            wire:confirm="Are you sure you want to delete this photo?"
+                        />
                     </div>
                 @endauth
             </flux:card>
@@ -22,22 +28,4 @@
     </div>
 
     <flux:pagination :paginator="$this->photos" />
-
-    @auth
-        {{-- Destroy Confirm Modal --}}
-        <flux:modal name="destroy-photo" class="md:w-96 space-y-6">
-            <div>
-                <flux:heading size="lg">Delete Photo: {{ isset($selectedPhoto) ? $selectedPhoto->name : '' }}?</flux:heading>
-                <flux:subheading>Are you sure you want to delete this photo?</flux:subheading>
-            </div>
-
-            <div class="flex">
-                <flux:spacer />
-
-                <form wire:submit="destroy">
-                    <flux:button type="submit" variant="danger" size="xs">Delete</flux:button>
-                </form>
-            </div>
-        </flux:modal>
-    @endauth
 </div>

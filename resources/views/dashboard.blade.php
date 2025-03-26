@@ -7,6 +7,7 @@
                 <flux:tabs>
                     <flux:tab name="career" icon="briefcase">Career</flux:tab>
                     <flux:tab name="fun" icon="gamepad-2">Fun</flux:tab>
+                    <flux:tab name="connections" icon="link">Connections</flux:tab>
                     <flux:tab name="settings" icon="cog-6-tooth">Settings</flux:tab>
                 </flux:tabs>
             </div>
@@ -44,12 +45,12 @@
                     <div style="overflow-x: auto;">
                         <flux:tabs>
                             <flux:tab name="fun_panels" icon="pencil-square">Panels</flux:tab>
-                            <flux:tab name="movies" icon="dices">Board Games</flux:tab>
+                            <flux:tab name="board_games" icon="dices">Board Games</flux:tab>
                             <flux:tab name="movies" icon="film">Movies</flux:tab>
                             <flux:tab name="music" icon="musical-note">Music</flux:tab>
                             <flux:tab name="photos" icon="photo">Photos</flux:tab>
                             <flux:tab name="tv" icon="tv">Tv</flux:tab>
-                            <flux:tab name="games" icon="gamepad-2">Video Games</flux:tab>
+                            <flux:tab name="video_games" icon="gamepad-2">Video Games</flux:tab>
                         </flux:tabs>
                     </div>
 
@@ -63,7 +64,14 @@
                     <flux:tab.panel name="photos">
                         <livewire:photos.uploader />
                     </flux:tab.panel>
+                    <flux:tab.panel name="video_games">
+                        <livewire:video-games />
+                    </flux:tab.panel>
                 </flux:tab.group>
+            </flux:tab.panel>
+
+            <flux:tab.panel name="connections">
+                <livewire:connection />
             </flux:tab.panel>
 
             {{-- Settings --}}

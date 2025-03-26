@@ -46,7 +46,13 @@
     
                                         <flux:menu>
                                             <flux:menu.item icon="pencil" wire:click="edit('{{ $technology->getKey() }}')">Edit</flux:menu.item>
-                                            <flux:menu.item icon="trash" wire:click="confirm('{{ $technology->getKey() }}')">Delete</flux:menu.item>
+                                            <flux:menu.item
+                                                icon="trash"
+                                                wire:click="destroy('{{ $technology->getKey() }}')"
+                                                wire:confirm="Are you sure you want to delete this technology?"
+                                            >
+                                                Delete
+                                            </flux:menu.item>
                                         </flux:menu>
                                     </flux:dropdown>
                                 </flux:table.cell>
@@ -112,21 +118,5 @@
                 <flux:button type="submit" variant="primary" wire:click="update">Update</flux:button>
             </div>
         </form>
-    </flux:modal>
-
-    {{-- Destroy Confirm Modal --}}
-    <flux:modal name="destroy-technology" class="md:w-96 space-y-6">
-        <div>
-            <flux:heading size="lg">Delete Technology: {{ $selectedTechnology?->name }}?</flux:heading>
-            <flux:subheading>Are you sure you want to delete this technology?</flux:subheading>
-        </div>
-
-        <div class="flex">
-            <flux:spacer />
-
-            <form wire:submit="destroy">
-                <flux:button type="submit" variant="danger" size="xs">Delete</flux:button>
-            </form>
-        </div>
     </flux:modal>
 </div>
