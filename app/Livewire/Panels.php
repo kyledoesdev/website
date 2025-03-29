@@ -17,7 +17,9 @@ class Panels extends Component
 
     public function mount()
     {
-        $this->getRoutePanel();
+        if (is_null($this->type) && is_null($this->header)) {
+            $this->getRoutePanel();
+        }
 
         Panel::query()
             ->when(! is_null($this->type), fn($query) => $query->where('name', $this->type))

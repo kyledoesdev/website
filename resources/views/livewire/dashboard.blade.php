@@ -6,7 +6,7 @@
             <a href="{{ route('panels') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.pencil-square />
-                    <span>Panels</span>
+                    <span>All Panels</span>
                 </flux:card>
             </a>
             <a href="{{ route('music.edit') }}">
@@ -33,7 +33,7 @@
                     <span>Movies</span>
                 </flux:card>
             </a>
-            <a href="{{ route('gallery') }}">
+            <a href="{{ route('gallery.edit') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.photo />
                     <span>Photo Gallery</span>

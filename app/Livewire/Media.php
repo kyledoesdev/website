@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Actions\MovieDB\SearchMedia;
+use App\Livewire\Actions\Api\SearchMedia;
 use App\Livewire\Forms\MediaForm;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\Media as MediaModel;

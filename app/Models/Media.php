@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\MediaType;
 use App\Models\Model;
 use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Media extends Model
 {
@@ -15,7 +16,8 @@ class Media extends Model
         'cover',
         'is_favorite',
         'in_backlog',
-        'is_completed'
+        'is_completed',
+        'data',
     ];
 
     public static function boot()
@@ -30,12 +32,21 @@ class Media extends Model
         return [
             'is_favorite' => 'boolean',
             'in_backlog' => 'boolean',
-            'is_completed' => 'boolean'
+            'is_completed' => 'boolean',
+            'data' => 'array'
         ];
     }
 
     public function type(): HasOne
     {
-        return $this->hasOne(MediaType::class, 'type_id', 'id');
+        return $this->hasOne(MediaType::class, 'id', 'type_id');
+    }
+
+    public function scopeForSpotify($query)
+    {
+        $query->whereIn('type_id', [
+            MediaType::ARTIST,
+            MediaType::TRACK
+        ]);
     }
 }

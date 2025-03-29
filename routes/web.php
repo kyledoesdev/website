@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\WelcomeController;
-use App\Livewire\BoardGame;
 use App\Livewire\Dashboard;
 use App\Livewire\Media;
+use App\Livewire\Music;
 use App\Livewire\Panels;
 use App\Livewire\Photos\Gallery;
+use App\Livewire\Photos\Uploader;
 use App\Livewire\Resume;
 use App\Livewire\Technologies;
 use App\Livewire\VideoGames;
@@ -35,15 +36,19 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/board_games/edit', Panels::class)->name('board_games.edit');
     Route::get('/education/edit', Panels::class)->name('education.edit');
-    Route::get('/movies/edit', Media::class)->name('movies.edit');
-    Route::get('/music/edit', Panels::class)->name('music.edit');
     Route::get('/panels', Panels::class)->name('panels');
     Route::get('/projects/edit', Panels::class)->name('projects.edit');
-    Route::get('/resumes/edit', Resume::class)->name('resume.edit');
-    Route::get('/technology/edit', Technologies::class)->name('technology.edit');
-    Route::get('/tv/edit', Media::class)->name('tv.edit');
     Route::get('/work_history/edit', Panels::class)->name('work_history.edit');
+    
+    Route::get('/movies/edit', Media::class)->name('movies.edit');
+    Route::get('/tv/edit', Media::class)->name('tv.edit');
+    
+    Route::get('/music/edit', Music::class)->name('music.edit');
+    Route::get('/technology/edit', Technologies::class)->name('technology.edit');
     Route::get('/video_games/edit', VideoGames::class)->name('video_games.edit');
+
+    Route::get('/gallery/edit', Uploader::class)->name('gallery.edit');
+    Route::get('/resumes/edit', Resume::class)->name('resume.edit');    
 });
     
 require __DIR__.'/auth.php';

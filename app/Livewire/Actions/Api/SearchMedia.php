@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Actions\MovieDB;
+namespace App\Livewire\Actions\Api;
 
 use App\Models\ConnectionType;
 use App\Models\MediaType;
