@@ -14,7 +14,7 @@
                 My Favorites
             </flux:accordion.heading>
             <flux:accordion.content>
-                <div class="flex space-x-4 space-y-1">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4 space-x-4 space-y-1">
                     @foreach ($collection->where('is_favorite', true) as $item)
                         <x-content-art :image="$item->cover" :title="$item->name" />
                     @endforeach
@@ -28,7 +28,7 @@
                 Currently {{ $action ?? 'doing' }}
             </flux:accordion.heading>
             <flux:accordion.content>
-                <div class="flex space-x-4 space-y-1">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4 space-x-4 space-y-1">
                     @foreach ($collection->where('is_active', true) as $item)
                         <x-content-art :image="$item->cover" :title="$item->name" />
                     @endforeach
@@ -42,7 +42,7 @@
                 In Backlog
             </flux:accordion.heading>
             <flux:accordion.content>
-                <div class="flex space-x-4 space-y-1">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4 space-x-4 space-y-1">
                     @foreach ($collection->where('in_backlog', true) as $item)
                         <x-content-art :image="$item->cover" :title="$item->name" />
                     @endforeach
@@ -56,7 +56,7 @@
                 Completed
             </flux:accordion.heading>
             <flux:accordion.content>
-                <div class="flex space-x-4 space-y-1">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4 space-x-4 space-y-1">
                     @foreach ($collection->where('is_completed', true) as $item)
                         <x-content-art :image="$item->cover" :title="$item->name" />
                     @endforeach

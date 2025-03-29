@@ -3,6 +3,7 @@
 namespace App\Livewire\Actions\Api;
 
 use App\Models\ConnectionType;
+use App\Models\Media;
 use App\Models\MediaType;
 use App\Models\User;
 use App\Models\VideoGame;
@@ -27,14 +28,20 @@ final class SearchMedia
         ]);
 
         if ($response->successful()) {
-            return collect($response->json('results'))->map(function($media) use ($mediaType) {
+            $existingMedia = Media::where('type_id', $mediaType->getKey())->pluck('media_id')->toArray();
+
+            return collect($response->json('results'))->map(function($media) use ($existingMedia, $mediaType) {
+                if (in_array($media['id'], $existingMedia)) {
+                    return;
+                }
+
                 return [
                     'type_id'  => $mediaType->getKey(),
                     'media_id' => $media['id'],
                     'name'     => $mediaType->isMovie() ? $media['original_title'] : $media['original_name'],
                     'cover'    => "https://image.tmdb.org/t/p/original" . $media['poster_path'],
                 ];
-            });
+            })->filter();
         }
 
         return collect();
