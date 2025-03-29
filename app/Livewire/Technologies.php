@@ -18,8 +18,6 @@ class Technologies extends Component
     public TechnologyForm $createForm;
     public TechnologyForm $editForm;
 
-    public ?Technology $selectedTechnology;
-
     public function render()
     {
         return view('livewire.technologies');
@@ -48,18 +46,10 @@ class Technologies extends Component
         $this->editForm->update();
     }
 
-    public function confirm(int $technologyId)
+    public function destroy($id)
     {
-        $this->selectedTechnology = Technology::findOrFail($technologyId);
+        Technology::findOrFail($id)->delete();
 
-        Flux::modal('destroy-technology')->show();
-    }
-
-    public function destroy()
-    {
-        $this->selectedTechnology->delete();
-
-        Flux::modal('destroy-technology')->close();
         Flux::toast(variant: 'success', text: 'Technology Deleted!', duration: 3000);
     }
 }

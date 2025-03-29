@@ -19,25 +19,21 @@
     <body class="min-h-screen">
         <livewire:navigation />
 
-        <flux:main container class="px-8">
-            <div class="relative mx-auto flex w-full max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
-                <div class="min-w-0 max-w-2xl flex-auto px-4 py-4 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16">
-                    @if (isset($header))
-                        <div class="flex justify-between">
-                            <div class="w-full sm:w-auto">
-                                <h5 class="text-2xl lg:text-4xl font-bold">
-                                    {{ $header }}
-                                </h5>
-                            </div>
-                        </div>  
-                        
-                        <flux:separator />
-                    @endif
-
-                    <div class="mt-4">
-                        {{ $slot }}
+        <flux:main container class="px-8 mt-4">
+            @if (isset($header))
+                <div class="flex justify-between">
+                    <div class="w-full sm:w-auto">
+                        <h5 class="text-2xl lg:text-4xl font-bold">
+                            {{ $header }}
+                        </h5>
                     </div>
-                </div>
+                </div>  
+                
+                <flux:separator class="mt-2 mb-1" />
+            @endif
+
+            <div class="mt-2">
+                {{ $slot }}
             </div>
         </flux:main>
 

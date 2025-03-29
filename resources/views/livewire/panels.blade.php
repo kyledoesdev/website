@@ -1,19 +1,25 @@
 <div>
-    @foreach ($this->panels as $panel)
-        <h5 class="mx-1 mb-4">{{ $panel->display_name }}</h5>
+    <x-slot name="header">{{ $header }}</x-slot>
 
-        <div class="mb-2">
-            <flux:editor wire:model="content.{{ $panel->name }}" />
-        </div>
+    <flux:card>
+        @foreach ($this->panels as $panel)
+            <flux:heading class="mb-4" size="xl">
+                {{ $panel->display_name }}
+            </flux:heading>
 
-        <div class="flex justify-end">
-            <flux:button
-                variant="primary"
-                size="sm"
-                wire:click="update({{ $panel }})"
-            >
-                Update
-            </flux:button>
-        </div>
-    @endforeach
+            <div class="mb-2">
+                <flux:editor wire:model="content.{{ $panel->name }}" />
+            </div>
+
+            <div class="flex justify-end">
+                <flux:button
+                    variant="primary"
+                    size="sm"
+                    wire:click="update({{ $panel }})"
+                >
+                    Update
+                </flux:button>
+            </div>
+        @endforeach
+    </flux:card>
 </div>

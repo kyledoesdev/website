@@ -1,4 +1,6 @@
 <div>
+    <x-slot name="header">Resume</x-slot>
+
     <div class="space-y-8">
         <flux:card class="space-y-2">
             <flux:input type="file" wire:model="resume" label="New Resume Upload"/>

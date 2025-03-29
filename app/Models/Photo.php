@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\Models\Model;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Photo extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'captured_at',
