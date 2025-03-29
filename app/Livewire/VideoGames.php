@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Actions\Twitch\SearchCategories;
+use App\Livewire\Actions\Api\SearchCategories;
 use App\Livewire\Forms\VideoGameForm;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\VideoGame;
