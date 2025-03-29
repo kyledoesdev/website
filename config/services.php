@@ -38,5 +38,10 @@ return [
         'client_id' => env('TWITCH_CLIENT_ID'),
         'client_secret' => env('TWITCH_CLIENT_SECRET'),
         'redirect' => env('CONNECTION_REDIRECT'),
+    ],
+
+    'movie_db' => [
+        'api_key' => env('MOVIEDB_API_KEY'),
+        'access_token' => env('MOVIEDB_KEY'),
     ]
 ];

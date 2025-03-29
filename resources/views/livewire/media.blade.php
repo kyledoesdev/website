@@ -1,86 +1,74 @@
 <div>
-    <x-slot name="header">Video Games</x-slot>
+    <x-slot name="header">{{ $mediaType->name }}</x-slot>
 
     <flux:card>
         <div class="flex justify-between">
             <div class="font-semibold text-xl leading-tight mt-2">
-                <h5>Video Games</h5>
+                <h5>{{ $mediaType->name }}</h5>
             </div>
             <div>
-                <flux:modal.trigger name="create-video_game">
+                <flux:modal.trigger name="create-media">
                     <flux:button variant="primary" size="sm">Create</flux:button>
                 </flux:modal.trigger>
             </div>
         </div>
     
-        {{-- Table of Games --}}
+        {{-- Table of Media Type --}}
         <div class="py-6">
             <div class="max-w-7xl mx-auto">
                 <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
-                    <flux:table :paginate="$this->games">
-                        @forelse ($this->games as $game)
+                    <flux:table :paginate="$this->medias">
+                        @forelse ($this->medias as $media)
                             @if ($loop->first)
                                 <flux:table.columns>
                                     <flux:table.column>Name</flux:table.column>
                                     <flux:table.column>Favorite</flux:table.column>
-                                    <flux:table.column>Playing</flux:table.column>
                                     <flux:table.column>Backlog</flux:table.column>
                                     <flux:table.column>Completed</flux:table.column>
-                                    <flux:table.column>Rank</flux:table.column>
                                     <flux:table.column>Actions</flux:table.column>
                                 </flux:table.columns>
                             @endif
     
-                            <flux:table.row :key="$game->getKey()">
+                            <flux:table.row :key="$media->getKey()">
                                 <flux:table.cell>
-                                    {{ $game->name }}
+                                    {{ $media->name }}
                                 </flux:table.cell>
                                 <flux:table.cell>
-                                    @if ($game->is_favorite)
+                                    @if ($media->is_favorite)
                                         <flux:icon.check size="micro" />
                                     @else
                                         <flux:icon.x-mark size="micro" />
                                     @endif
                                 </flux:table.cell>
                                 <flux:table.cell>
-                                    @if ($game->is_active)
+                                    @if ($media->in_backlog)
                                         <flux:icon.check size="micro" />
                                     @else
                                         <flux:icon.x-mark size="micro" />
                                     @endif
                                 </flux:table.cell>
                                 <flux:table.cell>
-                                    @if ($game->in_backlog)
+                                    @if ($media->is_completed)
                                         <flux:icon.check size="micro" />
                                     @else
                                         <flux:icon.x-mark size="micro" />
                                     @endif
-                                </flux:table.cell>
-                                <flux:table.cell>
-                                    @if ($game->is_completed)
-                                        <flux:icon.check size="micro" />
-                                    @else
-                                        <flux:icon.x-mark size="micro" />
-                                    @endif
-                                </flux:table.cell>
-                                <flux:table.cell>
-                                    {{ !is_null($game->rank) ? $game->rank : 'N/A' }}
                                 </flux:table.cell>
                                 <flux:table.cell>
                                     <flux:dropdown>
-                                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+                                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />
 
                                         <flux:menu>
                                             <flux:menu.item
                                                 icon="pencil"
-                                                wire:click="edit({{ $game->getKey() }})"
+                                                wire:click="edit({{ $media->getKey() }})"
                                             >
                                                 Edit
                                             </flux:menu.item>
                                             <flux:menu.item
                                                 icon="trash"
-                                                wire:click="destroy({{ $game->getKey() }})"
-                                                wire:confirm="Are you sure you want to delete this game?"
+                                                wire:click="destroy({{ $media->getKey() }})"
+                                                wire:confirm="Are you sure you want to delete this {{ $mediaType->name }}?"
                                             >
                                                 Delete
                                             </flux:menu.item>
@@ -91,7 +79,7 @@
                         @empty
                             <flux:card>
                                 <div class="flex justify-center my-4">
-                                    <flux:badge>No Video Games found.</flux:badge>
+                                    <flux:badge>No {{ $mediaType->name }} found.</flux:badge>
                                 </div>
                             </flux:card>
                         @endforelse
@@ -101,10 +89,10 @@
         </div>
     </flux:card>
 
-    <flux:modal name="create-video_game" class="space-y-6 md:w-1/2 md:h-full">
-        @if (is_null($selectedGame))
+    <flux:modal name="create-media" class="space-y-6 md:w-1/2 md:h-full">
+        @if (is_null($selectedMedia))
             <div class="mb-2">
-                <flux:heading size="lg">Search Twitch for a Game Category</flux:heading>
+                <flux:heading size="lg">Search MovieDB for a {{ $mediaType->name }}</flux:heading>
             </div>
 
             <flux:input.group>
@@ -114,15 +102,15 @@
             </flux:input.group>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                @foreach ($searchedGames as $key => $game)
+                @foreach ($searchedMedia as $key => $media)
                     <div class="flex flex-col justify-center items-center space-y-2">
                         <div>
                             <img
                                 width="142" 
                                 height="190"
                                 class="rounded-xl"
-                                src="{{ $game['cover'] }}"
-                                alt="{{ $game['name'] }}"
+                                src="{{ $media['cover'] }}"
+                                alt="{{ $media['name'] }}"
                             />
                         </div>
 
@@ -131,9 +119,9 @@
                                 variant="ghost"
                                 size="sm"
                                 icon="plus"
-                                wire:click="selectGame({{ $game['twitch_id'] }})"
+                                wire:click="selectMedia({{ $media['media_id'] }})"
                             >
-                                Select Game
+                                Select {{ $mediaType->name }}
                             </flux:button>
                         </div>
                     </div>
@@ -142,13 +130,12 @@
         @else
             <div class="space-y-5">
                 <div>
-                    <flux:heading size="lg">Add {{ $selectedGame['name'] }} to games list.</flux:heading>
+                    <flux:heading size="lg">Add {{ $selectedMedia['name'] }} to the {{ $mediaType->name }} list.</flux:heading>
                 </div>
     
                 <div>
                     <flux:checkbox.group wire:model.live="form.states">
                         <flux:checkbox label="Is Favorite?" value="is_favorite" />
-                        <flux:checkbox label="Currently Playing?" value="is_active" />
                         <flux:checkbox label="In Backlog?" value="in_backlog" />
                         <flux:checkbox label="Completed?" value="is_completed" />
                     </flux:checkbox.group>
@@ -156,23 +143,22 @@
 
                 <div>
                     <flux:button size="sm" variant="primary" icon="plus" wire:click="store">
-                        Add {{ $selectedGame['name'] }}
+                        Add {{ $selectedMedia['name'] }}
                     </flux:button>
                 </div>
             </div>
         @endif
     </flux:modal>
 
-    <flux:modal name="edit-video_game" class="space-y-6 md:w-1/2">
+    <flux:modal name="edit-media" class="space-y-6 md:w-1/2">
         <div>
-            <flux:heading size="lg">Edit video game: {{ $form->game?->name }}.</flux:heading>
+            <flux:heading size="lg">Edit {{ $mediaType->name }}: {{ $form->media?->name }}.</flux:heading>
         </div>
 
         <form wire:submit="update">
             <div>
                 <flux:checkbox.group wire:model.live="form.states">
                     <flux:checkbox label="Is Favorite?" value="is_favorite" />
-                    <flux:checkbox label="Currently Playing?" value="is_active" />
                     <flux:checkbox label="In Backlog?" value="in_backlog" />
                     <flux:checkbox label="Completed?" value="is_completed" />
                 </flux:checkbox.group>

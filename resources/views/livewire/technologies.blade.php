@@ -1,4 +1,6 @@
 <div>
+    <x-slot name="header">Technologies</x-slot>
+
     {{-- Header & Create Model --}}
     <flux:card>
         <div class="flex justify-between">

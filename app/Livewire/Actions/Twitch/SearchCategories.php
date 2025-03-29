@@ -24,9 +24,9 @@ final class SearchCategories
             'first' => 9
         ]);
 
-        $games = VideoGame::pluck('twitch_id')->toArray();
-
         if ($response->successful()) {
+            $games = VideoGame::pluck('twitch_id')->toArray();
+
             return collect($response->json('data'))->map(function($game) use ($games) {
                 if (in_array($game['id'], $games)) {
                     return null;
@@ -40,7 +40,7 @@ final class SearchCategories
             })->filter();
         }
 
-        return null;
+        return collect();
     }
 
     private function refreshToken(User $user): void
