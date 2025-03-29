@@ -15,6 +15,7 @@ class Media extends Model
         'name',
         'cover',
         'is_favorite',
+        'is_active',
         'in_backlog',
         'is_completed',
         'data',
@@ -31,6 +32,7 @@ class Media extends Model
     {
         return [
             'is_favorite' => 'boolean',
+            'is_active' => 'boolean',
             'in_backlog' => 'boolean',
             'is_completed' => 'boolean',
             'data' => 'array'

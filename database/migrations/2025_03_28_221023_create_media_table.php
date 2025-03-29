@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('cover');
             $table->boolean('is_favorite')->default(false);
+            $table->boolean('is_active')->default(false);
             $table->boolean('in_backlog')->default(false);
             $table->boolean('is_completed')->default(false);
             $table->json('data')->nullable();

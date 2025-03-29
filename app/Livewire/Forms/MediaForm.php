@@ -23,6 +23,7 @@ class MediaForm extends Form
             'name'         => $media['name'],
             'cover'        => $media['cover'],
             'is_favorite'  => $states->contains('is_favorite'),
+            'is_active'    => $states->contains('is_active'),
             'in_backlog'   => $states->contains('in_backlog'),
             'is_completed' => $states->contains('is_completed'),
         ]);
@@ -36,6 +37,7 @@ class MediaForm extends Form
 
         $this->name = $this->media->name;
         $this->states[] = $this->media->is_favorite ? 'is_favorite' : '';
+        $this->states[] = $this->media->is_active ? 'is_active' : '';
         $this->states[] = $this->media->in_backlog ? 'in_backlog' : '';
         $this->states[] = $this->media->is_completed ? 'is_completed' : '';
     }
@@ -46,6 +48,7 @@ class MediaForm extends Form
 
         $this->media->update([
             'is_favorite'  => $states->contains('is_favorite'),
+            'is_active'    => $states->contains('is_active'),
             'in_backlog'   => $states->contains('in_backlog'),
             'is_completed' => $states->contains('is_completed'),
         ]);

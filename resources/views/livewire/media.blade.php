@@ -26,6 +26,9 @@
                                     <flux:table.columns>
                                         <flux:table.column>Name</flux:table.column>
                                         <flux:table.column>Favorite</flux:table.column>
+                                        @if ($media->type_id == App\Models\MediaType::TV)
+                                            <flux:table.column>Watching</flux:table.column>
+                                        @endif
                                         <flux:table.column>Backlog</flux:table.column>
                                         <flux:table.column>Completed</flux:table.column>
                                         <flux:table.column>Actions</flux:table.column>
@@ -43,6 +46,15 @@
                                             <flux:icon.x-mark size="micro" />
                                         @endif
                                     </flux:table.cell>
+                                    @if ($media->type_id == App\Models\MediaType::TV)
+                                        <flux:table.cell>
+                                            @if ($media->is_active)
+                                                <flux:icon.check size="micro" />
+                                            @else
+                                                <flux:icon.x-mark size="micro" />
+                                            @endif
+                                        </flux:table.cell>
+                                    @endif
                                     <flux:table.cell>
                                         @if ($media->in_backlog)
                                             <flux:icon.check size="micro" />
@@ -140,6 +152,7 @@
                 <div>
                     <flux:checkbox.group wire:model.live="form.states">
                         <flux:checkbox label="Is Favorite?" value="is_favorite" />
+                        <flux:checkbox label="Currently Watching?" value="is_active" />
                         <flux:checkbox label="In Backlog?" value="in_backlog" />
                         <flux:checkbox label="Completed?" value="is_completed" />
                     </flux:checkbox.group>
@@ -163,6 +176,7 @@
             <div>
                 <flux:checkbox.group wire:model.live="form.states">
                     <flux:checkbox label="Is Favorite?" value="is_favorite" />
+                    <flux:checkbox label="Currently Watching?" value="is_active" />
                     <flux:checkbox label="In Backlog?" value="in_backlog" />
                     <flux:checkbox label="Completed?" value="is_completed" />
                 </flux:checkbox.group>
