@@ -1,10 +1,12 @@
 <div>
+    <x-slot name="header">Manage External Connections</x-slot>
+
     @php
         $spotify = auth()->user()->connections->firstWhere('type_id', App\Models\ConnectionType::SPOTIFY);
         $twitch = auth()->user()->connections->firstWhere('type_id', App\Models\ConnectionType::TWITCH);
     @endphp
 
-    <div class="flex flex-col space-y-2">
+    <flux:card class="flex flex-col space-y-2">
         <div>
             @if (is_null($spotify))
                 <flux:button variant="outline" icon="audio-waveform" href="{{ route('connect', ['type' => 'spotify']) }}">
@@ -27,5 +29,5 @@
                 </flux:badge>
             @endif
         </div>
-    </div>
+    </flux:card>
 </div>

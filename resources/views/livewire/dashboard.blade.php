@@ -21,6 +21,12 @@
                     <span>Board Games</span>
                 </flux:card>
             </a>
+            <a href="{{ route('connections.edit') }}">
+                <flux:card class="flex space-x-2">
+                    <flux:icon.link />
+                    <span>Connections</span>
+                </flux:card>
+            </a>
             <a href="{{ route('education.edit') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.academic-cap />
