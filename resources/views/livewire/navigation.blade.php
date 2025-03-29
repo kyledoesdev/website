@@ -63,36 +63,38 @@ new class extends Component
             </flux:navmenu>
         </flux:dropdown>
 
-        <flux:dropdown>
-            <flux:navbar.item
-                icon="fire"
-                icon-trailing="chevron-down"
-                :current="request()->is('board_games', 'music', 'movies', 'tv_shows', 'video_games')"
-            >
-                Fun Hobbies
-            </flux:navbar.item>
+        @if (env('FEATURE_HOBBIES') == true)
+            <flux:dropdown>
+                <flux:navbar.item
+                    icon="fire"
+                    icon-trailing="chevron-down"
+                    :current="request()->is('board_games', 'music', 'movies', 'tv_shows', 'video_games')"
+                >
+                    Fun Hobbies
+                </flux:navbar.item>
 
-            <flux:navmenu>
-                <flux:navmenu.item icon="dices" href="{{ route('board_games') }}">
-                    Board Games
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="musical-note" href="{{ route('music') }}">
-                    Bands & Music
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="film" href="{{ route('movies') }}">
-                    Movies
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="tv" href="{{  route('tv_shows') }}">
-                    TV Shows
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="photo" href="{{ route('gallery') }}">
-                    Photo Gallery
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="gamepad-2" href="{{ route('video_games') }}">
-                    Video Games
-                </flux:navmenu.item>
-            </flux:navmenu>
-        </flux:dropdown>
+                <flux:navmenu>
+                    <flux:navmenu.item icon="dices" href="{{ route('board_games') }}">
+                        Board Games
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="musical-note" href="{{ route('music') }}">
+                        Bands & Music
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="film" href="{{ route('movies') }}">
+                        Movies
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="tv" href="{{  route('tv_shows') }}">
+                        TV Shows
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="photo" href="{{ route('gallery') }}">
+                        Photo Gallery
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="gamepad-2" href="{{ route('video_games') }}">
+                        Video Games
+                    </flux:navmenu.item>
+                </flux:navmenu>
+            </flux:dropdown>
+        @endif
     </flux:navbar>
 
     <flux:spacer />
@@ -163,31 +165,33 @@ new class extends Component
                 </flux:navmenu.item>
             </flux:navlist.group>
 
-            <flux:navlist.group
-                expandable
-                heading="Fun Hobbies"
-                icon="fire"
-                :current="request()->is('board_games', 'music', 'movies', 'tv_shows', 'video_games')"
-            >
-                <flux:navmenu.item icon="dices" href="{{ route('board_games') }}">
-                    Board Games
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="musical-note" href="{{ route('music') }}">
-                    Bands & Music
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="film" href="{{ route('movies') }}">
-                    Movies
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="tv" href="{{  route('tv_shows') }}">
-                    TV Shows
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="photo" href="{{ route('gallery') }}">
-                    Photo Gallery
-                </flux:navmenu.item>
-                <flux:navmenu.item icon="gamepad-2" href="{{ route('video_games') }}">
-                    Video Games
-                </flux:navmenu.item>
-            </flux:navlist.group>
+            @if (env('FEATURE_HOBBIES') == true)
+                <flux:navlist.group
+                    expandable
+                    heading="Fun Hobbies"
+                    icon="fire"
+                    :current="request()->is('board_games', 'music', 'movies', 'tv_shows', 'video_games')"
+                >
+                    <flux:navmenu.item icon="dices" href="{{ route('board_games') }}">
+                        Board Games
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="musical-note" href="{{ route('music') }}">
+                        Bands & Music
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="film" href="{{ route('movies') }}">
+                        Movies
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="tv" href="{{  route('tv_shows') }}">
+                        TV Shows
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="photo" href="{{ route('gallery') }}">
+                        Photo Gallery
+                    </flux:navmenu.item>
+                    <flux:navmenu.item icon="gamepad-2" href="{{ route('video_games') }}">
+                        Video Games
+                    </flux:navmenu.item>
+                </flux:navlist.group>
+            @endif
         </flux:navlist>
 
         <flux:spacer />

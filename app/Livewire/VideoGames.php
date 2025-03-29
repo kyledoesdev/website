@@ -64,7 +64,7 @@ class VideoGames extends Component
     {
         $this->form->store($this->selectedGame);
 
-        $this->selectGame = null;
+        $this->selectedGame = null;
 
         Flux::modal('create-video_game')->close();
         Flux::toast(variant: 'success', text: 'Successfully added game.');
