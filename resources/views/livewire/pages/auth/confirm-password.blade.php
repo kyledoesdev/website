@@ -41,22 +41,22 @@ new #[Layout('layouts.guest')] class extends Component
     <form wire:submit="confirmPassword">
         <!-- Password -->
         <div>
-            <x-input-label for="password" :value="__('Password')" />
+            <flux:label for="password" :value="__('Password')" />
 
-            <x-text-input wire:model="password"
+            <flux:input wire:model="password"
                           id="password"
                           class="block mt-1 w-full"
                           type="password"
                           name="password"
                           required autocomplete="current-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <flux:error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <div class="flex justify-end mt-4">
-            <x-primary-button>
+            <flux:button variant="primary">
                 {{ __('Confirm') }}
-            </x-primary-button>
+            </flux:button>
         </div>
     </form>
 </div>
