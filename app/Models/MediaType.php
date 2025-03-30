@@ -11,6 +11,7 @@ class MediaType extends Model
     const TV = 2;
     const ARTIST = 3;
     const TRACK = 4;
+    const VIDEO_GAME = 5;
 
     protected $fillable = [
         'name'

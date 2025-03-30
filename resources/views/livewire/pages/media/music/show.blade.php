@@ -1,10 +1,10 @@
-<x-guest-layout>
+<div>
     <x-slot name="header">Bands & Music</x-slot>
 
     <div class="space-y-6 mt-4">
         {{-- Markdown content --}}
         <flux:card style="overflow-y: auto; max-height: 400px;">
-            <x-markdown-content :content="App\Models\Panel::where('name', 'music')->first()->content" />
+            <x-markdown-content :content="$panel" />
         </flux:card>
 
         {{-- spotify showcase --}}
@@ -16,7 +16,8 @@
             <flux:separator />
 
             <x-spotify-showcase 
-                :collection="App\Models\Media::query()->forSpotify()->get()"
+                :favoriteArtists="$favoriteArtists"
+                :favoriteTracks="$favoriteTracks"
             />
         </flux:card>
 
@@ -86,4 +87,4 @@
             </flux:accordion>
         </flux:card>
     </div>
-</x-guest-layout>
+</div>

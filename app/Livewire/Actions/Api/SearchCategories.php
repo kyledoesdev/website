@@ -3,6 +3,8 @@
 namespace App\Livewire\Actions\Api;
 
 use App\Models\ConnectionType;
+use App\Models\Media;
+use App\Models\MediaType;
 use App\Models\User;
 use App\Models\VideoGame;
 use Exception;
@@ -11,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 final class SearchCategories
 {
-    public function search(User $user, string $phrase)
+    public function search(User $user, string $phrase, int $mediaType)
     {
         $this->refreshToken($user);
 
@@ -25,15 +27,16 @@ final class SearchCategories
         ]);
 
         if ($response->successful()) {
-            $games = VideoGame::pluck('twitch_id')->toArray();
+            $games = Media::where('type_id', $mediaType)->pluck('media_id')->toArray();
 
-            return collect($response->json('data'))->map(function($game) use ($games) {
+            return collect($response->json('data'))->map(function($game) use ($games, $mediaType) {
                 if (in_array($game['id'], $games)) {
                     return null;
                 }
 
                 return [
-                    'twitch_id' => $game['id'],
+                    'type_id' => $mediaType,
+                    'media_id' => $game['id'],
                     'name' => $game['name'],
                     'cover' => $this->fix_box_art($game['box_art_url']),
                 ];

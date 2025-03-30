@@ -131,7 +131,7 @@
                                 variant="ghost"
                                 size="sm"
                                 icon="plus"
-                                wire:click="selectGame({{ $game['twitch_id'] }})"
+                                wire:click="selectGame({{ $game['media_id'] }})"
                             >
                                 Select Game
                             </flux:button>
@@ -165,7 +165,7 @@
 
     <flux:modal name="edit-video_game" class="space-y-6 md:w-1/2">
         <div>
-            <flux:heading size="lg">Edit video game: {{ $form->game?->name }}.</flux:heading>
+            <flux:heading size="lg">Edit video game: {{ $form->media?->name }}.</flux:heading>
         </div>
 
         <form wire:submit="update">

@@ -43,12 +43,4 @@ class Media extends Model
     {
         return $this->hasOne(MediaType::class, 'id', 'type_id');
     }
-
-    public function scopeForSpotify($query)
-    {
-        $query->whereIn('type_id', [
-            MediaType::ARTIST,
-            MediaType::TRACK
-        ]);
-    }
 }

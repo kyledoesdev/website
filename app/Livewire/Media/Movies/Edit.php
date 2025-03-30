@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Media\Movies;
 
 use App\Livewire\Actions\Api\SearchMedia;
 use App\Livewire\Forms\MediaForm;
 use App\Livewire\Traits\TableHelpers;
-use App\Models\Media as MediaModel;
+use App\Models\Media;
 use App\Models\MediaType;
 use Flux\Flux;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +13,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Media extends Component
+class Edit extends Component
 {
     use TableHelpers;
     use WithPagination;
@@ -35,13 +35,13 @@ class Media extends Component
 
     public function render()
     {
-        return view('livewire.media');
+        return view('livewire.pages.media.movies.edit');
     }
 
     #[Computed]
     public function medias()
     {
-        return MediaModel::query()
+        return Media::query()
             ->where('type_id', $this->mediaType->getKey())
             ->paginate(10);
     }
@@ -111,6 +111,6 @@ class Media extends Component
 
     public function destroy($id)
     {
-        MediaModel::findOrFail($id)->delete();
+        Media::findOrFail($id)->delete();
     }
 }

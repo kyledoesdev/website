@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Media\Music;
 
 use App\Livewire\Actions\Api\SearchSpotify;
 use App\Livewire\Traits\TableHelpers;
@@ -11,7 +11,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Music extends Component
+class Edit extends Component
 {
     use TableHelpers;
     use WithPagination;
@@ -21,7 +21,7 @@ class Music extends Component
 
     public function render()
     {
-        return view('livewire.music', [
+        return view('livewire.pages.media.music.edit', [
             'mediaTypes' => MediaType::all(),
         ]);
     }
