@@ -1,105 +1,109 @@
 <div>
     <x-slot name="header">Video Games</x-slot>
 
-    <flux:card>
-        <div class="flex justify-between">
-            <div class="font-semibold text-xl leading-tight mt-2">
-                <h5>Video Games</h5>
-            </div>
-            <div>
-                <flux:modal.trigger name="create-video_game">
-                    <flux:button variant="primary" size="sm">Create</flux:button>
-                </flux:modal.trigger>
-            </div>
-        </div>
-    
-        {{-- Table of Games --}}
-        <div class="py-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
-                    <flux:table :paginate="$this->games">
-                        @forelse ($this->games as $game)
-                            @if ($loop->first)
-                                <flux:table.columns>
-                                    <flux:table.column>Name</flux:table.column>
-                                    <flux:table.column>Favorite</flux:table.column>
-                                    <flux:table.column>Playing</flux:table.column>
-                                    <flux:table.column>Backlog</flux:table.column>
-                                    <flux:table.column>Completed</flux:table.column>
-                                    <flux:table.column>Rank</flux:table.column>
-                                    <flux:table.column>Actions</flux:table.column>
-                                </flux:table.columns>
-                            @endif
-    
-                            <flux:table.row :key="$game->getKey()">
-                                <flux:table.cell>
-                                    {{ $game->name }}
-                                </flux:table.cell>
-                                <flux:table.cell>
-                                    @if ($game->is_favorite)
-                                        <flux:icon.check size="micro" />
-                                    @else
-                                        <flux:icon.x-mark size="micro" />
-                                    @endif
-                                </flux:table.cell>
-                                <flux:table.cell>
-                                    @if ($game->is_active)
-                                        <flux:icon.check size="micro" />
-                                    @else
-                                        <flux:icon.x-mark size="micro" />
-                                    @endif
-                                </flux:table.cell>
-                                <flux:table.cell>
-                                    @if ($game->in_backlog)
-                                        <flux:icon.check size="micro" />
-                                    @else
-                                        <flux:icon.x-mark size="micro" />
-                                    @endif
-                                </flux:table.cell>
-                                <flux:table.cell>
-                                    @if ($game->is_completed)
-                                        <flux:icon.check size="micro" />
-                                    @else
-                                        <flux:icon.x-mark size="micro" />
-                                    @endif
-                                </flux:table.cell>
-                                <flux:table.cell>
-                                    {{ !is_null($game->rank) ? $game->rank : 'N/A' }}
-                                </flux:table.cell>
-                                <flux:table.cell>
-                                    <flux:dropdown>
-                                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+    <div class="space-y-4">
+        <livewire:panels :type="'video_games'" :header="'Video Games'" />
 
-                                        <flux:menu>
-                                            <flux:menu.item
-                                                icon="pencil"
-                                                wire:click="edit({{ $game->getKey() }})"
-                                            >
-                                                Edit
-                                            </flux:menu.item>
-                                            <flux:menu.item
-                                                icon="trash"
-                                                wire:click="destroy({{ $game->getKey() }})"
-                                                wire:confirm="Are you sure you want to delete this game?"
-                                            >
-                                                Delete
-                                            </flux:menu.item>
-                                        </flux:menu>
-                                    </flux:dropdown>
-                                </flux:table.cell>
-                            </flux:table.row>
-                        @empty
-                            <flux:card>
-                                <div class="flex justify-center my-4">
-                                    <flux:badge>No Video Games found.</flux:badge>
-                                </div>
-                            </flux:card>
-                        @endforelse
-                    </flux:table>
+        <flux:card>
+            <div class="flex justify-between">
+                <div class="font-semibold text-xl leading-tight mt-2">
+                    <h5>Video Games</h5>
+                </div>
+                <div>
+                    <flux:modal.trigger name="create-video_game">
+                        <flux:button variant="primary" size="sm">Create</flux:button>
+                    </flux:modal.trigger>
                 </div>
             </div>
-        </div>
-    </flux:card>
+        
+            {{-- Table of Games --}}
+            <div class="py-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
+                        <flux:table :paginate="$this->games">
+                            @forelse ($this->games as $game)
+                                @if ($loop->first)
+                                    <flux:table.columns>
+                                        <flux:table.column>Name</flux:table.column>
+                                        <flux:table.column>Favorite</flux:table.column>
+                                        <flux:table.column>Playing</flux:table.column>
+                                        <flux:table.column>Backlog</flux:table.column>
+                                        <flux:table.column>Completed</flux:table.column>
+                                        <flux:table.column>Rank</flux:table.column>
+                                        <flux:table.column>Actions</flux:table.column>
+                                    </flux:table.columns>
+                                @endif
+        
+                                <flux:table.row :key="$game->getKey()">
+                                    <flux:table.cell>
+                                        {{ $game->name }}
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        @if ($game->is_favorite)
+                                            <flux:icon.check size="micro" />
+                                        @else
+                                            <flux:icon.x-mark size="micro" />
+                                        @endif
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        @if ($game->is_active)
+                                            <flux:icon.check size="micro" />
+                                        @else
+                                            <flux:icon.x-mark size="micro" />
+                                        @endif
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        @if ($game->in_backlog)
+                                            <flux:icon.check size="micro" />
+                                        @else
+                                            <flux:icon.x-mark size="micro" />
+                                        @endif
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        @if ($game->is_completed)
+                                            <flux:icon.check size="micro" />
+                                        @else
+                                            <flux:icon.x-mark size="micro" />
+                                        @endif
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        {{ !is_null($game->rank) ? $game->rank : 'N/A' }}
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        <flux:dropdown>
+                                            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+
+                                            <flux:menu>
+                                                <flux:menu.item
+                                                    icon="pencil"
+                                                    wire:click="edit({{ $game->getKey() }})"
+                                                >
+                                                    Edit
+                                                </flux:menu.item>
+                                                <flux:menu.item
+                                                    icon="trash"
+                                                    wire:click="destroy({{ $game->getKey() }})"
+                                                    wire:confirm="Are you sure you want to delete this game?"
+                                                >
+                                                    Delete
+                                                </flux:menu.item>
+                                            </flux:menu>
+                                        </flux:dropdown>
+                                    </flux:table.cell>
+                                </flux:table.row>
+                            @empty
+                                <flux:card>
+                                    <div class="flex justify-center my-4">
+                                        <flux:badge>No Video Games found.</flux:badge>
+                                    </div>
+                                </flux:card>
+                            @endforelse
+                        </flux:table>
+                    </div>
+                </div>
+            </div>
+        </flux:card>
+    </div>
 
     <flux:modal name="create-video_game" class="space-y-6 md:w-1/2 md:h-full">
         @if (is_null($selectedGame))

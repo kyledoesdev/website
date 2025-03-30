@@ -28,7 +28,7 @@
                 />
                 <x-media-accordian-item
                     :collection="$completed"
-                    :title="'Completed'"
+                    :title="'Played / Completed'"
                 />
             </flux:accordion>
         </flux:card>
