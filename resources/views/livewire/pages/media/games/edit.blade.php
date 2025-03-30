@@ -29,7 +29,6 @@
                                         <flux:table.column>Playing</flux:table.column>
                                         <flux:table.column>Backlog</flux:table.column>
                                         <flux:table.column>Completed</flux:table.column>
-                                        <flux:table.column>Rank</flux:table.column>
                                         <flux:table.column>Actions</flux:table.column>
                                     </flux:table.columns>
                                 @endif
@@ -65,9 +64,6 @@
                                         @else
                                             <flux:icon.x-mark size="micro" />
                                         @endif
-                                    </flux:table.cell>
-                                    <flux:table.cell>
-                                        {{ !is_null($game->rank) ? $game->rank : 'N/A' }}
                                     </flux:table.cell>
                                     <flux:table.cell>
                                         <flux:dropdown>
