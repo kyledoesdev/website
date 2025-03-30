@@ -170,7 +170,7 @@ new class extends Component
                 :current="request()->is('board_games', 'music', 'movies', 'tv_shows', 'video_games')"
             >
                 <flux:navmenu.item icon="dices" href="{{ route('board_games') }}">
-                    <flux:text>Board Games</flux:text>
+                    Board Games
                 </flux:navmenu.item>
                 <flux:navmenu.item icon="musical-note" href="{{ route('music') }}">
                     Bands & Music

@@ -6,7 +6,6 @@ use App\Models\ConnectionType;
 use App\Models\Media;
 use App\Models\MediaType;
 use App\Models\User;
-use App\Models\VideoGame;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;

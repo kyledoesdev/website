@@ -19,6 +19,7 @@ return new class extends Migration
         MediaType::create(['name' => 'TV Shows']);
         MediaType::create(['name' => 'Artist']);
         MediaType::create(['name' => 'Track']);
+        MediaType::create(['name' => 'Video Game']);
 
         Schema::create('media', function (Blueprint $table) {
             $table->id();
