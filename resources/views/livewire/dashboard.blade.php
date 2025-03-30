@@ -15,6 +15,12 @@
                     <span>Bands & Music</span>
                 </flux:card>
             </a>
+            <a href="{{ route('blog.edit') }}">
+                <flux:card class="flex space-x-2">
+                    <flux:icon.pencil />
+                    <span>Blog</span>
+                </flux:card>
+            </a>
             <a href="{{ route('board_games.edit') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.dices />

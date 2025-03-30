@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\WelcomeController;
+use App\Livewire\Blog;
 use App\Livewire\Connection;
 use App\Livewire\Dashboard;
 use App\Livewire\Media\Games\Edit as EditGames;
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     Route::get('/connections/edit', Connection::class)->name('connections.edit');
+    Route::get('/blog/edit', Blog::class)->name('blog.edit');
 
     Route::get('/board_games/edit', Panels::class)->name('board_games.edit');
     Route::get('/education/edit', Panels::class)->name('education.edit');
