@@ -18,31 +18,22 @@ class Edit extends Component
     use TableHelpers;
     use WithPagination;
 
-    public MediaType $mediaType;
     public string $phrase = '';
-
     public $searchedMedia = [];
     public $selectedMedia = null;
 
     public MediaForm $form;
 
-    public function mount()
-    {
-        $this->mediaType = Route::currentRouteName() == 'movies.edit'
-            ? MediaType::firstWhere('name', 'Movies')
-            : MediaType::firstWhere('name', 'TV Shows');
-    }
-
     public function render()
     {
-        return view('livewire.media');
+        return view('livewire.pages.media.tv.edit');
     }
 
     #[Computed]
     public function medias()
     {
         return Media::query()
-            ->where('type_id', $this->mediaType->getKey())
+            ->where('type_id', MediaType::TV)
             ->paginate(10);
     }
 
@@ -51,7 +42,7 @@ class Edit extends Component
         $media = (new SearchMedia)->search(
             auth()->user(),
             $this->phrase,
-            $this->mediaType
+            MediaType::TV
         );
 
         if ($media->isEmpty()) {
@@ -82,12 +73,8 @@ class Edit extends Component
 
         $this->selectedMedia = null;
 
-        $mediaType = $this->mediaType->isMovie()
-            ? 'movie' 
-            : 'tv show';
-
         Flux::modal('create-media')->close();
-        Flux::toast(variant: 'success', text: "Successfully added {$mediaType}.");
+        Flux::toast(variant: 'success', text: "Successfully added the TV show!");
     }
 
     public function edit($id)
@@ -101,12 +88,8 @@ class Edit extends Component
     {
         $this->form->update();
 
-        $mediaType = $this->mediaType->isMovie()
-            ? 'movie' 
-            : 'tv show';
-
         Flux::modal('edit-media')->close();
-        Flux::toast(variant: 'success', text: "Successfully updated the {$mediaType}.");
+        Flux::toast(variant: 'success', text: "Successfully updated the tv show!");
     }
 
     public function destroy($id)

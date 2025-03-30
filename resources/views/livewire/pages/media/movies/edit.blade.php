@@ -1,13 +1,13 @@
 <div>
-    <x-slot name="header">{{ $mediaType->name }}</x-slot>
+    <x-slot name="header">Movies</x-slot>
 
     <div class="space-y-4">
-        <livewire:panels :type="$mediaType->isMovie() ? 'movies' : 'tv'" :header="$mediaType->name" />
+        <livewire:panels :type="'movies'" :header="'Movies'" />
 
         <flux:card>
             <div class="flex justify-between">
                 <div class="font-semibold text-xl leading-tight mt-2">
-                    <h5>{{ $mediaType->isMovie() ? 'Add Movies' : "Add TV Shows" }}</h5>
+                    <h5>Add Movies</h5>
                 </div>
                 <div>
                     <flux:modal.trigger name="create-media">
@@ -26,9 +26,6 @@
                                     <flux:table.columns>
                                         <flux:table.column>Name</flux:table.column>
                                         <flux:table.column>Favorite</flux:table.column>
-                                        @if ($media->type_id == App\Models\MediaType::TV)
-                                            <flux:table.column>Watching</flux:table.column>
-                                        @endif
                                         <flux:table.column>Backlog</flux:table.column>
                                         <flux:table.column>Completed</flux:table.column>
                                         <flux:table.column>Actions</flux:table.column>
@@ -46,15 +43,6 @@
                                             <flux:icon.x-mark size="micro" />
                                         @endif
                                     </flux:table.cell>
-                                    @if ($media->type_id == App\Models\MediaType::TV)
-                                        <flux:table.cell>
-                                            @if ($media->is_active)
-                                                <flux:icon.check size="micro" />
-                                            @else
-                                                <flux:icon.x-mark size="micro" />
-                                            @endif
-                                        </flux:table.cell>
-                                    @endif
                                     <flux:table.cell>
                                         @if ($media->in_backlog)
                                             <flux:icon.check size="micro" />
@@ -83,7 +71,7 @@
                                                 <flux:menu.item
                                                     icon="trash"
                                                     wire:click="destroy({{ $media->getKey() }})"
-                                                    wire:confirm="Are you sure you want to delete this {{ $mediaType->name }}?"
+                                                    wire:confirm="Are you sure you want to delete this movie?"
                                                 >
                                                     Delete
                                                 </flux:menu.item>
@@ -94,7 +82,7 @@
                             @empty
                                 <flux:card>
                                     <div class="flex justify-center my-4">
-                                        <flux:badge>No {{ $mediaType->name }} found.</flux:badge>
+                                        <flux:badge>No Movies found.</flux:badge>
                                     </div>
                                 </flux:card>
                             @endforelse
@@ -108,7 +96,7 @@
     <flux:modal name="create-media" class="space-y-6 md:w-1/2 md:h-full">
         @if (is_null($selectedMedia))
             <div class="mb-2">
-                <flux:heading size="lg">Search MovieDB for a {{ $mediaType->name }}</flux:heading>
+                <flux:heading size="lg">Search MovieDB for a Movie</flux:heading>
             </div>
 
             <flux:input.group>
@@ -137,7 +125,7 @@
                                 icon="plus"
                                 wire:click="selectMedia({{ $media['media_id'] }})"
                             >
-                                Select {{ $mediaType->name }}
+                                Select Movie
                             </flux:button>
                         </div>
                     </div>
@@ -146,7 +134,7 @@
         @else
             <div class="space-y-5">
                 <div>
-                    <flux:heading size="lg">Add {{ $selectedMedia['name'] }} to the {{ $mediaType->name }} list.</flux:heading>
+                    <flux:heading size="lg">Add {{ $selectedMedia['name'] }} to the movies list.</flux:heading>
                 </div>
 
                 <div>
@@ -169,7 +157,7 @@
 
     <flux:modal name="edit-media" class="space-y-6 md:w-1/2">
         <div>
-            <flux:heading size="lg">Edit {{ $mediaType->name }}: {{ $form->media?->name }}.</flux:heading>
+            <flux:heading size="lg">Edit Movie: {{ $form->media?->name }}.</flux:heading>
         </div>
 
         <form wire:submit="update">

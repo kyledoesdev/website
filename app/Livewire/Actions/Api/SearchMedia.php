@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Log;
 
 final class SearchMedia
 {
-    public function search(User $user, string $phrase, MediaType $mediaType)
+    public function search(User $user, string $phrase, int $mediaType)
     {
-        $type = $mediaType->isMovie() ? 'movie' : 'tv';
+        $type = MediaType::MOVIE == $mediaType ? 'movie' : 'tv';
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . config('services.movie_db.access_token'),
@@ -27,7 +27,7 @@ final class SearchMedia
         ]);
 
         if ($response->successful()) {
-            $existingMedia = Media::where('type_id', $mediaType->getKey())->pluck('media_id')->toArray();
+            $existingMedia = Media::where('type_id', $mediaType)->pluck('media_id')->toArray();
 
             return collect($response->json('results'))->map(function($media) use ($existingMedia, $mediaType) {
                 if (in_array($media['id'], $existingMedia)) {
@@ -35,9 +35,9 @@ final class SearchMedia
                 }
 
                 return [
-                    'type_id'  => $mediaType->getKey(),
+                    'type_id'  => $mediaType,
                     'media_id' => $media['id'],
-                    'name'     => $mediaType->isMovie() ? $media['original_title'] : $media['original_name'],
+                    'name'     => MediaType::MOVIE == $mediaType ? $media['original_title'] : $media['original_name'],
                     'cover'    => "https://image.tmdb.org/t/p/original" . $media['poster_path'],
                 ];
             })->filter();
