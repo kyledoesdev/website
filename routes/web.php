@@ -19,6 +19,7 @@ use App\Livewire\Photos\Uploader;
 use App\Livewire\Resume;
 use App\Livewire\Technologies;
 use Illuminate\Support\Facades\Route;
+use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 Route::get('/connect/{type}', [ConnectionController::class, 'connect'])->name('connect');
 Route::get('/connection/callback', [ConnectionController::class, 'processConnection'])->name('process_connection');
@@ -59,6 +60,8 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/gallery/edit', Uploader::class)->name('gallery.edit');
     Route::get('/resumes/edit', Resume::class)->name('resume.edit');    
+
+    Route::get('/health', HealthCheckResultsController::class)->name('health.index');
 });
     
 require __DIR__.'/auth.php';

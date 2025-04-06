@@ -39,6 +39,12 @@
                     <span>Education</span>
                 </flux:card>
             </a>
+            <a href="{{ route('health.index') }}">
+                <flux:card class="flex space-x-2">
+                    <flux:icon.stethoscope />
+                    <span>Health</span>
+                </flux:card>
+            </a>
             <a href="{{ route('movies.edit') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.film />
