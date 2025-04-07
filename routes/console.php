@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Schedule;
-use Spatie\Health\Commands\RunHealthChecksCommand;
+use Spatie\Health\Commands\ScheduleCheckHeartbeatCommand;
 
-Schedule::command(RunHealthChecksCommand::class)->everyMinute();
-Schedule::command('model:prune')->daily();
+Schedule::command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
+Schedule::command('model:prune', [
+    '--model' => [
+        \Spatie\Health\Models\HealthCheckResultHistoryItem::class,
+    ],
+])->daily();
