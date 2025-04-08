@@ -22,8 +22,8 @@ class Resume extends Model
         static::addGlobalScope('default_order', fn (Builder $query) => $query->orderBy('created_at', 'desc'));
     }
 
-    public function getPathAttribute()
+    public function getFullPathAttribute()
     {
-        return asset('storage/' . $this->attributes['path']);
+        return config('filesystems.disks.s3.url') . $this->attributes['path'];
     }
 }

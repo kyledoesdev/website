@@ -30,8 +30,8 @@ class Photo extends Model
         ];
     }
 
-    public function getPathAttribute()
+    public function getFullPathAttribute()
     {
-        return asset('storage/' . $this->attributes['path']);
+        return config('filesystems.disks.s3.url') . $this->attributes['path'];
     }
 }

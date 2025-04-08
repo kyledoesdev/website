@@ -2,10 +2,10 @@
     <x-slot name="header">Cool Photos</x-slot>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 space-y-4 mt-4 mb-4">
-        @foreach ($this->photos as $photo)
+        @forelse ($this->photos as $photo)
             <flux:card>
                 <div class="flex flex-col items-center">
-                    <img src="{{ $photo->path }}" alt="{{ $photo->name }}">
+                    <img src="{{ $photo->full_path }}" alt="{{ $photo->name }}">
 
                     <div class="my-2 text-center">
                         <span>{{ $photo->name }} - {{ $photo->captured_at->format('F d, Y') }}</span>
@@ -24,7 +24,11 @@
                     </div>
                 @endauth
             </flux:card>
-        @endforeach
+        @empty
+            <flux:card>
+                <flux:badge>No photos.</flux:badge>
+            </flux:card>
+        @endforelse
     </div>
 
     <flux:pagination :paginator="$this->photos" />

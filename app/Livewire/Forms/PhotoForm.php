@@ -27,7 +27,7 @@ class PhotoForm extends Form
         $path = $this->photo->storePubliclyAs(
             'photos',
             now()->format('Y-m-d') . '-' . Str::uuid() . '.' . $this->photo->getClientOriginalExtension(),
-            'public'
+            's3'
         );
 
         Photo::create([
@@ -45,8 +45,8 @@ class PhotoForm extends Form
     {
         $photo = Photo::findOrFail($id);
 
-        if (Storage::disk('public')->exists($photo->path)) {            
-            Storage::disk('public')->delete($photo->path);
+        if (Storage::disk('s3')->exists($photo->path)) {            
+            Storage::disk('s3')->delete($photo->path);
         }
 
         $photo->forceDelete();

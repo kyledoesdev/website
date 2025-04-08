@@ -15,7 +15,7 @@
 
             <div>
                 @foreach ($this->resumes as $resume)
-                    <a class="underline text-blue-300 my-2" href="{{ $resume->path }}" target="_blank">{{ $resume->name }}</a>
+                    <a class="underline text-blue-300 my-2" href="{{ $resume->full_path }}" target="_blank">{{ $resume->name }}</a>
                 @endforeach
             </div>
         </flux:card>

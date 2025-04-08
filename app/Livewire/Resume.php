@@ -27,7 +27,7 @@ class Resume extends Component
 
         $name = "kyle_evangelisto_" . now()->format('Y_m_d') . '_resume.' . $this->resume->getClientOriginalExtension();
 
-        $path = $this->resume->storePubliclyAs('resumes', $name, 'public');
+        $path = $this->resume->storePubliclyAs('resumes', $name, 's3');
 
         ResumeModel::create([
             'name' => $name,
