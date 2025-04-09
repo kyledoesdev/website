@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ConnectionController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\WelcomeController;
 use App\Livewire\Blog;
 use App\Livewire\Connection;
@@ -62,6 +63,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/resumes/edit', Resume::class)->name('resume.edit');    
 
     Route::get('/health', HealthCheckResultsController::class)->name('health.index');
+
+    Route::get('/resume/{name}', ResumeController::class)->name('resume.show');
 });
     
 require __DIR__.'/auth.php';
