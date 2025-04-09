@@ -1,5 +1,5 @@
 <article>
-    <div
+    <flux:card
         class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0"
     >
         <dl>
@@ -50,6 +50,9 @@
                     Read more →
                 </a>
             </div>
+            <div>
+                <flux:badge icon="eye">{{ number_format($article->views) }}</flux:badge>
+            </div>
         </div>
-    </div>
+    </flux:card>
 </article>

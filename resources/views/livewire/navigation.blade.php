@@ -57,7 +57,7 @@ new class extends Component
                 <flux:navmenu.item icon="command-line" href="{{ route('technologies') }}">
                     Technology
                 </flux:navmenu.item>
-                <flux:navmenu.item icon="document-text" href="{{ $resume?->path }}" target="_blank">
+                <flux:navmenu.item icon="document-text" href="{{ $resume?->full_path }}" target="_blank">
                     Resume
                 </flux:navmenu.item>
             </flux:navmenu>
@@ -158,7 +158,7 @@ new class extends Component
                 <flux:navmenu.item icon="photo" href="{{ route('gallery') }}">
                     Photo Gallery
                 </flux:navmenu.item>
-                <flux:navmenu.item icon="document-text" href="{{ $resume?->path }}">
+                <flux:navmenu.item icon="document-text" href="{{ $resume?->full_path }}">
                     Resume
                 </flux:navmenu.item>
             </flux:navlist.group>

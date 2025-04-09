@@ -6,7 +6,7 @@
     ])
     <section>
         <div class="">
-            <div class="space-y-2 md:space-y-5">
+            <div class="space-y-2 ">
                 <x-slot name="header">My Writings</x-slot>
 
                 <div class="justify-between sm:flex">
@@ -56,21 +56,15 @@
                 </div>
             </div>
             <ul class="divide-y divide-gray-200">
-                @forelse ($articles as $article)
-                    <li class="py-12">
+                @foreach ($articles as $article)
+                    <li class="py-8">
                         <x-prezet::article :article="$article" />
                     </li>
-                @empty
-                    <div class="flex justify-center my-8">
-                        <flux:card>
-                            <flux:badge>I am currently working on an article about my work with the Spotify API. I'll release it some day.</flux:badge>
-                        </flux:card>
-                    </div>
-                @endforelse
+                @endforeach
             </ul>
             
             @if (count($articles))
-                <div class="pt-12">
+                <div class="pt-4">
                     <flux:pagination :paginator="$paginator" />
                 </div>
             @endif

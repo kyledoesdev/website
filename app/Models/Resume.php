@@ -4,12 +4,9 @@ namespace App\Models;
 
 use App\Models\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resume extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = [
         'name',
         'path'

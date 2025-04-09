@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\PrezetIndexController;
 use App\Http\Controllers\PrezetShowController;
 use BenBjurstrom\Prezet\Http\Controllers\ImageController;
-use BenBjurstrom\Prezet\Http\Controllers\IndexController;
 use BenBjurstrom\Prezet\Http\Controllers\OgimageController;
 use BenBjurstrom\Prezet\Http\Controllers\SearchController;
-use BenBjurstrom\Prezet\Http\Controllers\ShowController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -19,7 +18,7 @@ Route::withoutMiddleware([ShareErrorsFromSession::class, VerifyCsrfToken::class]
         ->name('prezet.ogimage')
         ->where('slug', '.*');
 
-    Route::get('/blog', IndexController::class)
+    Route::get('/blog', PrezetIndexController::class)
         ->name('prezet.index');
 
     Route::get('/blog/{slug}', PrezetShowController::class)

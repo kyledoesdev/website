@@ -49,7 +49,7 @@ class PhotoForm extends Form
             Storage::disk('s3')->delete($photo->path);
         }
 
-        $photo->forceDelete();
+        $photo->delete();
         
         Flux::toast(variant: 'success', text: 'Photo Deleted!', duration: 3000);
     }

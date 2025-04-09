@@ -21,19 +21,19 @@ class Show extends Component
             'favorites' => Media::query()
                 ->where('type_id', MediaType::TV)
                 ->where('is_favorite', true)
-                ->paginate(9),
+                ->paginate(10),
             'current' => Media::query()
                 ->where('type_id', MediaType::TV)
                 ->where('is_active', true)
-                ->paginate(9),
+                ->paginate(10),
             'backlog' => Media::query()
                 ->where('type_id', MediaType::TV)
                 ->where('in_backlog', true)
-                ->paginate(9),
+                ->paginate(10),
             'completed' => Media::query()
                 ->where('type_id', MediaType::TV)
                 ->where('is_completed', true)
-                ->paginate(9),
+                ->paginate(10),
             'panel' => Panel::where('name', 'tv')->first()->content,
         ]);
     }

@@ -8,6 +8,7 @@ use BenBjurstrom\Prezet\Models\Document;
 use Flux\Flux;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -41,6 +42,32 @@ class Blog extends Component
         $this->file = null;
 
         Flux::toast(variant: 'success', text: 'Blog Post Uploaded!', duration: 3000);
+    }
+
+    public function destroy($id)
+    {
+        $document = DB::connection('prezet')->table('documents')->find($id);
+
+        if ($document) {
+            try {
+                /* delete the file */
+                Storage::disk('prezet')->delete('content/'. $document->slug . '.md');
+
+                /* delete the reference */
+                DB::connection('prezet')->table('documents')->where('id', $id)->delete();
+
+                /* delete the views */
+                DocumentView::where('document_id', $id)->delete();
+
+                /* Index the sqlite db */
+                Artisan::call('prezet:index');
+
+            } catch (Exception) {
+                Flux::toast(variant: 'danger', text: 'Blog Post could not be deleted.', duration: 3000);
+            }
+        
+            Flux::toast(variant: 'success', text: 'Blog Post deleted.', duration: 3000);
+        }
     }
 
     #[Computed]
