@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ResumeController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, string $name)
     {
         $resume = Resume::where('name', $name)->firstOrFail();
     
