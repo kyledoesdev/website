@@ -19,7 +19,7 @@ class Show extends Component
         return view('livewire.pages.media.music.show', [
             'favoriteArtists' => Media::query()
                 ->where('type_id', MediaType::ARTIST)
-                ->paginate(9),
+                ->paginate(10),
             'favoriteTracks' => Media::query()
                 ->where('type_id', MediaType::TRACK)
                 ->paginate(6),

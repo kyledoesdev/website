@@ -4,12 +4,9 @@ namespace App\Models;
 
 use App\Models\Model;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Photo extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = [
         'name',
         'captured_at',
@@ -30,8 +27,8 @@ class Photo extends Model
         ];
     }
 
-    public function getPathAttribute()
+    public function getFullPathAttribute()
     {
-        return asset('storage/' . $this->attributes['path']);
+        return config('filesystems.disks.s3.url') . $this->attributes['path'];
     }
 }

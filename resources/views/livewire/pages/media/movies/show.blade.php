@@ -3,7 +3,7 @@
 
     <div class="space-y-4 mt-4">
         <flux:card style="overflow-y: auto; max-height: 400px;">
-            <x-markdown-content :content="$panel" />
+            <x-markdown-content :content="$panel" :scroll="true" />
         </flux:card>
 
         <flux:card class="space-y-4">

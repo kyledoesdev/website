@@ -4,12 +4,9 @@ namespace App\Models;
 
 use App\Models\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resume extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = [
         'name',
         'path'
@@ -22,8 +19,8 @@ class Resume extends Model
         static::addGlobalScope('default_order', fn (Builder $query) => $query->orderBy('created_at', 'desc'));
     }
 
-    public function getPathAttribute()
+    public function getFullPathAttribute()
     {
-        return asset('storage/' . $this->attributes['path']);
+        return config('filesystems.disks.s3.url') . $this->attributes['path'];
     }
 }

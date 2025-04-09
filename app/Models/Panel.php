@@ -4,12 +4,9 @@ namespace App\Models;
 
 use App\Models\Model;
 use Illuminate\Contracts\Database\Query\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Panel extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = [
         'type',
         'name',

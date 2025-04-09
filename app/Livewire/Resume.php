@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Resume as ResumeModel;
 use Flux\Flux;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -27,7 +28,7 @@ class Resume extends Component
 
         $name = "kyle_evangelisto_" . now()->format('Y_m_d') . '_resume.' . $this->resume->getClientOriginalExtension();
 
-        $path = $this->resume->storePubliclyAs('resumes', $name, 'public');
+        $path = $this->resume->storePubliclyAs('resumes', $name, 's3');
 
         ResumeModel::create([
             'name' => $name,
@@ -37,6 +38,19 @@ class Resume extends Component
         $this->reset();
 
         Flux::toast(variant: 'success', text: 'Photo Uploaded!', duration: 3000);
+    }
+
+    public function destroy($id)
+    {
+        $resume = ResumeModel::findOrFail($id);
+
+        if (Storage::disk('s3')->exists($resume->path)) {            
+            Storage::disk('s3')->delete($resume->path);
+        }
+
+        $resume->delete();
+
+        Flux::toast(variant: 'success', text: 'Resume deleted!', duration: 3000);
     }
 
     #[Computed]

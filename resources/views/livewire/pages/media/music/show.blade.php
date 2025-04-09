@@ -3,8 +3,8 @@
 
     <div class="space-y-6 mt-4">
         {{-- Markdown content --}}
-        <flux:card style="overflow-y: auto; max-height: 400px;">
-            <x-markdown-content :content="$panel" />
+        <flux:card>
+            <x-markdown-content :content="$panel" :scroll="true" />
         </flux:card>
 
         {{-- spotify showcase --}}

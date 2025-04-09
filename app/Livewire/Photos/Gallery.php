@@ -27,9 +27,9 @@ class Gallery extends Component
         return Photo::paginate(6);
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        $this->form->destroy();
+        $this->form->destroy($id);
 
         $this->dispatch('photos-updated');
     }
