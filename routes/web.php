@@ -41,6 +41,9 @@ Route::get('/tv', ShowTv::class)->name('tv_shows');
 Route::get('/video_games', ShowGames::class)->name('video_games');
 Route::get('/gallery', Gallery::class)->name('gallery');
 
+Route::get('/resume/{name}', ResumeController::class)->name('resume.show');
+Route::get('/photo/{id}', PhotoController::class)->name('photo.show');
+
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
@@ -64,9 +67,6 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/resumes/edit', Resume::class)->name('resume.edit');    
 
     Route::get('/health', HealthCheckResultsController::class)->name('health.index');
-
-    Route::get('/resume/{name}', ResumeController::class)->name('resume.show');
-    Route::get('/photo/{id}', PhotoController::class)->name('photo.show');
 });
     
 require __DIR__.'/auth.php';
