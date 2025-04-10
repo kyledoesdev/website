@@ -3,7 +3,7 @@
 namespace App\Livewire\Photos;
 
 use App\Livewire\Forms\PhotoForm;
-use App\Models\Photo;
+use App\Models\Asset;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -24,7 +24,7 @@ class Gallery extends Component
     #[On('photos-updated')]
     public function photos()
     {
-        return Photo::paginate(6);
+        return Asset::where('type_id', Asset::PHOTO)->paginate(6);
     }
 
     public function destroy($id)

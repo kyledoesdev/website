@@ -5,10 +5,10 @@
         @forelse ($this->photos as $photo)
             <flux:card>
                 <div class="flex flex-col items-center">
-                    <img src="{{ route('photo.show', ['id' => $photo->getKey()]) }}" alt="{{ $photo->name }}">
+                    <img src="{{ route('asset', ['slug' => $photo->slug]) }}" alt="{{ $photo->name }}">
 
                     <div class="my-2 text-center">
-                        <span>{{ $photo->name }} - {{ $photo->captured_at->format('F d, Y') }}</span>
+                        <span>{{ $photo->name }} - {{ $photo->captured_at }}</span>
                     </div>
                 </div>
 

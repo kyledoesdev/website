@@ -16,6 +16,12 @@ new class extends Component
     }
 }; ?>
 
+@php
+    use App\Models\Asset;
+
+    $resume = Asset::where('type_id', Asset::RESUME)->first()?->slug;
+@endphp
+
 <flux:header container>
     <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
@@ -55,7 +61,7 @@ new class extends Component
                 <flux:navmenu.item icon="command-line" href="{{ route('technologies') }}">
                     Technology
                 </flux:navmenu.item>
-                <flux:navmenu.item icon="document-text" href="{{ route('resume.show', ['name' => App\Models\Resume::first()->name]) }}" target="_blank">
+                <flux:navmenu.item icon="document-text" href="{{ route('asset', ['slug' => $resume]) }}" target="_blank">
                     Resume
                 </flux:navmenu.item>
             </flux:navmenu>
@@ -156,7 +162,7 @@ new class extends Component
                 <flux:navmenu.item icon="photo" href="{{ route('gallery') }}">
                     Photo Gallery
                 </flux:navmenu.item>
-                <flux:navmenu.item icon="document-text" href="{{ route('resume.show', ['name' => App\Models\Resume::first()->name]) }}" target="_blank">
+                <flux:navmenu.item icon="document-text" href="{{ route('asset', ['slug' => $resume]) }}" target="_blank">
                     Resume
                 </flux:navmenu.item>
             </flux:navlist.group>

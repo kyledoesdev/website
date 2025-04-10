@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ResumeController;
@@ -41,8 +42,7 @@ Route::get('/tv', ShowTv::class)->name('tv_shows');
 Route::get('/video_games', ShowGames::class)->name('video_games');
 Route::get('/gallery', Gallery::class)->name('gallery');
 
-Route::get('/resume/{name}', ResumeController::class)->name('resume.show');
-Route::get('/photo/{id}', PhotoController::class)->name('photo.show');
+Route::get('/asset/{slug}', AssetController::class)->name('asset');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');

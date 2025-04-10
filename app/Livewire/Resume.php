@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Resume as ResumeModel;
+use App\Models\Asset;
 use Flux\Flux;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
@@ -26,13 +26,16 @@ class Resume extends Component
     {
         $this->validate();
 
-        $name = "kyle_evangelisto_" . now()->format('Y_m_d') . '_resume.' . $this->resume->getClientOriginalExtension();
+        $name = now()->format('Y-m-d') . '-resume.' . $this->resume->getClientOriginalExtension();
 
         $path = $this->resume->storePubliclyAs('resumes', $name, 's3');
 
-        ResumeModel::create([
+        Asset::create([
+            'type_id' => Asset::RESUME,
+            'slug' => now()->format('Y-m-d') . '-resume',
             'name' => $name,
-            'path' => $path
+            'path' => $path,
+            'mime_type' => $this->resume->getClientOriginalExtension()
         ]);
 
         $this->reset();
@@ -42,7 +45,7 @@ class Resume extends Component
 
     public function destroy($id)
     {
-        $resume = ResumeModel::findOrFail($id);
+        $resume = Asset::findOrFail($id);
 
         if (Storage::disk('s3')->exists($resume->path)) {            
             Storage::disk('s3')->delete($resume->path);
@@ -56,6 +59,6 @@ class Resume extends Component
     #[Computed]
     public function resumes()
     {
-        return ResumeModel::all();
+        return Asset::where('type_id', Asset::RESUME)->get();
     }
 }

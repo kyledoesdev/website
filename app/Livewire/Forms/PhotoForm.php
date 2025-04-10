@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Forms;
 
-use App\Models\Photo;
+use App\Models\Asset;
 use Flux\Flux;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -30,10 +30,13 @@ class PhotoForm extends Form
             's3'
         );
 
-        Photo::create([
+        Asset::create([
+            'type_id' => Asset::PHOTO,
             'name' => $this->name,
-            'captured_at' => $this->capturedAt,
-            'path' => $path
+            'slug' => Str::uuid(),
+            'path' => $path,
+            'mime_type' => $this->photo->getClientOriginalExtension(),
+            'data' => ['captured_at' => $this->capturedAt],
         ]);
 
         $this->reset();
@@ -43,7 +46,7 @@ class PhotoForm extends Form
 
     public function destroy($id)
     {
-        $photo = Photo::findOrFail($id);
+        $photo = Asset::findOrFail($id);
 
         if (Storage::disk('s3')->exists($photo->path)) {            
             Storage::disk('s3')->delete($photo->path);
