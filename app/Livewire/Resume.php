@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Asset;
 use Flux\Flux;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -32,7 +33,7 @@ class Resume extends Component
 
         Asset::create([
             'type_id' => Asset::RESUME,
-            'slug' => now()->format('Y-m-d') . '-resume',
+            'slug' => Str::uuid(),
             'name' => $name,
             'path' => $path,
             'mime_type' => $this->resume->getClientOriginalExtension()
