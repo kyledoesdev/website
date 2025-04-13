@@ -20,15 +20,15 @@ class Show extends Component
             'favorites' =>  Media::query()
                 ->where('type_id', MediaType::MOVIE)
                 ->where('is_favorite', true)
-                ->paginate(10),
+                ->paginate(9),
             'backlog' => Media::query()
                 ->where('type_id', MediaType::MOVIE)
                 ->where('in_backlog', true)
-                ->paginate(10),
+                ->paginate(9),
             'completed' => Media::query()
                 ->where('type_id', MediaType::MOVIE)
                 ->where('is_completed', true)
-                ->paginate(10),
+                ->paginate(9),
             'panel' => Panel::where('name', 'movies')->first()->content
         ]);
     }

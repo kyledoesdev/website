@@ -4,7 +4,7 @@
     <div class="space-y-6 mt-4">
         {{-- Markdown content --}}
         <flux:card>
-            <x-markdown-content :content="$panel" :scroll="true" />
+            <x-markdown-content :content="$panel" />
         </flux:card>
 
         {{-- spotify showcase --}}
