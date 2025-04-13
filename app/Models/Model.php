@@ -12,11 +12,11 @@ class Model extends EloquentModel
 
     public function getCreatedAtAttribute(): string
     {
-        return Carbon::parse($this->attributes['created_at'])->diffForHumans();
+        return Carbon::parse($this->attributes['created_at'])->inUserTimezone()->diffForHumans();
     }
 
-    public function getCUpdatedAtAttribute(): string
+    public function getUpdatedAtAttribute(): string
     {
-        return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
+        return Carbon::parse($this->attributes['updated_at'])->inUserTimezone()->diffForHumans();
     }
 }

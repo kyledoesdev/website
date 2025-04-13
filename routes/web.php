@@ -6,6 +6,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\WelcomeController;
 use App\Livewire\Blog;
+use App\Livewire\BlogViews;
 use App\Livewire\Connection;
 use App\Livewire\Dashboard;
 use App\Livewire\Media\Games\Edit as EditGames;
@@ -49,6 +50,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/connections/edit', Connection::class)->name('connections.edit');
     Route::get('/blog/edit', Blog::class)->name('blog.edit');
+    Route::get('/blog/{post}/views', BlogViews::class)->name('blog.post_views');
 
     Route::get('/board_games/edit', Panels::class)->name('board_games.edit');
     Route::get('/education/edit', Panels::class)->name('education.edit');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Helpers;
 use App\Models\DocumentView;
 use BenBjurstrom\Prezet\Http\Controllers\ShowController as BaseShowController;
 use BenBjurstrom\Prezet\Models\Document;
@@ -20,7 +21,8 @@ class PrezetShowController extends BaseShowController
             'document_id' => $document->getKey(),
             'ip_address' => request()->ip(),
         ], [
-            'updated_at' => now(), 
+            'timezone' => Helpers::tz(),
+            'last_viewed_at' => now(),
         ]);
 
         return $response->with([

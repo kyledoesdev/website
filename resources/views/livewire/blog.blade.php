@@ -16,6 +16,7 @@
     
         <div class="py-2">
             <div class="overflow-hidden shadow-2xs sm:rounded-lg">
+                {{-- todo - find a fix for pagination --}}
                 <flux:table>
                     @forelse ($this->posts as $post)
                         @php $data = json_decode($post->frontmatter); @endphp
@@ -46,11 +47,11 @@
                                 </flux:table.cell>
 
                                 <flux:table.cell>
-                                    <flux:modal.trigger>
+                                     <a href="{{ route('blog.post_views', ['post' => $post->id]) }}">
                                         <flux:badge>
                                             {{ number_format($post->views) }}
                                         </flux:badge>
-                                    </flux:modal.trigger>
+                                    </a>
                                 </flux:table.cell>
 
                                 <flux:table.cell>
@@ -76,11 +77,6 @@
                             </flux:table.row>
                         </flux:table.rows>
                     @empty
-                        <flux:card>
-                            <div class="flex justify-center my-4">
-                                <flux:badge>No Blog Posts found.</flux:badge>
-                            </div>
-                        </flux:card>
                     @endforelse
                 </flux:table>
             </div>

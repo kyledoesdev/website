@@ -13,6 +13,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class Blog extends Component
 {
@@ -73,6 +74,7 @@ class Blog extends Component
     #[Computed]
     public function posts()
     {
+        //TODO - pagination does not work with this connection.
         $documents = DB::connection('prezet')->table('documents')->get();
 
         $views = DocumentView::select('document_id', DB::raw('COUNT(*) as views'))

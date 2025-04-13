@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Libraries\Helpers;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -39,6 +40,8 @@ class LoginForm extends Form
         }
 
         RateLimiter::clear($this->throttleKey());
+
+        auth()->user()->update(['timezone' => Helpers::tz()]);
     }
 
     /**
