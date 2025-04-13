@@ -19,6 +19,7 @@ class Blog extends Component
 {
     use TableHelpers;
     use WithFileUploads;
+    use WithPagination;
 
     #[Validate('required|file|mimes:md')]
     public $file;
@@ -55,7 +56,7 @@ class Blog extends Component
                 Storage::disk('prezet')->delete('content/'. $document->slug . '.md');
 
                 /* delete the reference */
-                DB::connection('prezet')->table('documents')->where('id', $id)->delete();
+                Document::where('id', $id)->delete();
 
                 /* delete the views */
                 DocumentView::where('document_id', $id)->delete();
@@ -75,24 +76,14 @@ class Blog extends Component
     public function posts()
     {
         //TODO - pagination does not work with this connection.
-        $documents = DB::connection('prezet')->table('documents')->get();
+        $documents = Document::paginate(10);
 
         $views = DocumentView::select('document_id', DB::raw('COUNT(*) as views'))
             ->groupBy('document_id')
             ->pluck('views', 'document_id');
 
-        foreach ($documents as $document) {
+        foreach ($documents->items() as $document) {
             $document->views = $views->get($document->id, 0);
-        }
-
-        if ($this->sortBy) {
-            $documents = collect($documents)->sortBy(function ($document) {
-                return json_decode($document->frontmatter)->{$this->sortBy} ?? $document->{$this->sortBy};
-            });
-    
-            if ($this->sortDirection === 'desc') {
-                $documents = $documents->reverse();
-            }
         }
 
         return $documents;

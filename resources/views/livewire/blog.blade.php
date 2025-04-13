@@ -16,10 +16,9 @@
     
         <div class="py-2">
             <div class="overflow-hidden shadow-2xs sm:rounded-lg">
-                {{-- todo - find a fix for pagination --}}
-                <flux:table>
+                <flux:table :paginate="$this->posts">
                     @forelse ($this->posts as $post)
-                        @php $data = json_decode($post->frontmatter); @endphp
+                        @php $data = $post->frontmatter; @endphp
 
                         @if ($loop->first)
                             <flux:table.columns>
@@ -32,51 +31,54 @@
                             </flux:table.columns>
                         @endif
 
-                        <flux:table.rows>
-                            <flux:table.row>
-                                <flux:table.cell>
-                                    {{ $data->title }}
-                                </flux:table.cell>
+                        <flux:table.row :key="$post->getKey()">
+                            <flux:table.cell>
+                                {{ $data->title }}
+                            </flux:table.cell>
 
-                                <flux:table.cell>
-                                    {{ $data->slug }}
-                                </flux:table.cell>
+                            <flux:table.cell>
+                                {{ $data->slug }}
+                            </flux:table.cell>
 
-                                <flux:table.cell>
-                                    {{ $post->category }}
-                                </flux:table.cell>
+                            <flux:table.cell>
+                                {{ $post->category }}
+                            </flux:table.cell>
+                            
+                            <flux:table.cell>
+                                <a href="{{ route('blog.post_views', ['post' => $post->id]) }}">
+                                    <flux:badge>
+                                        {{ number_format($post->views) }}
+                                    </flux:badge>
+                                </a>
+                            </flux:table.cell>
 
-                                <flux:table.cell>
-                                     <a href="{{ route('blog.post_views', ['post' => $post->id]) }}">
-                                        <flux:badge>
-                                            {{ number_format($post->views) }}
-                                        </flux:badge>
-                                    </a>
-                                </flux:table.cell>
+                            <flux:table.cell>
+                                {{ Carbon\Carbon::parse($post->created_at)->tz('America/New_York')->format('m/d/Y') }}
+                            </flux:table.cell>
 
-                                <flux:table.cell>
-                                    {{ Carbon\Carbon::parse($post->created_at)->tz('America/New_York')->format('m/d/Y') }}
+                            <flux:table.cell>
+                                <flux:button
+                                    variant="primary"
+                                    size="sm"
+                                    icon="eye"
+                                    href="{{ route('prezet.show', ['slug' => $data->slug]) }}"
+                                    target="_blank"
+                                />
+                                <flux:button
+                                    variant="danger"
+                                    size="sm"
+                                    icon="trash"
+                                    wire:click="destroy({{ $post->id }})"
+                                    wire:confirm="Are you sure you want to delete this blog post"
+                                />
                                 </flux:table.cell>
-
-                                <flux:table.cell>
-                                    <flux:button
-                                        variant="primary"
-                                        size="sm"
-                                        icon="eye"
-                                        href="{{ route('prezet.show', ['slug' => $data->slug]) }}"
-                                        target="_blank"
-                                    />
-                                    <flux:button
-                                        variant="danger"
-                                        size="sm"
-                                        icon="trash"
-                                        wire:click="destroy({{ $post->id }})"
-                                        wire:confirm="Are you sure you want to delete this blog post"
-                                    />
-                                </flux:table.cell>
-                            </flux:table.row>
-                        </flux:table.rows>
+                        </flux:table.row>
                     @empty
+                        <flux:card>
+                            <div class="flex justify-center my-4">
+                                <flux:badge>No Posts found.</flux:badge>
+                            </div>
+                        </flux:card>
                     @endforelse
                 </flux:table>
             </div>
