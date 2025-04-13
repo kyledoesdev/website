@@ -75,7 +75,6 @@ class Blog extends Component
     #[Computed]
     public function posts()
     {
-        //TODO - pagination does not work with this connection.
         $documents = Document::paginate(10);
 
         $views = DocumentView::select('document_id', DB::raw('COUNT(*) as views'))
