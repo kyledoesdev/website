@@ -15,6 +15,9 @@
         <!-- Meta Tags -->
         <x-prezet::meta />
 
+        <!-- favicon -->
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @fluxAppearance
