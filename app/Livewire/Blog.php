@@ -55,6 +55,9 @@ class Blog extends Component
                 /* delete the file */
                 Storage::disk('prezet')->delete('content/'. $document->slug . '.md');
 
+                /* delete the tags */
+                DB::connection('prezet')->table('document_tags')->where('document_id', $id)->delete();
+
                 /* delete the reference */
                 Document::where('id', $id)->delete();
 

@@ -4,66 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7bac360a5b537f97a8d4250e8ea82301",
+    "content-hash": "474050ee423e3a72dde3cb472ed68f82",
     "packages": [
-        {
-            "name": "archtechx/laravel-seo",
-            "version": "v0.10.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/archtechx/laravel-seo.git",
-                "reference": "f6fd5f4a551313926acf991f0f225ae6c3199cd1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/archtechx/laravel-seo/zipball/f6fd5f4a551313926acf991f0f225ae6c3199cd1",
-                "reference": "f6fd5f4a551313926acf991f0f225ae6c3199cd1",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^10.0|^11.0",
-                "illuminate/view": "^10.0|^11.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "intervention/image": "^2.7",
-                "nunomaduro/larastan": "^2.4",
-                "orchestra/testbench": "^8.0|^9.0",
-                "pestphp/pest": "^2.0",
-                "pestphp/pest-plugin-laravel": "^2.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "ArchTech\\SEO\\SEOServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "ArchTech\\SEO\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Samuel Štancl",
-                    "email": "samuel@archte.ch"
-                }
-            ],
-            "support": {
-                "issues": "https://github.com/archtechx/laravel-seo/issues",
-                "source": "https://github.com/archtechx/laravel-seo/tree/v0.10.2"
-            },
-            "time": "2024-11-22T23:46:28+00:00"
-        },
         {
             "name": "aws/aws-crt-php",
             "version": "v1.2.7",
@@ -285,91 +227,6 @@
                 }
             ],
             "time": "2025-02-26T17:03:12+00:00"
-        },
-        {
-            "name": "benbjurstrom/prezet",
-            "version": "v0.20.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/benbjurstrom/prezet.git",
-                "reference": "7683cf12c96a9d154ce99caeade5c0a1595b5031"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/benbjurstrom/prezet/zipball/7683cf12c96a9d154ce99caeade5c0a1595b5031",
-                "reference": "7683cf12c96a9d154ce99caeade5c0a1595b5031",
-                "shasum": ""
-            },
-            "require": {
-                "archtechx/laravel-seo": "^0.10.1",
-                "benbjurstrom/laravel-sitemap-lite": "^7.3",
-                "ext-dom": "*",
-                "ext-gd": "*",
-                "illuminate/contracts": "^10.0||^11.0",
-                "league/commonmark": "^2.4",
-                "php": "^8.2",
-                "spatie/laravel-package-tools": "^1.16",
-                "symfony/yaml": "^6.2|^7.1",
-                "wendelladriel/laravel-validated-dto": "^3.5"
-            },
-            "require-dev": {
-                "larastan/larastan": "2.9.8",
-                "laravel/pint": "^1.16",
-                "nunomaduro/collision": "^8.1.1||^7.10.0",
-                "orchestra/testbench": "^9.0.0||^8.22.0",
-                "pestphp/pest": "^2.34",
-                "pestphp/pest-plugin-arch": "^2.7",
-                "pestphp/pest-plugin-laravel": "^2.3",
-                "phpstan/extension-installer": "^1.4.3",
-                "phpstan/phpstan": "1.12.2",
-                "phpstan/phpstan-deprecation-rules": "^1.1",
-                "phpstan/phpstan-phpunit": "^1.3",
-                "spatie/browsershot": "^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Prezet": "BenBjurstrom\\Prezet\\Facades\\Prezet"
-                    },
-                    "providers": [
-                        "BenBjurstrom\\Prezet\\PrezetServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "BenBjurstrom\\Prezet\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ben Bjurstrom",
-                    "email": "benbjurstrom@users.noreply.github.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Prezet: Markdown Blogging for Laravel",
-            "homepage": "https://github.com/benbjurstrom/prezet",
-            "keywords": [
-                "laravel",
-                "prezet"
-            ],
-            "support": {
-                "issues": "https://github.com/benbjurstrom/prezet/issues",
-                "source": "https://github.com/benbjurstrom/prezet/tree/v0.20.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/benbjurstrom",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-12-23T21:09:15+00:00"
         },
         {
             "name": "brick/math",
@@ -3774,6 +3631,93 @@
                 }
             ],
             "time": "2024-12-14T21:12:59+00:00"
+        },
+        {
+            "name": "prezet/prezet",
+            "version": "v1.0.0-rc6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/prezet/prezet.git",
+                "reference": "7fa9a0c90d7de523e7257181f1b6b2e12a8e2c2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/prezet/prezet/zipball/7fa9a0c90d7de523e7257181f1b6b2e12a8e2c2d",
+                "reference": "7fa9a0c90d7de523e7257181f1b6b2e12a8e2c2d",
+                "shasum": ""
+            },
+            "require": {
+                "benbjurstrom/laravel-sitemap-lite": "^7.3.1",
+                "ext-dom": "*",
+                "ext-gd": "*",
+                "illuminate/contracts": "^10.0||^11.0||^12.0",
+                "league/commonmark": "^2.6.1",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.16",
+                "symfony/yaml": "^6.2|^7.1",
+                "wendelladriel/laravel-validated-dto": "^4.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "2.9.8",
+                "laravel/pint": "^1.20",
+                "nunomaduro/collision": "^8.6",
+                "orchestra/testbench": "^9.9",
+                "pestphp/pest": "^3.7",
+                "pestphp/pest-plugin-arch": "^3.0",
+                "pestphp/pest-plugin-laravel": "^3.1",
+                "phpstan/extension-installer": "^1.4.3",
+                "phpstan/phpstan": "1.12.2",
+                "phpstan/phpstan-deprecation-rules": "^1.1",
+                "phpstan/phpstan-phpunit": "1.4.2",
+                "spatie/browsershot": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Prezet": "BenBjurstrom\\Prezet\\Facades\\Prezet"
+                    },
+                    "providers": [
+                        "BenBjurstrom\\Prezet\\PrezetServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "BenBjurstrom\\Prezet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Bjurstrom",
+                    "email": "benbjurstrom@users.noreply.github.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Prezet: Markdown Blogging for Laravel",
+            "homepage": "https://github.com/benbjurstrom/prezet",
+            "keywords": [
+                "laravel",
+                "prezet"
+            ],
+            "support": {
+                "issues": "https://github.com/prezet/prezet/issues",
+                "source": "https://github.com/prezet/prezet/tree/v1.0.0-rc6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/benbjurstrom",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-02-26T18:13:46+00:00"
         },
         {
             "name": "psr/clock",
@@ -7582,31 +7526,32 @@
         },
         {
             "name": "wendelladriel/laravel-validated-dto",
-            "version": "v3.10.3",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WendellAdriel/laravel-validated-dto.git",
-                "reference": "060cd1a013a2f6d90b8fc31ea5c4eb1e5dbd8432"
+                "reference": "d086aa4750ab3780e4fb16616aecde78af1205cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WendellAdriel/laravel-validated-dto/zipball/060cd1a013a2f6d90b8fc31ea5c4eb1e5dbd8432",
-                "reference": "060cd1a013a2f6d90b8fc31ea5c4eb1e5dbd8432",
+                "url": "https://api.github.com/repos/WendellAdriel/laravel-validated-dto/zipball/d086aa4750ab3780e4fb16616aecde78af1205cf",
+                "reference": "d086aa4750ab3780e4fb16616aecde78af1205cf",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "^9.0|^10.0|^11.0",
-                "illuminate/database": "^9.0|^10.0|^11.0",
-                "illuminate/http": "^9.0|^10.0|^11.0",
-                "illuminate/support": "^9.0|^10.0|^11.0",
-                "illuminate/validation": "^9.0|^10.0|^11.0",
-                "php": "^8.1"
+                "illuminate/console": "^11.0|^12.0",
+                "illuminate/database": "^11.0|^12.0",
+                "illuminate/http": "^11.0|^12.0",
+                "illuminate/support": "^11.0|^12.0",
+                "illuminate/validation": "^11.0|^12.0",
+                "php": "^8.2"
             },
             "require-dev": {
-                "laravel/pint": "^1.14",
-                "orchestra/testbench": "^7.0|^8.0|^9.0",
-                "pestphp/pest": "^1.20|^2.0",
-                "pestphp/pest-plugin-faker": "^1.0|^2.0"
+                "laravel/pint": "^1.21",
+                "orchestra/testbench": "^9.0|^10.0",
+                "pestphp/pest": "^2.0|^3.0",
+                "pestphp/pest-plugin-faker": "^2.0|^3.0",
+                "spatie/typescript-transformer": "^2.4"
             },
             "type": "library",
             "extra": {
@@ -7652,7 +7597,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-24T10:16:34+00:00"
+            "time": "2025-03-04T13:31:46+00:00"
         }
     ],
     "packages-dev": [
@@ -11018,7 +10963,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "prezet/prezet": 5
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

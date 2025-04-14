@@ -14,22 +14,20 @@
             <div class="space-y-6">
                 <div>
                     <h2 class="text-2xl font-bold leading-8 tracking-tight">
-                        <a
-                            href="{{ route('prezet.show', $article->slug) }}"
-                        >
-                            {{ $article->title }}
+                        <a href="{{ route('prezet.show', $article->slug) }}">
+                            {{ $article->frontmatter->title }}
                         </a>
                     </h2>
                     <div class="flex flex-wrap">
                         <a
-                            class="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600"
+                            class="mr-3 text-sm font-medium uppercase"
                             href="{{ route('prezet.index', ['category' => $article->category]) }}"
                         >
                             {{ $article->category }}
                         </a>
-                        @foreach ($article->tags as $tag)
+                        @foreach ($article->frontmatter->tags as $tag)
                             <a
-                                class="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600"
+                                class="mr-3 text-xs font-small uppercase"
                                 href="{{ route('prezet.index', ['tag' => $tag]) }}"
                             >
                                 {{ $tag }}
