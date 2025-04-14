@@ -25,19 +25,19 @@ class Show extends Component
             'favorites' => Media::query()
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('is_favorite', true)
-                ->paginate(1, ['*'], 'favorites', $this->favoritesPage),
+                ->paginate(9, ['*'], 'favorites', $this->favoritesPage),
             'current' => Media::query()
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('is_active', true)
-                ->paginate(1, ['*'], 'currentlyPlaying', $this->activePage),
+                ->paginate(9, ['*'], 'currentlyPlaying', $this->activePage),
             'backlog' => Media::query()
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('in_backlog', true)
-                ->paginate(1, ['*'], 'backlog', $this->backlogPage),
+                ->paginate(9, ['*'], 'backlog', $this->backlogPage),
             'completed' => Media::query()
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('is_completed', true)
-                ->paginate(1, ['*'], 'completed', $this->completedPage),
+                ->paginate(9, ['*'], 'completed', $this->completedPage),
             'panel' => Panel::where('name', 'video_games')->first()->content
         ]);
     }
