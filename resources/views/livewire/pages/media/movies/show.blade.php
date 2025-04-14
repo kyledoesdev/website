@@ -17,14 +17,17 @@
                 <x-media-accordian-item
                     :collection="$favorites"
                     :title="'My Favorites'"
+                    :pageName="'Favorites'"
                 />
                 <x-media-accordian-item
                     :collection="$backlog"
                     :title="'In Backlog'"
+                    :pageName="'Backlog'"
                 />
                 <x-media-accordian-item
                     :collection="$completed"
                     :title="'Watched'"
+                    :pageName="'Completed'"
                 />
             </flux:accordion>
         </flux:card>

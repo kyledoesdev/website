@@ -1,6 +1,7 @@
 @props([
     'collection',
-    'title'
+    'title',
+    'pageName',
 ])
 
 <flux:accordion.item>
@@ -16,6 +17,10 @@
             </div>
         </div>
 
-        <flux:pagination :paginator="$collection" />
+        @if (isset($pageName))
+            <flux:pagination :paginator="$collection" wire:click="set{{ $pageName }}Page($event.page)" />
+        @else
+            <flux:pagination :paginator="$collection" />
+        @endif      
     </flux:accordion.content>
 </flux:accordion.item>
