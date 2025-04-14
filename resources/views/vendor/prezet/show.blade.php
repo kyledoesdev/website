@@ -3,7 +3,7 @@
         'title' => $document->frontmatter->title,
         'description' => $document->frontmatter->excerpt,
         'url' => route('prezet.show', ['slug' => $document->slug]),
-        'image' => $document->image,
+        'keywords' => implode(', ', $document->frontmatter->tags),
     ])
 
     {{-- Main Content --}}
