@@ -14,8 +14,8 @@ class Show extends Component
     use WithPagination;
     use WithoutUrlPagination;
 
-    public int $artistsPage = 1;
-    public int $tracksPage = 1;
+    public $artistsPage = 1;
+    public $tracksPage = 1;
 
     public function render()
     {
