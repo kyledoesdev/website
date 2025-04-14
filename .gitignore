@@ -25,3 +25,4 @@ yarn-error.log
 /prezet/*
 /prezet/prezet.sqlite
 /public/prezet_sitemap.xml
+*.sqlite
