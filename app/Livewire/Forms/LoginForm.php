@@ -3,6 +3,8 @@
 namespace App\Livewire\Forms;
 
 use App\Libraries\Helpers;
+use App\Livewire\Actions\Api\SearchCategories;
+use App\Livewire\Actions\Api\SearchSpotify;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -42,6 +44,9 @@ class LoginForm extends Form
         RateLimiter::clear($this->throttleKey());
 
         auth()->user()->update(['timezone' => Helpers::tz()]);
+
+        (new SearchSpotify)->refreshToken(auth()->user());
+        (new SearchCategories)->refreshToken(auth()->user());
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use SocialiteProviders\Manager\SocialiteWasCalled;
@@ -38,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
             $event->extendSocialite('twitch', TwitchProvider::class);
         });
 
-        Carbon::macro('inUserTimezone', function() {
+        Carbon::macro('inUserTimezone', function () {
             return $this->tz(auth()->user()?->timezone ?? 'America/New_York');
         });
 
@@ -53,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
                 ->heartbeatMaxAgeInMinutes(15),
             UsedDiskSpaceCheck::new()
                 ->warnWhenUsedSpaceIsAbovePercentage(90)
-                ->failWhenUsedSpaceIsAbovePercentage(95)
+                ->failWhenUsedSpaceIsAbovePercentage(95),
         ]);
     }
 }

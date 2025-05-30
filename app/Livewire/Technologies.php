@@ -12,10 +12,11 @@ use Livewire\WithPagination;
 
 class Technologies extends Component
 {
-    use WithPagination;
     use TableHelpers;
+    use WithPagination;
 
     public TechnologyForm $createForm;
+
     public TechnologyForm $editForm;
 
     public function render()

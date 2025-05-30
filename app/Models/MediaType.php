@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Model;
-
-
 class MediaType extends Model
 {
     const MOVIE = 1;
+
     const TV = 2;
+
     const ARTIST = 3;
+
     const TRACK = 4;
+
     const VIDEO_GAME = 5;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function isMovie(): bool

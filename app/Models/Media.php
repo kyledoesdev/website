@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\MediaType;
-use App\Models\Model;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -35,7 +33,7 @@ class Media extends Model
             'is_active' => 'boolean',
             'in_backlog' => 'boolean',
             'is_completed' => 'boolean',
-            'data' => 'array'
+            'data' => 'array',
         ];
     }
 

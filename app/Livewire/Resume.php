@@ -27,7 +27,7 @@ class Resume extends Component
     {
         $this->validate();
 
-        $name = now()->format('Y-m-d') . '-resume.' . $this->resume->getClientOriginalExtension();
+        $name = now()->format('Y-m-d').'-resume.'.$this->resume->getClientOriginalExtension();
 
         $path = $this->resume->storePubliclyAs('resumes', $name, 's3');
 
@@ -36,7 +36,7 @@ class Resume extends Component
             'slug' => Str::uuid(),
             'name' => $name,
             'path' => $path,
-            'mime_type' => $this->resume->getClientOriginalExtension()
+            'mime_type' => $this->resume->getClientOriginalExtension(),
         ]);
 
         $this->reset();
@@ -48,7 +48,7 @@ class Resume extends Component
     {
         $resume = Asset::findOrFail($id);
 
-        if (Storage::disk('s3')->exists($resume->path)) {            
+        if (Storage::disk('s3')->exists($resume->path)) {
             Storage::disk('s3')->delete($resume->path);
         }
 

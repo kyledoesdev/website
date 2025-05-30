@@ -8,7 +8,6 @@ use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
 use App\Models\MediaType;
 use Flux\Flux;
-use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -19,7 +18,9 @@ class Edit extends Component
     use WithPagination;
 
     public string $phrase = '';
+
     public $searchedGames = [];
+
     public $selectedGame = null;
 
     public MediaForm $form;
@@ -60,6 +61,7 @@ class Edit extends Component
 
         if ($games->where('media_id', $gameId)->isEmpty()) {
             Flux::toast(variant: 'danger', text: 'You can not add a game that was not in the returned list.', duration: 3000);
+
             return;
         }
 

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Model;
 use Illuminate\Contracts\Database\Query\Builder;
 
 class Panel extends Model
@@ -11,7 +10,7 @@ class Panel extends Model
         'type',
         'name',
         'display_name',
-        'content'
+        'content',
     ];
 
     public static function boot()

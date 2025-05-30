@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('type')->after('id')->default('career');
         });
 
-        Panel::all()->each(fn($panel) => $panel->update(['type' => 'career']));
+        Panel::all()->each(fn ($panel) => $panel->update(['type' => 'career']));
 
         Panel::create(['name' => 'video_games', 'display_name' => 'Video Games', 'type' => 'fun', 'content' => null]);
         Panel::create(['name' => 'board_games', 'display_name' => 'Board Games', 'type' => 'fun', 'content' => null]);

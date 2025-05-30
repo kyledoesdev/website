@@ -9,19 +9,19 @@ return new class extends Migration
     /* there was really no need for these */
     public function up(): void
     {
-        Schema::table('document_views', function(Blueprint $table) {
+        Schema::table('document_views', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
 
-        Schema::table('technologies', function(Blueprint $table) {
+        Schema::table('technologies', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
 
-        Schema::table('photos', function(Blueprint $table) {
+        Schema::table('photos', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
 
-        Schema::table('panels', function(Blueprint $table) {
+        Schema::table('panels', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

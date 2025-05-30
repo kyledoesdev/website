@@ -5,19 +5,21 @@ namespace App\Livewire\Media\Tv;
 use App\Models\Media;
 use App\Models\MediaType;
 use App\Models\Panel;
-use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
 class Show extends Component
 {
-    use WithPagination;
     use WithoutUrlPagination;
+    use WithPagination;
 
     public $favoritesPage = 1;
+
     public $activePage = 1;
+
     public $backlogPage = 1;
+
     public $completedPage = 1;
 
     public function render()
@@ -52,7 +54,7 @@ class Show extends Component
     {
         $this->activePage = $page;
     }
-    
+
     public function setBacklogPage($page)
     {
         $this->backlogPage = $page;

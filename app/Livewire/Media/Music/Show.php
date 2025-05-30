@@ -11,10 +11,11 @@ use Livewire\WithPagination;
 
 class Show extends Component
 {
-    use WithPagination;
     use WithoutUrlPagination;
+    use WithPagination;
 
     public $artistsPage = 1;
+
     public $tracksPage = 1;
 
     public function render()
@@ -26,7 +27,7 @@ class Show extends Component
             'favoriteTracks' => Media::query()
                 ->where('type_id', MediaType::TRACK)
                 ->paginate(6, ['*'], 'tracks', $this->tracksPage),
-            'panel' => Panel::where('name', 'music')->first()->content
+            'panel' => Panel::where('name', 'music')->first()->content,
         ]);
     }
 
@@ -34,7 +35,7 @@ class Show extends Component
     {
         $this->artistsPage = $page;
     }
-    
+
     public function setTracksPage($page)
     {
         $this->tracksPage = $page;

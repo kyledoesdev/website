@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Model;
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class Asset extends Model
 {
     const PHOTO = 1;
+
     const RESUME = 2;
 
     protected $fillable = [
@@ -30,12 +30,12 @@ class Asset extends Model
     public function casts(): array
     {
         return [
-            'data' => 'array'
+            'data' => 'array',
         ];
     }
 
     public function getCapturedAtAttribute()
-    {   
+    {
         if (isset($this->data['captured_at'])) {
             return Carbon::parse($this->data['captured_at'])->format('F d, Y');
         }

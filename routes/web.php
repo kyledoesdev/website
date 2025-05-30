@@ -2,9 +2,6 @@
 
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ConnectionController;
-use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\ResumeController;
-use App\Http\Controllers\WelcomeController;
 use App\Livewire\Blog;
 use App\Livewire\BlogViews;
 use App\Livewire\Connection;
@@ -45,7 +42,7 @@ Route::get('/gallery', Gallery::class)->name('gallery');
 
 Route::get('/asset/{slug}', AssetController::class)->name('asset');
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     Route::get('/connections/edit', Connection::class)->name('connections.edit');
@@ -57,19 +54,19 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/panels', Panels::class)->name('panels');
     Route::get('/projects/edit', Panels::class)->name('projects.edit');
     Route::get('/work_history/edit', Panels::class)->name('work_history.edit');
-    
+
     Route::get('/movies/edit', EditMovies::class)->name('movies.edit');
     Route::get('/tv/edit', EditTv::class)->name('tv.edit');
-    
+
     Route::get('/music/edit', EditMusic::class)->name('music.edit');
     Route::get('/technology/edit', Technologies::class)->name('technology.edit');
     Route::get('/video_games/edit', EditGames::class)->name('video_games.edit');
 
     Route::get('/gallery/edit', Uploader::class)->name('gallery.edit');
-    Route::get('/resumes/edit', Resume::class)->name('resume.edit');    
+    Route::get('/resumes/edit', Resume::class)->name('resume.edit');
 
     Route::get('/health', HealthCheckResultsController::class)->name('health.index');
 });
-    
+
 require __DIR__.'/auth.php';
 require __DIR__.'/prezet.php';

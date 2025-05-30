@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -13,7 +12,7 @@ class Connection extends Model
         'type_id',
         'name',
         'token',
-        'refresh_token'
+        'refresh_token',
     ];
 
     public function type(): HasOne

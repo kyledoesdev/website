@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
     protected $with = [
-        'connections'
+        'connections',
     ];
 
     protected function casts(): array

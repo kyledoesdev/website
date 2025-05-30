@@ -11,12 +11,15 @@ use Livewire\WithPagination;
 
 class Show extends Component
 {
-    use WithPagination;
     use WithoutUrlPagination;
+    use WithPagination;
 
     public $favoritesPage = 1;
+
     public $activePage = 1;
+
     public $backlogPage = 1;
+
     public $completedPage = 1;
 
     public function render()
@@ -38,7 +41,7 @@ class Show extends Component
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('is_completed', true)
                 ->paginate(9, ['*'], 'completed', $this->completedPage),
-            'panel' => Panel::where('name', 'video_games')->first()->content
+            'panel' => Panel::where('name', 'video_games')->first()->content,
         ]);
     }
 
@@ -51,7 +54,7 @@ class Show extends Component
     {
         $this->activePage = $page;
     }
-    
+
     public function setBacklogPage($page)
     {
         $this->backlogPage = $page;

@@ -34,7 +34,7 @@ return [
             'root' => base_path('prezet'),
             'throw' => false,
         ],
-        
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),

@@ -13,7 +13,7 @@ class PhotoController extends Controller
         $photo = Photo::findOrFail($id);
 
         $file = Storage::disk('s3')->get($photo->path);
-        
+
         return response($file, 200, [
             'Content-Type' => 'image/jpeg',
             'Content-Disposition' => "inline; filename='{$photo->name}'.pdf",
