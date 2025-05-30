@@ -17,6 +17,7 @@ class Edit extends Component
     use WithPagination;
 
     public string $phrase = '';
+
     public $searchedMedia = [];
 
     public function render()
@@ -47,7 +48,7 @@ class Edit extends Component
         );
 
         if ($media->isEmpty()) {
-            Flux::toast(variant: 'danger', text: "No games found for search term: {$this->phrase}.", duration: 3000);
+            Flux::toast(variant: 'danger', text: "No records found for search term: {$this->phrase}.", duration: 3000);
 
             $this->phrase = '';
         }
@@ -75,7 +76,7 @@ class Edit extends Component
     public function destroy($id)
     {
         $media = Media::findOrFail($id);
-        
+
         $media->delete();
 
         Flux::toast(variant: 'success', text: "{$media->type->name} deleted.", duration: 3000);

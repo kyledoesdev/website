@@ -14,10 +14,10 @@ class PrezetIndexController extends BaseIndexController
         $response = parent::__invoke($request);
 
         $views = DocumentView::all();
-        
+
         /* a big fancy way to associate document views with front-matter articles */
-        collect($response->paginator->items())->each(function($document) use ($response, $views) {
-            collect($response->articles)->each(function($article) use ($document, $views) {
+        collect($response->paginator->items())->each(function ($document) use ($response, $views) {
+            collect($response->articles)->each(function ($article) use ($document, $views) {
                 /* set the "article (front matter)" views based off of the relation between a "document" and its views */
                 $article->views = $views->where('document_id', $document->id)->count();
             });

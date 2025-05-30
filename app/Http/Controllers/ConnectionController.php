@@ -24,7 +24,7 @@ class ConnectionController extends Controller
             'type_id' => session()->get('current_connection_type_id'),
             'external_id' => $user->id,
             'token' => $user->token,
-            'refresh_token' => $user->refreshToken
+            'refresh_token' => $user->refreshToken,
         ]);
 
         session()->forget('current_connection_type_id');
@@ -35,7 +35,7 @@ class ConnectionController extends Controller
 
     private function getConnectionTypeId(string $type)
     {
-        return match($type) {
+        return match ($type) {
             'twitch' => ConnectionType::TWITCH,
             'spotify' => ConnectionType::SPOTIFY
         };

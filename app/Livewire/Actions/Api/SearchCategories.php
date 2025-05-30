@@ -4,7 +4,6 @@ namespace App\Livewire\Actions\Api;
 
 use App\Models\ConnectionType;
 use App\Models\Media;
-use App\Models\MediaType;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Http;
@@ -17,18 +16,18 @@ final class SearchCategories
         $this->refreshToken($user);
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $user->connections->firstWhere('type_id', ConnectionType::TWITCH)->token,
+            'Authorization' => 'Bearer '.$user->connections->firstWhere('type_id', ConnectionType::TWITCH)->token,
             'Content-Type' => 'application/json',
             'Client-Id' => config('services.twitch.client_id'),
-        ])->get("https://api.twitch.tv/helix/search/categories", [
+        ])->get('https://api.twitch.tv/helix/search/categories', [
             'query' => $phrase,
-            'first' => 9
+            'first' => 9,
         ]);
 
         if ($response->successful()) {
             $games = Media::where('type_id', $mediaType)->pluck('media_id')->toArray();
 
-            return collect($response->json('data'))->map(function($game) use ($games, $mediaType) {
+            return collect($response->json('data'))->map(function ($game) use ($games, $mediaType) {
                 if (in_array($game['id'], $games)) {
                     return null;
                 }
@@ -45,26 +44,29 @@ final class SearchCategories
         return collect();
     }
 
-    private function refreshToken(User $user): void
+    public function refreshToken(User $user): bool
     {
         try {
+            $twitchConnection = $user->connections->firstWhere('type_id', ConnectionType::TWITCH);
+
             $response = Http::asForm()->post('https://id.twitch.tv/oauth2/token', [
                 'client_id' => config('services.twitch.client_id'),
                 'client_secret' => config('services.twitch.client_secret'),
-                'refresh_token' => $user->connections->firstWhere('type_id', ConnectionType::TWITCH)->refresh_token,
+                'refresh_token' => $twitchConnection->refresh_token,
                 'grant_type' => 'refresh_token',
             ]);
 
-            if ($response->successful()) {
-                $data = $response->json();
-        
-                $user->connections()
-                    ->firstWhere('type_id', ConnectionType::TWITCH)
-                    ->update(['token' => $data['access_token']]);
+            if (! $response->successful()) {
+                return false;
             }
-        } catch(Exception $e) {
-            Log::error("could not refresh user: {$user->name} token.");
-            Log::error($e->getMessage());
+
+            $twitchConnection->update(['token' => $response->json()['access_token']]);
+
+            return true;
+        } catch (Exception $e) {
+            Log::error("Could not refresh user: {$user->name} token: {$e->getMessage()}");
+
+            return false;
         }
     }
 

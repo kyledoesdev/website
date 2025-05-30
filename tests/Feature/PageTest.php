@@ -30,7 +30,6 @@ it('can load technology page', function () {
     $response->assertStatus(200);
 });
 
-
 it('can load gallery', function () {
     $response = $this->get(route('gallery'));
 

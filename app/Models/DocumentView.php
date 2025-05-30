@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Model;
 use Carbon\Carbon;
 
 class DocumentView extends Model
@@ -11,13 +10,13 @@ class DocumentView extends Model
         'document_id',
         'ip_address',
         'timezone',
-        'last_viewed_at'
+        'last_viewed_at',
     ];
 
     public function casts(): array
     {
         return [
-            'last_viewed_at' => 'timestamp'
+            'last_viewed_at' => 'timestamp',
         ];
     }
 

@@ -11,17 +11,19 @@ use Livewire\WithPagination;
 
 class Show extends Component
 {
-    use WithPagination;
     use WithoutUrlPagination;
+    use WithPagination;
 
     public $favoritesPage = 1;
+
     public $backlogPage = 1;
+
     public $completedPage = 1;
 
     public function render()
     {
         return view('livewire.pages.media.movies.show', [
-            'favorites' =>  Media::query()
+            'favorites' => Media::query()
                 ->where('type_id', MediaType::MOVIE)
                 ->where('is_favorite', true)
                 ->paginate(9, ['*'], 'favorites', $this->favoritesPage),
@@ -33,7 +35,7 @@ class Show extends Component
                 ->where('type_id', MediaType::MOVIE)
                 ->where('is_completed', true)
                 ->paginate(9, ['*'], 'completed', $this->completedPage),
-            'panel' => Panel::where('name', 'movies')->first()->content
+            'panel' => Panel::where('name', 'movies')->first()->content,
         ]);
     }
 
@@ -41,7 +43,7 @@ class Show extends Component
     {
         $this->favoritesPage = $page;
     }
-    
+
     public function setBacklogPage($page)
     {
         $this->backlogPage = $page;

@@ -12,7 +12,9 @@ use Livewire\Component;
 class Panels extends Component
 {
     public ?string $type = null;
+
     public ?string $header = null;
+
     public array $content = [];
 
     public function mount()
@@ -22,7 +24,7 @@ class Panels extends Component
         }
 
         Panel::query()
-            ->when(! is_null($this->type), fn($query) => $query->where('name', $this->type))
+            ->when(! is_null($this->type), fn ($query) => $query->where('name', $this->type))
             ->get()
             ->each(function (Panel $panel) {
                 $this->content[$panel->name] = Str::of($panel->content)->markdown();
@@ -45,7 +47,7 @@ class Panels extends Component
     public function panels()
     {
         return Panel::query()
-            ->when(! is_null($this->type), fn($query) => $query->where('name', $this->type))
+            ->when(! is_null($this->type), fn ($query) => $query->where('name', $this->type))
             ->get();
     }
 

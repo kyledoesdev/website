@@ -7,7 +7,9 @@ use Illuminate\Console\GeneratorCommand;
 class CreateAction extends GeneratorCommand
 {
     protected $name = 'make:action';
+
     protected $description = 'Create a new Action class';
+
     protected $type = 'Action';
 
     protected function getStub()
@@ -17,6 +19,6 @@ class CreateAction extends GeneratorCommand
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Livewire\Actions';
+        return $rootNamespace.'\Livewire\Actions';
     }
 }

@@ -19,10 +19,10 @@ final class SearchSpotify
         $type = $mediaType->isArtist() ? 'artist' : 'track';
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $user->connections->firstWhere('type_id', ConnectionType::SPOTIFY)->token,
+            'Authorization' => 'Bearer '.$user->connections->firstWhere('type_id', ConnectionType::SPOTIFY)->token,
             'Content-Type' => 'application/json',
             'Client-Id' => config('services.spotify.client_id'),
-        ])->get("https://api.spotify.com/v1/search", [
+        ])->get('https://api.spotify.com/v1/search', [
             'q' => $phrase,
             'type' => $type,
             'limit' => 10,
@@ -34,7 +34,7 @@ final class SearchSpotify
             if ($mediaType->isArtist()) {
                 $artists = Media::where('type_id', MediaType::ARTIST)->pluck('media_id')->toArray();
 
-                $collection = collect($response->json('artists.items'))->map(function($artist) use ($artists) {
+                $collection = collect($response->json('artists.items'))->map(function ($artist) use ($artists) {
                     $cover = data_get($artist, 'images.0.url');
 
                     if (in_array($artist['id'], $artists) || is_null($cover)) {
@@ -42,19 +42,19 @@ final class SearchSpotify
                     }
 
                     return [
-                        'type_id'  => MediaType::ARTIST,
+                        'type_id' => MediaType::ARTIST,
                         'media_id' => $artist['id'],
-                        'name'     => $artist['name'],
-                        'cover'    => $cover,
-                        'data'     => null,
-                    ];                  
+                        'name' => $artist['name'],
+                        'cover' => $cover,
+                        'data' => null,
+                    ];
                 })->filter();
             } else {
                 $tracks = Media::where('type_id', MediaType::TRACK)->pluck('media_id')->toArray();
 
-                $collection = collect($response->json('tracks.items'))->map(function($track) use ($tracks) {
+                $collection = collect($response->json('tracks.items'))->map(function ($track) use ($tracks) {
                     $cover = data_get($track, 'album.images.0.url');
-                    
+
                     if (in_array($track['id'], $tracks) || is_null($cover)) {
                         return;
                     }
@@ -78,26 +78,29 @@ final class SearchSpotify
         return collect();
     }
 
-    private function refreshToken(User $user): void
+    public function refreshToken(User $user): bool
     {
         try {
-            $response = Http::asForm()->post("https://accounts.spotify.com/api/token", [
+            $spotifyConnection = $user->connections->firstWhere('type_id', ConnectionType::SPOTIFY);
+
+            $response = Http::asForm()->post('https://accounts.spotify.com/api/token', [
                 'grant_type' => 'refresh_token',
-                'refresh_token' => $user->connections->firstWhere('type_id', ConnectionType::SPOTIFY)->refresh_token,
+                'refresh_token' => $spotifyConnection->refresh_token,
                 'client_id' => config('services.spotify.client_id'),
                 'client_secret' => config('services.spotify.client_secret'),
             ]);
-            
-            if ($response->successful()) {
-                $data = $response->json();
-        
-                $user->connections()
-                    ->firstWhere('type_id', ConnectionType::SPOTIFY)
-                    ->update(['token' => $data['access_token']]);
+
+            if (! $response->successful()) {
+                return false;
             }
-        } catch(Exception) {
-            Log::error("could not refresh user: {$user->name} token.");
-            Log::error($e->getMessage());
+
+            $spotifyConnection->update(['token' => $response->json()['access_token']]);
+
+            return true;
+        } catch (Exception $e) {
+            Log::error("Could not refresh user: {$user->name} token: {$e->getMessage()}");
+
+            return false;
         }
     }
 }

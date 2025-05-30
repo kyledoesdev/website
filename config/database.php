@@ -36,7 +36,7 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => true,
         ],
-        
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),

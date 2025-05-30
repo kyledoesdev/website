@@ -43,5 +43,5 @@ return [
     'movie_db' => [
         'api_key' => env('MOVIEDB_API_KEY'),
         'access_token' => env('MOVIEDB_KEY'),
-    ]
+    ],
 ];

@@ -53,7 +53,7 @@ class Blog extends Component
         if ($document) {
             try {
                 /* delete the file */
-                Storage::disk('prezet')->delete('content/'. $document->slug . '.md');
+                Storage::disk('prezet')->delete('content/'.$document->slug.'.md');
 
                 /* delete the tags */
                 DB::connection('prezet')->table('document_tags')->where('document_id', $id)->delete();
@@ -70,7 +70,7 @@ class Blog extends Component
             } catch (Exception) {
                 Flux::toast(variant: 'danger', text: 'Blog Post could not be deleted.', duration: 3000);
             }
-        
+
             Flux::toast(variant: 'success', text: 'Blog Post deleted.', duration: 3000);
         }
     }

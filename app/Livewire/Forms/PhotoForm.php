@@ -26,7 +26,7 @@ class PhotoForm extends Form
 
         $path = $this->photo->storePubliclyAs(
             'photos',
-            now()->format('Y-m-d') . '-' . Str::uuid() . '.' . $this->photo->getClientOriginalExtension(),
+            now()->format('Y-m-d').'-'.Str::uuid().'.'.$this->photo->getClientOriginalExtension(),
             's3'
         );
 
@@ -48,12 +48,12 @@ class PhotoForm extends Form
     {
         $photo = Asset::findOrFail($id);
 
-        if (Storage::disk('s3')->exists($photo->path)) {            
+        if (Storage::disk('s3')->exists($photo->path)) {
             Storage::disk('s3')->delete($photo->path);
         }
 
         $photo->delete();
-        
+
         Flux::toast(variant: 'success', text: 'Photo Deleted!', duration: 3000);
     }
 }
