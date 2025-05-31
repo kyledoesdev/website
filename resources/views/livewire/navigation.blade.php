@@ -36,9 +36,9 @@ new class extends Component
             </flux:navbar.item>
         @endauth
 
-        {{-- <flux:navbar.item icon="pencil-square" href="{{ route('prezet.index') }}" :current="request()->is('blog', 'blog/*')">
+        <flux:navbar.item icon="pencil-square" href="{{ route('prezet.index') }}" :current="request()->is('blog', 'blog/*')">
             Blog
-        </flux:navbar.item> --}}
+        </flux:navbar.item>
         <flux:dropdown>
             <flux:navbar.item
                 icon="briefcase"
@@ -139,13 +139,13 @@ new class extends Component
                 </flux:navlist.item>
             @endauth
 
-            {{-- <flux:navlist.item
+            <flux:navlist.item
                 icon="pencil-square"
                 href="{{ route('prezet.index') }}"
                 :current="request()->is('blog', 'blog/*')"
             >
                 Blog
-            </flux:navlist.item> --}}
+            </flux:navlist.item>
             
             <flux:navlist.group
                 expandable

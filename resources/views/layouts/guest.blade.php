@@ -13,7 +13,7 @@
         <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
         <!-- Meta Tags -->
-        {{-- <x-prezet::meta /> --}}
+        <x-prezet::meta />
 
         <!-- favicon -->
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
