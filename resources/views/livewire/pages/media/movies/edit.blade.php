@@ -17,9 +17,18 @@
             </div>
         
             {{-- Table of Media Type --}}
-            <div class="py-6">
+            <div class="py-2">
                 <div class="max-w-7xl mx-auto">
-                    <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
+                    <div class="overflow-hidden shadow-2xs sm:rounded-lg">
+                        <div class="flex justify-end w-full">
+                            <flux:input 
+                                size="sm"
+                                wire:model.live.debounce.500ms="search"
+                                icon-trailing="magnifying-glass"
+                                class="my-2 w-full md:w-1/4"
+                            />
+                        </div>
+
                         <flux:table :paginate="$this->medias">
                             @forelse ($this->medias as $media)
                                 @if ($loop->first)

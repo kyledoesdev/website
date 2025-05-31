@@ -15,9 +15,18 @@
             </div>
         
             {{-- Table of Artists --}}
-            <div class="py-6">
+            <div class="py-2">
                 <div class="max-w-7xl mx-auto">
-                    <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
+                    <div class="overflow-hidden shadow-2xs sm:rounded-lg">
+                        <div class="flex justify-end w-full">
+                            <flux:input 
+                                size="sm"
+                                wire:model.live.debounce.500ms="searchArtists"
+                                icon-trailing="magnifying-glass"
+                                class="my-2 w-full md:w-1/4"
+                            />
+                        </div>
+
                         <flux:table :paginate="$this->artists">
                             @forelse ($this->artists as $artist)
                                 @if ($loop->first)
@@ -73,9 +82,18 @@
             </div>
         
             {{-- Table of Tracks --}}
-            <div class="py-6">
+            <div class="py-2">
                 <div class="max-w-7xl mx-auto">
-                    <div class="overflow-hidden shadow-2xs sm:rounded-lg p-6">
+                    <div class="overflow-hidden shadow-2xs sm:rounded-lg">
+                        <div class="flex justify-end w-full">
+                            <flux:input 
+                                size="sm"
+                                wire:model.live.debounce.500ms="searchTracks"
+                                icon-trailing="magnifying-glass"
+                                class="my-2 w-full md:w-1/4"
+                            />
+                        </div>
+
                         <flux:table :paginate="$this->tracks">
                             @forelse ($this->tracks as $track)
                                 @if ($loop->first)
