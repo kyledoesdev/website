@@ -50,8 +50,9 @@ return [
             League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension::class,
             League\CommonMark\Extension\ExternalLink\ExternalLinkExtension::class,
             League\CommonMark\Extension\FrontMatter\FrontMatterExtension::class,
-            BenBjurstrom\Prezet\Extensions\MarkdownBladeExtension::class,
-            BenBjurstrom\Prezet\Extensions\MarkdownImageExtension::class,
+            Prezet\Prezet\Extensions\MarkdownBladeExtension::class,
+            Prezet\Prezet\Extensions\MarkdownImageExtension::class,
+            /* Phiki\CommonMark\PhikiExtension::class, - using prism js at vite config level */
         ],
 
         'config' => [
@@ -75,6 +76,11 @@ return [
                 'nofollow' => 'external',
                 'noopener' => 'external',
                 'noreferrer' => 'external',
+            ],
+            'phiki' => [
+                'theme' => \Phiki\Theme\Theme::NightOwl,
+                'with_wrapper' => false,
+                'with_gutter' => true,
             ],
         ],
     ],
@@ -128,20 +134,20 @@ return [
 
     // https://schema.org/author
     'authors' => [
-        'prezet' => [
+        'kyle_evangelisto' => [
             '@type' => 'Person',
-            'name' => 'Prezet Author',
-            'url' => 'https://prezet.com',
-            'image' => 'https://prezet.com/favicon.svg',
-        ],
+            'name' => 'Kyle Evangelisto',
+            'url' => 'https://kyledoes.dev',
+            'image' => 'https://kyledoes.dev/me.jfif',
+        ]
     ],
 
     // https://schema.org/publisher
     'publisher' => [
         '@type' => 'Organization',
-        'name' => 'Prezet',
-        'url' => 'https://prezet.com',
-        'logo' => 'https://prezet.com/favicon.svg',
-        'image' => 'https://prezet.com/ogimage.png',
+        'name' => 'Kyle Evangelisto',
+        'url' => 'https://kyledoes.dev',    
+        'logo' => 'https://i.imgur.com/oWpheij.jpeg',
+        'image' => 'https://i.imgur.com/oWpheij.jpeg',
     ],
 ];

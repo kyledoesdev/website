@@ -7,6 +7,7 @@ use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
 use App\Models\MediaType;
 use Flux\Flux;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,6 +18,8 @@ class Edit extends Component
     use WithPagination;
 
     public string $phrase = '';
+    public string $searchArtists = '';
+    public string $searchTracks = '';
 
     public $searchedMedia = [];
 
@@ -30,13 +33,19 @@ class Edit extends Component
     #[Computed]
     public function artists()
     {
-        return Media::where('type_id', MediaType::ARTIST)->paginate(10);
+        return Media::query()
+            ->where('type_id', MediaType::ARTIST)
+            ->when($this->searchArtists != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->searchArtists%"))
+            ->paginate(10);
     }
 
     #[Computed]
     public function tracks()
     {
-        return Media::where('type_id', MediaType::TRACK)->paginate(10);
+        return Media::query()
+            ->where('type_id', MediaType::TRACK)
+            ->when($this->searchTracks != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->searchTracks%"))
+            ->paginate(10);
     }
 
     public function search(MediaType $mediaType)

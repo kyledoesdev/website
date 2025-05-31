@@ -1,7 +1,7 @@
 <x-guest-layout>
     @seo([
-        'title' => 'Prezet: Markdown Blogging for Laravel',
-        'description' => 'Transform your markdown files into SEO-friendly blogs, articles, and documentation!',
+        'title' => 'Kyle Evangelisto blog articles',
+        'description' => 'Kyle Evangelisto writings and blog posts',
         'url' => route('prezet.index'),
     ])
     <section>
@@ -15,7 +15,7 @@
                             <span
                                 class="inline-flex items-center gap-x-0.5 rounded-md bg-gray-50 px-2.5 py-1.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
                             >
-                                {{ \Illuminate\Support\Str::title($currentTag) }}
+                                {{ Str::title($currentTag) }}
                                 <a
                                     href="{{ route('prezet.index', array_filter(request()->except('tag'))) }}"
                                     class="group relative -mr-1 h-3.5 w-3.5 rounded-xs hover:bg-gray-500/20"
@@ -58,7 +58,7 @@
             <ul class="divide-y divide-gray-200">
                 @foreach ($articles as $article)
                     <li class="py-8">
-                        <x-prezet::article :article="$article" />
+                        <x-prezet.article :article="$article" />
                     </li>
                 @endforeach
             </ul>

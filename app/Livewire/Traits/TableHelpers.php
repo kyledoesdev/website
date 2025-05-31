@@ -4,6 +4,8 @@ namespace App\Livewire\Traits;
 
 trait TableHelpers
 {
+    public string $search = '';
+
     public $sortBy = 'id';
 
     public $sortDirection = 'desc';

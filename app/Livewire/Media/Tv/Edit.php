@@ -8,6 +8,7 @@ use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
 use App\Models\MediaType;
 use Flux\Flux;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -35,6 +36,7 @@ class Edit extends Component
     {
         return Media::query()
             ->where('type_id', MediaType::TV)
+            ->when($this->search != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->search%"))
             ->paginate(10);
     }
 
@@ -91,11 +93,13 @@ class Edit extends Component
         $this->form->update();
 
         Flux::modal('edit-media')->close();
-        Flux::toast(variant: 'success', text: 'Successfully updated the tv show!');
+        Flux::toast(variant: 'success', text: 'Successfully updated the tv show.');
     }
 
     public function destroy($id)
     {
         Media::findOrFail($id)->delete();
+
+        Flux::toast(variant: 'success', text: 'Successfully deleted the tv show.');
     }
 }

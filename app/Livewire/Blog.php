@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Livewire\Traits\TableHelpers;
 use App\Models\DocumentView;
-use BenBjurstrom\Prezet\Models\Document;
 use Flux\Flux;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +13,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Prezet\Prezet\Models\Document;
 
 class Blog extends Component
 {

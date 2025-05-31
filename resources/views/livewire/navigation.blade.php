@@ -108,6 +108,12 @@ new class extends Component
             <flux:button class="mx-2" size="sm" icon-trailing="chevron-down">{{ auth()->user()->name }}</flux:button>
 
             <flux:menu>
+                <flux:menu.item icon="heart-pulse" href="{{ route('health.index') }}?fresh">
+                    Application Health
+                </flux:menu.item>
+                <flux:menu.item icon="link" href="{{ route('connections.edit') }}">
+                    Connections
+                </flux:menu.item>
                 <flux:menu.item icon="arrow-right-start-on-rectangle" wire:click="logout">
                     Logout
                 </flux:menu.item>
@@ -203,6 +209,12 @@ new class extends Component
                 <flux:button class="mx-2" size="sm" icon-trailing="chevron-down">{{ auth()->user()->name }}</flux:button>
 
                 <flux:menu>
+                    <flux:menu.item icon="heart-pulse" href="{{ route('health.index') }}?fresh">
+                        Application Health
+                    </flux:menu.item>
+                    <flux:menu.item icon="link" href="{{ route('connections.edit') }}">
+                        Connections
+                    </flux:menu.item>
                     <flux:menu.item icon="arrow-right-start-on-rectangle" wire:click="logout">
                         Logout
                     </flux:menu.item>

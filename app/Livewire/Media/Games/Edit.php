@@ -8,6 +8,7 @@ use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
 use App\Models\MediaType;
 use Flux\Flux;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,6 +18,7 @@ class Edit extends Component
     use TableHelpers;
     use WithPagination;
 
+    public string $search = '';
     public string $phrase = '';
 
     public $searchedGames = [];
@@ -35,6 +37,7 @@ class Edit extends Component
     {
         return Media::query()
             ->where('type_id', MediaType::VIDEO_GAME)
+            ->when($this->search != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->search%"))
             ->paginate(10);
     }
 
@@ -97,5 +100,7 @@ class Edit extends Component
     public function destroy($id)
     {
         Media::findOrFail($id)->delete();
+
+        Flux::toast(variant: 'success', text: 'Successfully deleted this game.');
     }
 }
