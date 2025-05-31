@@ -36,9 +36,9 @@ new class extends Component
             </flux:navbar.item>
         @endauth
 
-        <flux:navbar.item icon="pencil-square" href="{{ route('prezet.index') }}" :current="request()->is('blog', 'blog/*')">
+        {{-- <flux:navbar.item icon="pencil-square" href="{{ route('prezet.index') }}" :current="request()->is('blog', 'blog/*')">
             Blog
-        </flux:navbar.item>
+        </flux:navbar.item> --}}
         <flux:dropdown>
             <flux:navbar.item
                 icon="briefcase"
@@ -108,6 +108,12 @@ new class extends Component
             <flux:button class="mx-2" size="sm" icon-trailing="chevron-down">{{ auth()->user()->name }}</flux:button>
 
             <flux:menu>
+                <flux:menu.item icon="heart-pulse" href="{{ route('health.index') }}?fresh">
+                    Application Health
+                </flux:menu.item>
+                <flux:menu.item icon="link" href="{{ route('connections.edit') }}">
+                    Connections
+                </flux:menu.item>
                 <flux:menu.item icon="arrow-right-start-on-rectangle" wire:click="logout">
                     Logout
                 </flux:menu.item>
@@ -133,13 +139,13 @@ new class extends Component
                 </flux:navlist.item>
             @endauth
 
-            <flux:navlist.item
+            {{-- <flux:navlist.item
                 icon="pencil-square"
                 href="{{ route('prezet.index') }}"
                 :current="request()->is('blog', 'blog/*')"
             >
                 Blog
-            </flux:navlist.item>
+            </flux:navlist.item> --}}
             
             <flux:navlist.group
                 expandable
@@ -203,6 +209,12 @@ new class extends Component
                 <flux:button class="mx-2" size="sm" icon-trailing="chevron-down">{{ auth()->user()->name }}</flux:button>
 
                 <flux:menu>
+                    <flux:menu.item icon="heart-pulse" href="{{ route('health.index') }}?fresh">
+                        Application Health
+                    </flux:menu.item>
+                    <flux:menu.item icon="link" href="{{ route('connections.edit') }}">
+                        Connections
+                    </flux:menu.item>
                     <flux:menu.item icon="arrow-right-start-on-rectangle" wire:click="logout">
                         Logout
                     </flux:menu.item>

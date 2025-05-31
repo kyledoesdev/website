@@ -27,22 +27,10 @@
                     <span>Board Games</span>
                 </flux:card>
             </a>
-            <a href="{{ route('connections.edit') }}">
-                <flux:card class="flex space-x-2">
-                    <flux:icon.link />
-                    <span>Connections</span>
-                </flux:card>
-            </a>
             <a href="{{ route('education.edit') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.academic-cap />
                     <span>Education</span>
-                </flux:card>
-            </a>
-            <a href="{{ route('health.index') }}">
-                <flux:card class="flex space-x-2">
-                    <flux:icon.stethoscope />
-                    <span>Health</span>
                 </flux:card>
             </a>
             <a href="{{ route('movies.edit') }}">

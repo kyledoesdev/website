@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Livewire\Traits\TableHelpers;
 use App\Models\DocumentView;
-use BenBjurstrom\Prezet\Models\Document;
 use Flux\Flux;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
