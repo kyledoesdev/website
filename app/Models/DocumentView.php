@@ -22,11 +22,11 @@ class DocumentView extends Model
 
     public function getFirstViewedAtAttribute(): string
     {
-        return Carbon::parse($this->created_at)->inUserTimezone()->format('m/d/Y g:i A T');
+        return Carbon::parse($this->created_at)->inUserTimezone()->format('M d, Y g:i A T');
     }
 
     public function getLastViewedAtAttribute(): string
     {
-        return Carbon::parse($this->attributes['last_viewed_at'])->inUserTimezone()->format('m/d/Y g:i A T');
+        return Carbon::parse($this->attributes['last_viewed_at'])->inUserTimezone()->format('M d, Y g:i A T');
     }
 }

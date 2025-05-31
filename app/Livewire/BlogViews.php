@@ -7,6 +7,7 @@ use App\Models\DocumentView;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Prezet\Prezet\Models\Document;
 
 class BlogViews extends Component
 {
