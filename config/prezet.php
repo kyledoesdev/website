@@ -134,20 +134,20 @@ return [
 
     // https://schema.org/author
     'authors' => [
-        'prezet' => [
+        'kyle_evangelisto' => [
             '@type' => 'Person',
-            'name' => 'Prezet Author',
-            'url' => 'https://prezet.com',
-            'image' => 'https://prezet.com/favicon.svg',
-        ],
+            'name' => 'Kyle Evangelisto',
+            'url' => 'https://kyledoes.dev',
+            'image' => 'https://kyledoes.dev/me.jfif',
+        ]
     ],
 
     // https://schema.org/publisher
     'publisher' => [
         '@type' => 'Organization',
-        'name' => 'Prezet',
-        'url' => 'https://prezet.com',
-        'logo' => 'https://prezet.com/favicon.svg',
-        'image' => 'https://prezet.com/ogimage.png',
+        'name' => 'Kyle Evangelisto',
+        'url' => 'https://kyledoes.dev',    
+        'logo' => 'https://i.imgur.com/oWpheij.jpeg',
+        'image' => 'https://i.imgur.com/oWpheij.jpeg',
     ],
 ];
