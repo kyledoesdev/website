@@ -3,7 +3,7 @@
 
     <div class="my-2">
         @forelse ($this->photos as $photo)
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 space-y-4 mt-4 mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 space-y-4 mt-4 mb-4">
                 <flux:card>
                     <div class="flex flex-col items-center">
                         <img src="{{ route('asset', ['slug' => $photo->slug]) }}" alt="{{ $photo->name }}">

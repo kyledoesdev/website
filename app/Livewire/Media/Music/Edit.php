@@ -48,7 +48,7 @@ class Edit extends Component
             ->paginate(10);
     }
 
-    public function search(MediaType $mediaType)
+    public function searchSpotify(MediaType $mediaType)
     {
         $media = (new SearchSpotify)->search(
             auth()->user(),
@@ -77,7 +77,7 @@ class Edit extends Component
             'data' => $selectedMedia['data'],
         ]);
 
-        $this->reset();
+        $this->phrase = '';
 
         Flux::toast(variant: 'success', text: "{$media->type->name} added!", duration: 3000);
     }

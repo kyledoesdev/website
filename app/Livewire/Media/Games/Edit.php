@@ -41,7 +41,7 @@ class Edit extends Component
             ->paginate(10);
     }
 
-    public function search()
+    public function searchCategories()
     {
         $categories = (new SearchCategories)->search(
             auth()->user(),
@@ -70,6 +70,7 @@ class Edit extends Component
 
         $this->selectedGame = $games->firstWhere('media_id', $gameId);
         $this->searchedGames = [];
+        $this->phrase = '';
     }
 
     public function store()

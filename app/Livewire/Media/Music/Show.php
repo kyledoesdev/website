@@ -26,7 +26,8 @@ class Show extends Component
                 ->paginate(10, ['*'], 'artists', $this->artistsPage),
             'favoriteTracks' => Media::query()
                 ->where('type_id', MediaType::TRACK)
-                ->paginate(6, ['*'], 'tracks', $this->tracksPage),
+                ->get(),
+                //->paginate(6, ['*'], 'tracks', $this->tracksPage),
             'panel' => Panel::where('name', 'music')->first()->content,
         ]);
     }
