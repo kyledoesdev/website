@@ -40,7 +40,7 @@ class Edit extends Component
             ->paginate(10);
     }
 
-    public function search()
+    public function searchMedia()
     {
         $media = (new SearchMedia)->search(
             auth()->user(),
@@ -69,6 +69,7 @@ class Edit extends Component
 
         $this->selectedMedia = $media->firstWhere('media_id', $mediaId);
         $this->searchedMedia = [];
+        $this->phrase = '';
     }
 
     public function store()

@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <flux:pagination :paginator="$favoriteTracks" wire:click="setTracksPage($event.page)"  />
+            {{-- <flux:pagination :paginator="$favoriteTracks" wire:click="setTracksPage($event.page)"  /> --}}
         </flux:accordion.content>
     </flux:accordion.item>
 </flux:accordion>

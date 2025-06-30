@@ -119,7 +119,7 @@
             <flux:input.group>
                 <flux:input wire:model="phrase" placeholder="Search..." required />
 
-                <flux:button type="submit" icon="magnifying-glass" wire:click="search" />
+                <flux:button type="submit" icon="magnifying-glass" wire:click="searchMedia" />
             </flux:input.group>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -156,7 +156,7 @@
             <flux:button
                 type="submit"
                 icon="magnifying-glass"
-                wire:click="search({{ $mediaTypes->firstWhere('name', 'Artist')->getKey() }})"
+                wire:click="searchSpotify({{ $mediaTypes->firstWhere('name', 'Artist')->getKey() }})"
             />
         </flux:input.group>
 
@@ -196,7 +196,7 @@
         <flux:input.group>
             <flux:input wire:model="phrase" placeholder="Search..." required />
 
-            <flux:button type="submit" icon="magnifying-glass" wire:click="search" />
+            <flux:button type="submit" icon="magnifying-glass" wire:click="searchSpotify" />
         </flux:input.group>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
