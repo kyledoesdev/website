@@ -20,7 +20,9 @@ class Show extends Component
 
     public $backlogPage = 1;
 
-    public $completedPage = 1;
+    public $playedBeforePage = 1;
+
+    public $totalCompletionPage = 1;
 
     public function render()
     {
@@ -28,19 +30,23 @@ class Show extends Component
             'favorites' => Media::query()
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('is_favorite', true)
-                ->paginate(9, ['*'], 'favorites', $this->favoritesPage),
+                ->paginate(18, ['*'], 'favorites', $this->favoritesPage),
             'current' => Media::query()
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('is_active', true)
-                ->paginate(9, ['*'], 'currentlyPlaying', $this->activePage),
+                ->paginate(18, ['*'], 'currentlyPlaying', $this->activePage),
             'backlog' => Media::query()
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('in_backlog', true)
-                ->paginate(9, ['*'], 'backlog', $this->backlogPage),
-            'completed' => Media::query()
+                ->paginate(18, ['*'], 'backlog', $this->backlogPage),
+            'playedBefore' => Media::query()
                 ->where('type_id', MediaType::VIDEO_GAME)
                 ->where('is_completed', true)
-                ->paginate(9, ['*'], 'completed', $this->completedPage),
+                ->paginate(18, ['*'], 'completed', $this->playedBeforePage),
+            'completed' => Media::query()
+                ->where('type_id', MediaType::VIDEO_GAME)
+                ->where('data->total_completion', true)
+                ->paginate(18, ['*'], 'total_completion', $this->totalCompletionPage),
             'panel' => Panel::where('name', 'video_games')->first()->content,
         ]);
     }
@@ -60,8 +66,13 @@ class Show extends Component
         $this->backlogPage = $page;
     }
 
+    public function setPlayedBeforePagePage($page)
+    {
+        $this->playedBeforePage = $page;
+    }
+
     public function setCompletedPage($page)
     {
-        $this->completedPage = $page;
+        $this->totalCompletionPage = $page;
     }
 }
