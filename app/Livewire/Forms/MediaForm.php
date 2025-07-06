@@ -59,5 +59,7 @@ class MediaForm extends Form
                 'total_completion' => $states->contains('total_completion')
             ]
         ]);
+
+        $this->reset();
     }
 }
