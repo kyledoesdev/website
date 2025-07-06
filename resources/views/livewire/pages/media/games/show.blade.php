@@ -30,9 +30,15 @@
                     :pageName="'Backlog'"
                 />
                 <x-media-accordian-item
+                    :collection="$playedBefore"
+                    :title="'Played Before'"
+                    :pageName="'PlayedBefore'"
+                />
+                <x-media-accordian-item
                     :collection="$completed"
-                    :title="'Played / Completed'"
+                    :title="'100%-ed'"
                     :pageName="'Completed'"
+                    :description="'Games where I have collected 100% of the achievements or collectables.'"
                 />
             </flux:accordion>
         </flux:card>

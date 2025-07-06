@@ -26,6 +26,9 @@ class MediaForm extends Form
             'is_active' => $states->contains('is_active'),
             'in_backlog' => $states->contains('in_backlog'),
             'is_completed' => $states->contains('is_completed'),
+            'data' => [
+                'total_completion' => $states->contains('total_completion')
+            ]
         ]);
 
         $this->reset();
@@ -40,6 +43,7 @@ class MediaForm extends Form
         $this->states[] = $this->media->is_active ? 'is_active' : '';
         $this->states[] = $this->media->in_backlog ? 'in_backlog' : '';
         $this->states[] = $this->media->is_completed ? 'is_completed' : '';
+        $this->states[] = $this->media->data && $this->media->data['total_completion'] ? 'total_completion' : '';
     }
 
     public function update()
@@ -51,6 +55,9 @@ class MediaForm extends Form
             'is_active' => $states->contains('is_active'),
             'in_backlog' => $states->contains('in_backlog'),
             'is_completed' => $states->contains('is_completed'),
+            'data' => [
+                'total_completion' => $states->contains('total_completion')
+            ]
         ]);
     }
 }

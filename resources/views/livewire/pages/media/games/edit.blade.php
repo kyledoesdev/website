@@ -37,7 +37,8 @@
                                         <flux:table.column>Favorite</flux:table.column>
                                         <flux:table.column>Playing</flux:table.column>
                                         <flux:table.column>Backlog</flux:table.column>
-                                        <flux:table.column>Completed</flux:table.column>
+                                        <flux:table.column>Played Before</flux:table.column>
+                                        <flux:table.column>100%-ed</flux:table.column>
                                         <flux:table.column>Actions</flux:table.column>
                                     </flux:table.columns>
                                 @endif
@@ -69,6 +70,13 @@
                                     </flux:table.cell>
                                     <flux:table.cell>
                                         @if ($game->is_completed)
+                                            <flux:icon.check size="micro" />
+                                        @else
+                                            <flux:icon.x-mark size="micro" />
+                                        @endif
+                                    </flux:table.cell>
+                                    <flux:table.cell>
+                                        @if (isset($game->data['total_completion']))
                                             <flux:icon.check size="micro" />
                                         @else
                                             <flux:icon.x-mark size="micro" />
@@ -159,7 +167,8 @@
                         <flux:checkbox label="Is Favorite?" value="is_favorite" />
                         <flux:checkbox label="Currently Playing?" value="is_active" />
                         <flux:checkbox label="In Backlog?" value="in_backlog" />
-                        <flux:checkbox label="Completed?" value="is_completed" />
+                        <flux:checkbox label="Played Before?" value="is_completed" />
+                        <flux:checkbox label="100%-ed?" value="total_completion" />
                     </flux:checkbox.group>
                 </div>
 
@@ -183,7 +192,8 @@
                     <flux:checkbox label="Is Favorite?" value="is_favorite" />
                     <flux:checkbox label="Currently Playing?" value="is_active" />
                     <flux:checkbox label="In Backlog?" value="in_backlog" />
-                    <flux:checkbox label="Completed?" value="is_completed" />
+                    <flux:checkbox label="Played Before?" value="is_completed" />
+                    <flux:checkbox label="100%-ed?" value="total_completion" />
                 </flux:checkbox.group>
             </div>
                     
