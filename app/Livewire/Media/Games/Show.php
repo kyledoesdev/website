@@ -66,7 +66,7 @@ class Show extends Component
         $this->backlogPage = $page;
     }
 
-    public function setPlayedBeforePagePage($page)
+    public function setPlayedBeforePage($page)
     {
         $this->playedBeforePage = $page;
     }

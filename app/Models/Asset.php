@@ -11,6 +11,8 @@ class Asset extends Model
 
     const RESUME = 2;
 
+    const THREE_D_PRINTS = 3;
+
     protected $fillable = [
         'type_id',
         'name',
@@ -41,5 +43,10 @@ class Asset extends Model
         }
 
         return null;
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return $this->data['description'] ?? null;
     }
 }

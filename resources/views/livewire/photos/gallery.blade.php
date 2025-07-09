@@ -1,5 +1,5 @@
 <div>
-    <x-slot name="header">Cool Photos</x-slot>
+    <x-slot name="header">{{ $header }}</x-slot>
 
     <div class="my-2">
         @forelse ($this->photos as $photo)
@@ -9,7 +9,11 @@
                         <img src="{{ route('asset', ['slug' => $photo->slug]) }}" alt="{{ $photo->name }}">
 
                         <div class="my-2 text-center">
-                            <span>{{ $photo->name }} - {{ $photo->captured_at }}</span>
+                            <flux:text>{{ $photo->name }} - {{ $photo->captured_at }}</flux:text>
+                        </div>
+
+                        <div>
+                            <flux:text variant="subtle" class="text-xs">{{ $photo->description }}</flux:text>
                         </div>
                     </div>
 
@@ -28,7 +32,7 @@
             </div>
         @empty
             <flux:card>
-                <flux:badge>No photos.</flux:badge>
+                <flux:badge>{{ $emptyMessage }}</flux:badge>
             </flux:card>
         @endforelse
     </div>

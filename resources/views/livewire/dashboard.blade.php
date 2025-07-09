@@ -9,6 +9,12 @@
                     <span>All Panels</span>
                 </flux:card>
             </a>
+            <a href="{{ route('3d_printing') }}">
+                <flux:card class="flex space-x-2">
+                    <flux:icon.cube />
+                    <span>3D Printing</span>
+                </flux:card>
+            </a>
             <a href="{{ route('music.edit') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.musical-note />
@@ -21,13 +27,13 @@
                     <span>Blog</span>
                 </flux:card>
             </a>
-            <a href="{{ route('board_games.edit') }}">
+            <a href="{{ route('board_games') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.dices />
                     <span>Board Games</span>
                 </flux:card>
             </a>
-            <a href="{{ route('education.edit') }}">
+            <a href="{{ route('education') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.academic-cap />
                     <span>Education</span>
@@ -45,7 +51,7 @@
                     <span>Photo Gallery</span>
                 </flux:card>
             </a>
-            <a href="{{ route('projects.edit') }}">
+            <a href="{{ route('projects') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.code-bracket />
                     <span>Projects</span>
@@ -57,7 +63,7 @@
                     <span>Resumes</span>
                 </flux:card>
             </a>
-            <a href="{{ route('technology.edit') }}">
+            <a href="{{ route('technologies') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.command-line />
                     <span>Technology</span>
@@ -75,7 +81,7 @@
                     <span>Video Games</span>
                 </flux:card>
             </a>
-            <a href="{{ route('work_history.edit') }}">
+            <a href="{{ route('work_history') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.building-office />
                     <span>Work History</span>

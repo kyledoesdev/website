@@ -19,7 +19,7 @@ class AssetFactory extends Factory
     public function definition(): array
     {
         $name = $this->faker->words(3, true);
-        
+
         return [
             'type_id' => $this->faker->randomElement([Asset::PHOTO, Asset::RESUME]),
             'name' => $name,
@@ -28,7 +28,7 @@ class AssetFactory extends Factory
             'mime_type' => 'image/jpeg',
             'data' => [
                 'size' => $this->faker->numberBetween(1024, 5242880),
-                'original_name' => $this->faker->word() . '.jpg',
+                'original_name' => $this->faker->word().'.jpg',
                 'captured_at' => $this->faker->dateTimeBetween('-2 years', 'now')->format('Y-m-d H:i:s'),
             ],
         ];
@@ -45,12 +45,12 @@ class AssetFactory extends Factory
                 'image/jpeg',
                 'image/png',
                 'image/gif',
-                'image/webp'
+                'image/webp',
             ]),
             'data' => array_merge($attributes['data'] ?? [], [
                 'width' => $this->faker->numberBetween(800, 4000),
                 'height' => $this->faker->numberBetween(600, 3000),
-                'original_name' => $this->faker->word() . '.' . $this->faker->randomElement(['jpg', 'png', 'gif']),
+                'original_name' => $this->faker->word().'.'.$this->faker->randomElement(['jpg', 'png', 'gif']),
             ]),
         ]);
     }
@@ -64,7 +64,7 @@ class AssetFactory extends Factory
             ]),
             'data' => array_merge($attributes['data'] ?? [], [
                 'pages' => $this->faker->numberBetween(1, 10),
-                'original_name' => $this->faker->lastName() . '_resume.' . $this->faker->randomElement(['pdf', 'doc', 'docx']),
+                'original_name' => $this->faker->lastName().'_resume.'.$this->faker->randomElement(['pdf', 'doc', 'docx']),
             ]),
         ]);
     }
@@ -74,7 +74,7 @@ class AssetFactory extends Factory
         return $this->state(function (array $attributes) {
             $data = $attributes['data'] ?? [];
             unset($data['captured_at']);
-            
+
             return ['data' => $data];
         });
     }

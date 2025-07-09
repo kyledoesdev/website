@@ -19,6 +19,7 @@ class Edit extends Component
     use WithPagination;
 
     public string $search = '';
+
     public string $phrase = '';
 
     public $searchedGames = [];

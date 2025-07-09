@@ -18,7 +18,9 @@ class Edit extends Component
     use WithPagination;
 
     public string $phrase = '';
+
     public string $searchArtists = '';
+
     public string $searchTracks = '';
 
     public $searchedMedia = [];

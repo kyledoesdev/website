@@ -77,6 +77,9 @@ new class extends Component
             </flux:navbar.item>
 
             <flux:navmenu>
+                <flux:navmenu.item icon="cube" href="{{ route('3d_printing') }}">
+                    3D Printing
+                </flux:navmenu.item>
                 <flux:navmenu.item icon="dices" href="{{ route('board_games') }}">
                     Board Games
                 </flux:navmenu.item>

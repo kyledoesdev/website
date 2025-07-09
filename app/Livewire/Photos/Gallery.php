@@ -13,6 +13,12 @@ class Gallery extends Component
 {
     use WithPagination;
 
+    public string $header = 'Cool Photos';
+
+    public string $emptyMessage = 'No Photos';
+
+    public int $type = Asset::PHOTO;
+
     public PhotoForm $form;
 
     public function render()
@@ -24,7 +30,9 @@ class Gallery extends Component
     #[On('photos-updated')]
     public function photos()
     {
-        return Asset::where('type_id', Asset::PHOTO)->paginate(6);
+        return Asset::query()
+            ->where('type_id', $this->type)
+            ->paginate(6);
     }
 
     public function destroy($id)
