@@ -27,8 +27,8 @@ class MediaForm extends Form
             'in_backlog' => $states->contains('in_backlog'),
             'is_completed' => $states->contains('is_completed'),
             'data' => [
-                'total_completion' => $states->contains('total_completion')
-            ]
+                'total_completion' => $states->contains('total_completion'),
+            ],
         ]);
 
         $this->reset();
@@ -56,8 +56,8 @@ class MediaForm extends Form
             'in_backlog' => $states->contains('in_backlog'),
             'is_completed' => $states->contains('is_completed'),
             'data' => [
-                'total_completion' => $states->contains('total_completion')
-            ]
+                'total_completion' => $states->contains('total_completion'),
+            ],
         ]);
 
         $this->reset();

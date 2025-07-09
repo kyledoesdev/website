@@ -139,14 +139,14 @@ return [
             'name' => 'Kyle Evangelisto',
             'url' => 'https://kyledoes.dev',
             'image' => 'https://kyledoes.dev/me.jfif',
-        ]
+        ],
     ],
 
     // https://schema.org/publisher
     'publisher' => [
         '@type' => 'Organization',
         'name' => 'Kyle Evangelisto',
-        'url' => 'https://kyledoes.dev',    
+        'url' => 'https://kyledoes.dev',
         'logo' => 'https://i.imgur.com/oWpheij.jpeg',
         'image' => 'https://i.imgur.com/oWpheij.jpeg',
     ],

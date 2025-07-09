@@ -12,6 +12,10 @@ class Uploader extends Component
 
     public PhotoForm $form;
 
+    public string $header = 'Photo Manager';
+
+    public bool $showGallery = true;
+
     public function render()
     {
         return view('livewire.photos.uploader');

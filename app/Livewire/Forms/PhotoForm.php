@@ -14,8 +14,14 @@ class PhotoForm extends Form
     #[Validate('required|string')]
     public ?string $name;
 
-    #[Validate('required|date')]
+    #[Validate('nullable|date')]
     public ?string $capturedAt;
+
+    #[Validate('nullable|string|max:255')]
+    public ?string $description;
+
+    #[Validate('required|integer|in:1,3', message: 'The Photo Type is Required')]
+    public int $type = Asset::PHOTO;
 
     #[Validate('image:mimes:png,jpg,jpeg,gif,jfif')]
     public $photo;
@@ -25,18 +31,21 @@ class PhotoForm extends Form
         $this->validate();
 
         $path = $this->photo->storePubliclyAs(
-            'photos',
-            now()->format('Y-m-d').'-'.Str::uuid().'.'.$this->photo->getClientOriginalExtension(),
-            's3'
+            $this->getStorageDirectory(),
+            $this->generateFilename(),
+            $this->getStorageDisk()
         );
 
         Asset::create([
-            'type_id' => Asset::PHOTO,
+            'type_id' => $this->type,
             'name' => $this->name,
             'slug' => Str::uuid(),
             'path' => $path,
             'mime_type' => $this->photo->getClientOriginalExtension(),
-            'data' => ['captured_at' => $this->capturedAt],
+            'data' => [
+                'captured_at' => $this->capturedAt,
+                'description' => $this->description,
+            ],
         ]);
 
         $this->reset();
@@ -48,12 +57,30 @@ class PhotoForm extends Form
     {
         $photo = Asset::findOrFail($id);
 
-        if (Storage::disk('s3')->exists($photo->path)) {
-            Storage::disk('s3')->delete($photo->path);
+        if (Storage::disk($this->getStorageDisk())->exists($photo->path)) {
+            Storage::disk($this->getStorageDisk())->delete($photo->path);
         }
 
         $photo->delete();
 
         Flux::toast(variant: 'success', text: 'Photo Deleted!', duration: 3000);
+    }
+
+    private function getStorageDirectory(): string
+    {
+        return match ($this->type) {
+            Asset::THREE_D_PRINTS => '3D_prints',
+            default => 'photos',
+        };
+    }
+
+    private function generateFilename(): string
+    {
+        return now()->format('Y-m-d').'-'.Str::uuid().'.'.$this->photo->getClientOriginalExtension();
+    }
+
+    private function getStorageDisk(): string
+    {
+        return app()->environment('production') ? 's3' : 'public';
     }
 }

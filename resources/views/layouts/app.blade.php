@@ -30,6 +30,9 @@
                             {{ $header }}
                         </h5>
                     </div>
+                    <div class="flex">
+                        <x-socials />
+                    </div>
                 </div>  
                 
                 <flux:separator class="mt-2 mb-1" />

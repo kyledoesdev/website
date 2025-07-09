@@ -54,25 +54,9 @@ class Panels extends Component
     private function getRoutePanel()
     {
         switch (Route::currentRouteName()) {
-            case 'education.edit':
-                $this->type = 'education';
-                $this->header = 'Education';
-                break;
-            case 'projects.edit':
-                $this->type = 'projects';
-                $this->header = 'Projects';
-                break;
-            case 'board_games.edit':
-                $this->type = 'board_games';
-                $this->header = 'Board Games';
-                break;
             case 'music.edit':
                 $this->type = 'music';
                 $this->header = 'Bands & Music';
-                break;
-            case 'work_history.edit':
-                $this->type = 'work_history';
-                $this->header = 'Work History';
                 break;
             default:
                 $this->header = 'Panels';
