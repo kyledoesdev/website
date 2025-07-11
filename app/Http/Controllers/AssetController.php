@@ -11,7 +11,8 @@ class AssetController extends Controller
     public function __invoke(Request $request, string $slug)
     {
         return Storage::disk('s3')
-            ->response(Asset::where('slug', $slug)->firstOrFail()->path)
-            ->header('Cache-Control', 'public, max-age=31536000');
+            ->response(Asset::where('slug', $slug)->firstOrFail()->path, null, [
+                'Cache-Control' => 'public, max-age=31536000'
+            ]);
     }
 }
