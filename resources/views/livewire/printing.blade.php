@@ -7,7 +7,7 @@
 
             <livewire:photos.uploader
                 :header="'Upload 3D Prints'"
-                :showGallery="false"
+                :showGallery="true"
             />
         </div>
     @endauth

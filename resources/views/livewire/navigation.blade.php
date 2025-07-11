@@ -182,6 +182,9 @@ new class extends Component
                 icon="fire"
                 :current="request()->is('board_games', 'music', 'movies', 'tv_shows', 'video_games')"
             >
+                <flux:navmenu.item icon="cube" href="{{ route('3d_printing') }}">
+                    3D Printing
+                </flux:navmenu.item>
                 <flux:navmenu.item icon="dices" href="{{ route('board_games') }}">
                     Board Games
                 </flux:navmenu.item>
