@@ -58,14 +58,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/panels', Panels::class)->name('panels');
 
-    Route::get('/movies/edit', EditMovies::class)->name('movies.edit');
-    Route::get('/tv/edit', EditTv::class)->name('tv.edit');
-
-    Route::get('/music/edit', EditMusic::class)->name('music.edit');
-    Route::get('/video_games/edit', EditGames::class)->name('video_games.edit');
-
     Route::get('/gallery/edit', Uploader::class)->name('gallery.edit');
     Route::get('/resumes/edit', Resume::class)->name('resume.edit');
+
+    Route::get('/movies/edit', EditMovies::class)->name('movies.edit');
+    Route::get('/tv/edit', EditTv::class)->name('tv.edit');
+    Route::get('/music/edit', EditMusic::class)->name('music.edit');
+    Route::get('/video_games/edit', EditGames::class)->name('video_games.edit');
 
     Route::get('/health', HealthCheckResultsController::class)->name('health.index');
 });
