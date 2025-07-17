@@ -118,4 +118,11 @@ class Blog extends Component
 
         return $documents;
     }
+
+    public function clearUploads()
+    {
+        $this->file = null;
+        $this->images = [];
+        $this->resetValidation();
+    }
 }

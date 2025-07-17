@@ -1,59 +1,60 @@
 <div>
     <x-slot name="header">Blog Posts</x-slot>
 
-    <flux:card>
-        <div class="space-y-4">
-            <div class="flex justify-between">
-                <div class="flex-1 space-y-4">
-                    <flux:input
-                        type="file"
-                        wire:model="file"
-                        label="Upload Blog Post"
-                        accept=".md"
-                        size="sm"
-                    />
-                    
-                    <flux:input
-                        type="file"
-                        wire:model="images"
-                        label="Upload Images (Optional)"
-                        multiple
-                        accept="image/*"
-                        size="sm"
-                    />
+    <flux:card class="space-y-4">
+        <flux:card>
+            <div class="space-y-4">
+                <div class="flex justify-between">
+                    <div class="flex-1 space-y-4">
+                        <flux:input
+                            type="file"
+                            wire:model="file"
+                            label="Upload Blog Post"
+                            description="Make sure that the post slug matches the name of the markdown file itself."
+                            accept=".md"
+                            size="sm"
+                        />
+                        
+                        <flux:input
+                            type="file"
+                            wire:model="images"
+                            label="Upload Images (Optional)"
+                            multiple
+                            accept="image/*"
+                            size="sm"
+                        />
+                    </div>
                 </div>
-            </div>
-            
-            @if ($images)
-                <div class="mt-2">
-                    <flux:badge variant="lime" size="sm">
-                        {{ count($images) }} image(s) selected
-                    </flux:badge>
-                </div>
-            @endif
-            
-            <div class="flex gap-2 my-4">
-                <flux:button variant="primary" size="xs" wire:click="store" icon="arrow-up-tray">
-                    Upload Blog Post
-                </flux:button>
                 
-                @if ($file || $images)
-                    <flux:button variant="ghost" size="xs" wire:click="clearUploads" icon="x-mark">
-                        Clear
-                    </flux:button>
+                @if ($images)
+                    <div class="mt-2">
+                        <flux:badge variant="lime" size="sm">
+                            {{ count($images) }} image(s) selected
+                        </flux:badge>
+                    </div>
                 @endif
+                
+                <div class="flex gap-2 my-4">
+                    <flux:button variant="primary" size="xs" wire:click="store" icon="arrow-up-tray">
+                        Upload Blog Post
+                    </flux:button>
+                    
+                    @if ($file || $images)
+                        <flux:button variant="ghost" size="xs" wire:click="clearUploads" icon="x-mark">
+                            Clear
+                        </flux:button>
+                    @endif
+                </div>
+
+                @error('file') 
+                    <flux:error>{{ $message }}</flux:error>
+                @enderror
+                
+                @error('images.*') 
+                    <flux:error>{{ $message }}</flux:error>
+                @enderror
             </div>
-
-            @error('file') 
-                <flux:error>{{ $message }}</flux:error>
-            @enderror
-            
-            @error('images.*') 
-                <flux:error>{{ $message }}</flux:error>
-            @enderror
-        </div>
-
-        <flux:separator class="my-4" />
+        </flux:card>
     
         <flux:card>
             <div class="overflow-hidden shadow-2xs sm:rounded-lg">
