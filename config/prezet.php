@@ -105,7 +105,7 @@ return [
 
         'sizes' => '92vw, (max-width: 1024px) 92vw, 768px',
 
-        'zoomable' => true,
+        'zoomable' => false,
     ],
 
     /*

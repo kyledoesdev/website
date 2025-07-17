@@ -24,6 +24,9 @@ class Blog extends Component
     #[Validate('required|file|mimes:md')]
     public $file;
 
+    #[Validate(['images' => 'nullable|array', 'images.*' => 'image|max:4096'])]
+    public $images = [];
+
     public function render()
     {
         return view('livewire.blog');
@@ -39,9 +42,26 @@ class Blog extends Component
             options: ['disk' => 'prezet']
         );
 
+        /* index in prezet disk */
         Artisan::call('prezet:index');
 
+        $document = Document::query()->latest()->first();
+
+        if ($document && $this->images) {
+            foreach ($this->images as $image) {
+                $image->storeAs(
+                    path: "images/{$document->slug}",
+                    name: $image->getClientOriginalName(),
+                    options: ['disk' => 'prezet']
+                );
+            }
+
+            /* index in prezet disk again (for the images) */
+            Artisan::call('prezet:index');
+        }
+
         $this->file = null;
+        $this->images = [];
 
         Flux::toast(variant: 'success', text: 'Blog Post Uploaded!', duration: 3000);
     }
@@ -53,10 +73,17 @@ class Blog extends Component
         if ($document) {
             try {
                 /* delete the file */
-                Storage::disk('prezet')->delete('content/'.$document->slug.'.md');
+                Storage::disk('prezet')->delete("content/{$document->slug}.md");
 
                 /* delete the tags */
                 DB::connection('prezet')->table('document_tags')->where('document_id', $id)->delete();
+
+                /* delete images if there are any */
+                $imageDirectory = "images/{$document->slug}";
+
+                if (Storage::disk('prezet')->exists($imageDirectory)) {
+                    Storage::disk('prezet')->deleteDirectory($imageDirectory);
+                }
 
                 /* delete the reference */
                 Document::where('id', $id)->delete();
@@ -89,5 +116,12 @@ class Blog extends Component
         }
 
         return $documents;
+    }
+
+    public function clearUploads()
+    {
+        $this->file = null;
+        $this->images = [];
+        $this->resetValidation();
     }
 }

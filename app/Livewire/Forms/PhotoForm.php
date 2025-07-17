@@ -90,9 +90,9 @@ class PhotoForm extends Form
 
     private function processImage(): void
     {
-        $manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver);
         $image = $manager->read($this->photo->getRealPath());
-        
+
         if ($image->width() > 2000 || $image->height() > 1500) {
             $image->scaleDown(width: 2000, height: 1500);
             $image->save($this->photo->getRealPath());

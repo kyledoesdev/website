@@ -12,7 +12,7 @@ class AssetController extends Controller
     {
         return Storage::disk('s3')
             ->response(Asset::where('slug', $slug)->firstOrFail()->path, null, [
-                'Cache-Control' => 'public, max-age=31536000'
+                'Cache-Control' => 'public, max-age=31536000',
             ]);
     }
 }
