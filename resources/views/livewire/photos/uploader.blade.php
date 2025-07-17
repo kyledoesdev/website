@@ -29,7 +29,7 @@
             <flux:separator />
 
             <div>
-                <livewire:photos.gallery />
+                <livewire:photos.gallery :type="$this->galleryType" />
             </div>
         @endif
     </flux:card>

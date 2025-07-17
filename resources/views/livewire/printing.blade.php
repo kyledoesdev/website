@@ -8,6 +8,7 @@
             <livewire:photos.uploader
                 :header="'Upload 3D Prints'"
                 :showGallery="true"
+                :galleryType="App\Models\Asset::THREE_D_PRINTS"
             />
         </div>
     @endauth
