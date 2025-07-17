@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Prezet;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use Prezet\Prezet\Prezet;
 use Prezet\Prezet\Models\Document;
+use Prezet\Prezet\Prezet;
 
 class ImageController
 {
@@ -32,13 +31,13 @@ class ImageController
     {
         /* remove any appended size version when looking up path */
         $originalFilename = preg_replace('/-\d+w\./', '.', $filename);
-        
+
         $slugs = Document::pluck('slug')->toArray();
-        
+
         /* loop through the articles' slugs to get dir & file name from prezet disk */
         foreach ($slugs as $slug) {
             $imagePath = "images/{$slug}/{$originalFilename}";
-            
+
             if (Storage::disk('prezet')->exists($imagePath)) {
                 return $imagePath;
             }

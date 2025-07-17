@@ -8,7 +8,6 @@ use Flux\Flux;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -48,7 +47,7 @@ class Blog extends Component
 
         $document = Document::query()->latest()->first();
 
-        if ($document && $this->images) {            
+        if ($document && $this->images) {
             foreach ($this->images as $image) {
                 $image->storeAs(
                     path: "images/{$document->slug}",
@@ -81,7 +80,7 @@ class Blog extends Component
 
                 /* delete images if there are any */
                 $imageDirectory = "images/{$document->slug}";
-                
+
                 if (Storage::disk('prezet')->exists($imageDirectory)) {
                     Storage::disk('prezet')->deleteDirectory($imageDirectory);
                 }
