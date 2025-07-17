@@ -3,6 +3,7 @@
 namespace App\Livewire\Photos;
 
 use App\Livewire\Forms\PhotoForm;
+use App\Models\Asset;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,6 +16,8 @@ class Uploader extends Component
     public string $header = 'Photo Manager';
 
     public bool $showGallery = true;
+
+    public array|int $galleryType = Asset::PHOTO;
 
     public function render()
     {

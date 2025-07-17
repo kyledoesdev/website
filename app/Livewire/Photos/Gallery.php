@@ -17,7 +17,7 @@ class Gallery extends Component
 
     public string $emptyMessage = 'No Photos';
 
-    public int $type = Asset::PHOTO;
+    public array|int $type = Asset::PHOTO;
 
     public PhotoForm $form;
 
@@ -31,7 +31,7 @@ class Gallery extends Component
     public function photos()
     {
         return Asset::query()
-            ->where('type_id', $this->type)
+            ->whereIn('type_id', is_array($this->type) ? $this->type : [$this->type])
             ->paginate(6);
     }
 
