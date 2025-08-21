@@ -33,7 +33,9 @@
 
                         <flux:table.row :key="$post->getKey()">
                             <flux:table.cell>
-                                {{ $data->title }}
+                                <flux:tooltip :content="$data->title">
+                                    <flux:text>{{ str()->limit($data->title, 30) }}</flux:text>
+                                </flux:tooltip>
                             </flux:table.cell>
 
                             <flux:table.cell>

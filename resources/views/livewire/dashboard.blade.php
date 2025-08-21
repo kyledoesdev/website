@@ -48,7 +48,7 @@
             <a href="{{ route('gallery.edit') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.photo />
-                    <span>Photo Gallery</span>
+                    <span>Photo Manager</span>
                 </flux:card>
             </a>
             <a href="{{ route('projects') }}">

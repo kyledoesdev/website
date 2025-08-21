@@ -26,7 +26,7 @@
         <livewire:navigation />
 
         <!-- Page Content -->
-        <flux:main container class="px-8 mt-4">
+        <flux:main container class="px-4 md:px-8 md:mt-4">
             @if (isset($header))
                 <div class="flex justify-between">
                     <div class="w-full sm:w-auto">
@@ -42,9 +42,7 @@
                 <flux:separator class="mt-2 mb-1" />
             @endif
 
-            <div class="mt-2">
-                {{ $slot }}
-            </div>
+            {{ $slot }}
         </flux:main>
 
         @persist('toast')
