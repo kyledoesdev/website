@@ -39,11 +39,13 @@ class MediaForm extends Form
         $this->media = Media::findOrFail($id);
 
         $this->name = $this->media->name;
-        $this->states[] = $this->media->is_favorite ? 'is_favorite' : '';
-        $this->states[] = $this->media->is_active ? 'is_active' : '';
-        $this->states[] = $this->media->in_backlog ? 'in_backlog' : '';
-        $this->states[] = $this->media->is_completed ? 'is_completed' : '';
-        $this->states[] = $this->media->data && $this->media->data['total_completion'] ? 'total_completion' : '';
+        $this->states[] = $this->media->is_favorite ? 'is_favorite' : null;
+        $this->states[] = $this->media->is_active ? 'is_active' : null;
+        $this->states[] = $this->media->in_backlog ? 'in_backlog' : null;
+        $this->states[] = $this->media->is_completed ? 'is_completed' : null;
+        $this->states[] = $this->media->data && $this->media->data['total_completion'] ? 'total_completion' : null;
+
+        $this->states = collect($this->states)->filter()->values()->toArray();
     }
 
     public function update()
@@ -59,7 +61,5 @@ class MediaForm extends Form
                 'total_completion' => $states->contains('total_completion'),
             ],
         ]);
-
-        $this->reset();
     }
 }

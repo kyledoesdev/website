@@ -6,11 +6,11 @@
     ])
     <section>
         <div class="">
-            <div class="space-y-2 ">
+            <div class="space-y-2">
                 <x-slot name="header">My Writings</x-slot>
 
                 <div class="justify-between sm:flex">
-                    <div class="mt-2 block sm:mt-0">
+                    <div class="mt-1 block sm:mt-0">
                         @if ($currentTag)
                             <span
                                 class="inline-flex items-center gap-x-0.5 rounded-md bg-gray-50 px-2.5 py-1.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
@@ -57,7 +57,7 @@
             </div>
             <ul class="divide-y divide-gray-200">
                 @foreach ($articles as $article)
-                    <li class="py-8">
+                    <li class="py-4">
                         <x-prezet.article :article="$article" />
                     </li>
                 @endforeach

@@ -7,7 +7,7 @@
     ])
     
     {{-- Main Content --}}
-    <div class="max-w-4xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6">
+    <div class="max-w-4xl mx-auto px-3 sm:px-4 lg:px-8 md:py-2 sm:py-6">
         <flux:card class="overflow-hidden">
             <article class="overflow-x-auto">
                 <header class="mb-6 sm:mb-9 space-y-2 sm:space-y-1">

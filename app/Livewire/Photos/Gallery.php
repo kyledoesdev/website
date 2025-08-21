@@ -32,7 +32,7 @@ class Gallery extends Component
     {
         return Asset::query()
             ->whereIn('type_id', is_array($this->type) ? $this->type : [$this->type])
-            ->paginate(6);
+            ->paginate(9);
     }
 
     public function destroy($id)

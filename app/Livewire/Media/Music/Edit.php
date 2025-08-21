@@ -80,6 +80,7 @@ class Edit extends Component
         ]);
 
         $this->phrase = '';
+        $this->searchedMedia = [];
 
         Flux::toast(variant: 'success', text: "{$media->type->name} added!", duration: 3000);
     }
