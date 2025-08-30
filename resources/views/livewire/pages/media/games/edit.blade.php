@@ -76,7 +76,7 @@
                                         @endif
                                     </flux:table.cell>
                                     <flux:table.cell>
-                                        @if (isset($game->data['total_completion']))
+                                        @if (isset($game->data['total_completion']) && $game->data['total_completion'] == true)
                                             <flux:icon.check size="micro" />
                                         @else
                                             <flux:icon.x-mark size="micro" />

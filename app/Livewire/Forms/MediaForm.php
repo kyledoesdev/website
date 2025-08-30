@@ -38,12 +38,16 @@ class MediaForm extends Form
     {
         $this->media = Media::findOrFail($id);
 
+        $data = $this->media->data;
+
         $this->name = $this->media->name;
         $this->states[] = $this->media->is_favorite ? 'is_favorite' : null;
         $this->states[] = $this->media->is_active ? 'is_active' : null;
         $this->states[] = $this->media->in_backlog ? 'in_backlog' : null;
         $this->states[] = $this->media->is_completed ? 'is_completed' : null;
-        $this->states[] = $this->media->data && $this->media->data['total_completion'] ? 'total_completion' : null;
+        $this->states[] = $data && isset($data['total_completion']) && $data['total_completion'] == true 
+            ? 'total_completion'
+            : null;
 
         $this->states = collect($this->states)->filter()->values()->toArray();
     }
