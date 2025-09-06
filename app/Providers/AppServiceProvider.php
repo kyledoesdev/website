@@ -38,10 +38,6 @@ class AppServiceProvider extends ServiceProvider
             $event->extendSocialite('twitch', TwitchProvider::class);
         });
 
-        Carbon::macro('inUserTimezone', function () {
-            return $this->tz(auth()->user()?->timezone ?? 'America/New_York');
-        });
-
         Health::checks([
             EnvironmentCheck::new(),
             DatabaseCheck::new(),

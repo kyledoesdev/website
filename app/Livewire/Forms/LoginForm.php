@@ -43,7 +43,7 @@ class LoginForm extends Form
 
         RateLimiter::clear($this->throttleKey());
 
-        auth()->user()->update(['timezone' => Helpers::tz()]);
+        auth()->user()->update(['timezone' => timezone()]);
 
         (new SearchSpotify)->refreshToken(auth()->user());
         (new SearchCategories)->refreshToken(auth()->user());

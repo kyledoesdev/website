@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85e51dbe7d1bbeef02ca5bedf1b4aacd",
+    "content-hash": "74473ed3ba66599c4eb33d00e7ce4fb4",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1482,6 +1482,80 @@
                 }
             ],
             "time": "2025-05-22T17:26:23+00:00"
+        },
+        {
+            "name": "kyledoesdev/essentials",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kyledoesdev/essentials.git",
+                "reference": "f8db9a02d797529dac2f62058d26f010b93da7c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kyledoesdev/essentials/zipball/f8db9a02d797529dac2f62058d26f010b93da7c3",
+                "reference": "f8db9a02d797529dac2f62058d26f010b93da7c3",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.8",
+                "illuminate/contracts": "^12.0",
+                "illuminate/http": "^12.0",
+                "illuminate/support": "^12.0",
+                "php": "^8.4",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.14",
+                "nunomaduro/collision": "^8.8",
+                "orchestra/testbench": "^10.0.0",
+                "pestphp/pest": "^4.0",
+                "pestphp/pest-plugin-arch": "^4.0",
+                "pestphp/pest-plugin-laravel": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Essentials": "Kyledoesdev\\Essentials\\Facades\\Essentials"
+                    },
+                    "providers": [
+                        "Kyledoesdev\\Essentials\\EssentialsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Libraries/helpers.php"
+                ],
+                "psr-4": {
+                    "Kyledoesdev\\Essentials\\": "src/",
+                    "Kyledoesdev\\Essentials\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Evangelisto",
+                    "email": "kyledoesdev@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Essentials for my Laravel applications.",
+            "homepage": "https://github.com/kyledoesdev/essentials",
+            "keywords": [
+                "essentials",
+                "kyledoesdev",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/kyledoesdev/essentials/issues",
+                "source": "https://github.com/kyledoesdev/essentials/tree/v0.0.1"
+            },
+            "time": "2025-09-06T18:42:11+00:00"
         },
         {
             "name": "laravel/framework",
@@ -11254,12 +11328,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

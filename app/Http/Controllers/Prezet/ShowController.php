@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Prezet;
 
-use App\Libraries\Helpers;
 use App\Models\DocumentView;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -23,7 +22,7 @@ class ShowController
             'document_id' => $document->getKey(),
             'ip_address' => $request->ip(),
         ], [
-            'timezone' => Helpers::tz(),
+            'timezone' => timezone(),
             'last_viewed_at' => now(),
         ]);
 
