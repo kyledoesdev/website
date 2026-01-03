@@ -17,9 +17,11 @@
                             <div class="my-2">
                                 <flux:text>{{ $photo->name }}</flux:text>
 
-                                <flux:text variant="subtle" class="text-xs">{{ $photo->description }}</flux:text>
+                                @if (!is_null($photo->description) && $photo->description !== '')
+                                    <flux:text variant="subtle" class="text-xs">{{ $photo->description }}</flux:text>
+                                @endif
 
-                                <flux:text class="mt-2" size="sm">{{ $photo->captured_at }}</flux:text>
+                                <flux:text class="mt-2" size="sm">{{ $photo->captured_at ?? $photo->created_at }}</flux:text>
                             </div>
                         </div>
 

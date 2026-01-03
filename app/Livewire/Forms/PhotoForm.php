@@ -14,13 +14,13 @@ use Livewire\Form;
 class PhotoForm extends Form
 {
     #[Validate('required|string')]
-    public ?string $name;
+    public string $name = '';
 
     #[Validate('nullable|date')]
-    public ?string $capturedAt;
+    public string $capturedAt = '';
 
     #[Validate('nullable|string|max:255')]
-    public ?string $description;
+    public string $description = '';
 
     #[Validate('required|integer|in:1,3', message: 'The Photo Type is Required')]
     public int $type = Asset::PHOTO;
