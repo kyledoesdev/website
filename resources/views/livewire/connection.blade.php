@@ -38,7 +38,7 @@
                     
                     <flux:button 
                         variant="outline" 
-                        :size="$config['connection'] ? 'sm' : 'md'"
+                        :size="$config['connection'] ? 'sm' : 'base'"
                         :icon="$config['icon']"
                         :href="route('connect', ['type' => $type])"
                     >

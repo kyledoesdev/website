@@ -1,27 +1,3 @@
-<?php
-
-use App\Livewire\Actions\Logout;
-use Livewire\Volt\Component;
-
-new class extends Component
-{
-    /**
-     * Log the current user out of the application.
-     */
-    public function logout(Logout $logout): void
-    {
-        $logout();
-
-        $this->redirect('/', navigate: true);
-    }
-}; ?>
-
-@php
-    use App\Models\Asset;
-
-    $resume = Asset::where('type_id', Asset::RESUME)->first()?->slug;
-@endphp
-
 <flux:header container>
     <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 

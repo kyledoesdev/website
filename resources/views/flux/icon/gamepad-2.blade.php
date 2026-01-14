@@ -1,4 +1,5 @@
 {{-- Credit: Lucide (https://lucide.dev) --}}
+@blaze
 
 @props([
     'variant' => 'outline',

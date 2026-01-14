@@ -9,12 +9,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        if (env('APP_ENV') != 'production') {
-            User::factory()->create([
-                'name' => 'kyledoesdev',
-                'email' => 'kyledoesdev@gmail.com',
-                'password' => bcrypt('password'),
-            ]);
-        }
+        User::factory()->create([
+            'name' => 'kyledoesdev',
+            'email' => 'kyledoesdev@gmail.com',
+            'password' => bcrypt('password'),
+        ]);
     }
 }
