@@ -15,11 +15,6 @@ class Connection extends Model
         'refresh_token',
     ];
 
-    public function type(): HasOne
-    {
-        return $this->hasOne(ConnectionType::class, 'type_id', 'id');
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

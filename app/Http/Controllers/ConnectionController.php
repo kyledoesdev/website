@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ConnectionType;
+use App\Enums\ConnectionType;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -35,9 +35,11 @@ class ConnectionController extends Controller
 
     private function getConnectionTypeId(string $type)
     {
+        dd(ConnectionType::TWITCH->slug());
+
         return match ($type) {
-            'twitch' => ConnectionType::TWITCH,
-            'spotify' => ConnectionType::SPOTIFY
+            'twitch' => ConnectionType::TWITCH->slug(),
+            'spotify' => ConnectionType::SPOTIFY->slug()
         };
     }
 }
