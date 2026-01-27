@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Actions\Api;
 
-use App\Models\ConnectionType;
+use App\Enums\ConnectionType;
 use App\Models\Media;
 use App\Models\MediaType;
 use App\Models\User;
@@ -19,7 +19,7 @@ final class SearchSpotify
         $type = $mediaType->isArtist() ? 'artist' : 'track';
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.$user->connections->firstWhere('type_id', ConnectionType::SPOTIFY)->token,
+            'Authorization' => 'Bearer '.$user->connections->firstWhere('type_id', ConnectionType::SPOTIFY->value)->token,
             'Content-Type' => 'application/json',
             'Client-Id' => config('services.spotify.client_id'),
         ])->get('https://api.spotify.com/v1/search', [
@@ -81,7 +81,7 @@ final class SearchSpotify
     public function refreshToken(User $user): bool
     {
         try {
-            $spotifyConnection = $user->connections->firstWhere('type_id', ConnectionType::SPOTIFY);
+            $spotifyConnection = $user->connections->firstWhere('type_id', ConnectionType::SPOTIFY->value);
 
             $response = Http::asForm()->post('https://accounts.spotify.com/api/token', [
                 'grant_type' => 'refresh_token',

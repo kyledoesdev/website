@@ -44,4 +44,9 @@ return [
         'api_key' => env('MOVIEDB_API_KEY'),
         'access_token' => env('MOVIEDB_KEY'),
     ],
+
+    'discord' => [
+        'internal_updates' => env('DISCORD_INTERNAL_UPDATES'),
+        'live_now' => env('DISCORD_LIVE_NOW'),
+    ],
 ];
