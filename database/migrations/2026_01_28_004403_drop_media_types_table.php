@@ -11,6 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::drop('media_types');
+        Schema::dropIfExists('media_types');
     }
 };
