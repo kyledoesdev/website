@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Media\Movies;
 
+use App\Enums\MediaType;
 use App\Livewire\Actions\Api\SearchMedia;
 use App\Livewire\Forms\MediaForm;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
-use App\Models\MediaType;
 use Flux\Flux;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
@@ -35,7 +35,7 @@ class Edit extends Component
     public function medias()
     {
         return Media::query()
-            ->where('type_id', MediaType::MOVIE)
+            ->where('type_id', MediaType::MOVIE->value)
             ->when($this->search != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->search%"))
             ->paginate(10);
     }

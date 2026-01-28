@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Media\Tv;
 
+use App\Enums\MediaType;
 use App\Models\Media;
-use App\Models\MediaType;
 use App\Models\Panel;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
@@ -26,19 +26,19 @@ class Show extends Component
     {
         return view('livewire.pages.media.tv.show', [
             'favorites' => Media::query()
-                ->where('type_id', MediaType::TV)
+                ->where('type_id', MediaType::TV->value)
                 ->where('is_favorite', true)
                 ->paginate(9, ['*'], 'favorites', $this->favoritesPage),
             'current' => Media::query()
-                ->where('type_id', MediaType::TV)
+                ->where('type_id', MediaType::TV->value)
                 ->where('is_active', true)
                 ->paginate(9, ['*'], 'currentlyWatching', $this->activePage),
             'backlog' => Media::query()
-                ->where('type_id', MediaType::TV)
+                ->where('type_id', MediaType::TV->value)
                 ->where('in_backlog', true)
                 ->paginate(9, ['*'], 'backlog', $this->backlogPage),
             'completed' => Media::query()
-                ->where('type_id', MediaType::TV)
+                ->where('type_id', MediaType::TV->value)
                 ->where('is_completed', true)
                 ->paginate(9, ['*'], 'completed', $this->completedPage),
             'panel' => Panel::where('name', 'tv')->first()->content,

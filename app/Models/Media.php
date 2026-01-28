@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Model;
 use Illuminate\Contracts\Database\Query\Builder;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Media extends Model
 {
@@ -35,10 +35,5 @@ class Media extends Model
             'is_completed' => 'boolean',
             'data' => 'array',
         ];
-    }
-
-    public function type(): HasOne
-    {
-        return $this->hasOne(MediaType::class, 'id', 'type_id');
     }
 }

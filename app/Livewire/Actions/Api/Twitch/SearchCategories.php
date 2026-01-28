@@ -3,15 +3,14 @@
 namespace App\Livewire\Actions\Api\Twitch;
 
 use App\Enums\ConnectionType;
+use App\Enums\MediaType;
 use App\Models\Media;
 use App\Models\User;
-use Exception;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 final class SearchCategories
 {
-    public function search(User $user, string $phrase, int $mediaType)
+    public function search(User $user, string $phrase, MediaType $mediaType)
     {
         (new RefreshToken)->handle($user);
 
@@ -25,7 +24,7 @@ final class SearchCategories
         ]);
 
         if ($response->successful()) {
-            $games = Media::where('type_id', $mediaType)->pluck('media_id')->toArray();
+            $games = Media::where('type_id', $mediaType->value)->pluck('media_id')->toArray();
 
             return collect($response->json('data'))->map(function ($game) use ($games, $mediaType) {
                 if (in_array($game['id'], $games)) {
@@ -33,7 +32,7 @@ final class SearchCategories
                 }
 
                 return [
-                    'type_id' => $mediaType,
+                    'type_id' => $mediaType->value,
                     'media_id' => $game['id'],
                     'name' => $game['name'],
                     'cover' => $this->fix_box_art($game['box_art_url']),

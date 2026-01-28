@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Media\Games;
 
+use App\Enums\MediaType;
 use App\Models\Media;
-use App\Models\MediaType;
 use App\Models\Panel;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
@@ -28,23 +28,23 @@ class Show extends Component
     {
         return view('livewire.pages.media.games.show', [
             'favorites' => Media::query()
-                ->where('type_id', MediaType::VIDEO_GAME)
+                ->where('type_id', MediaType::VIDEO_GAME->value)
                 ->where('is_favorite', true)
                 ->paginate(18, ['*'], 'favorites', $this->favoritesPage),
             'current' => Media::query()
-                ->where('type_id', MediaType::VIDEO_GAME)
+                ->where('type_id', MediaType::VIDEO_GAME->value)
                 ->where('is_active', true)
                 ->paginate(18, ['*'], 'currentlyPlaying', $this->activePage),
             'backlog' => Media::query()
-                ->where('type_id', MediaType::VIDEO_GAME)
+                ->where('type_id', MediaType::VIDEO_GAME->value)
                 ->where('in_backlog', true)
                 ->paginate(18, ['*'], 'backlog', $this->backlogPage),
             'playedBefore' => Media::query()
-                ->where('type_id', MediaType::VIDEO_GAME)
+                ->where('type_id', MediaType::VIDEO_GAME->value)
                 ->where('is_completed', true)
                 ->paginate(18, ['*'], 'completed', $this->playedBeforePage),
             'completed' => Media::query()
-                ->where('type_id', MediaType::VIDEO_GAME)
+                ->where('type_id', MediaType::VIDEO_GAME->value)
                 ->where('data->total_completion', true)
                 ->paginate(18, ['*'], 'total_completion', $this->totalCompletionPage),
             'panel' => Panel::where('name', 'video_games')->first()->content,

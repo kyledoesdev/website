@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Media\Music;
 
-use App\Livewire\Actions\Api\SearchSpotify;
+use App\Enums\MediaType;
+use App\Livewire\Actions\Api\Spotify\SearchArtist;
+use App\Livewire\Actions\Api\Spotify\SearchTrack;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
-use App\Models\MediaType;
 use Flux\Flux;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
@@ -23,13 +24,11 @@ class Edit extends Component
 
     public string $searchTracks = '';
 
-    public $searchedMedia = [];
+    public ?array $searchedMedia = [];
 
     public function render()
     {
-        return view('livewire.pages.media.music.edit', [
-            'mediaTypes' => MediaType::all(),
-        ]);
+        return view('livewire.pages.media.music.edit');
     }
 
     #[Computed]
@@ -52,11 +51,9 @@ class Edit extends Component
 
     public function searchSpotify(MediaType $mediaType)
     {
-        $media = (new SearchSpotify)->search(
-            auth()->user(),
-            $this->phrase,
-            $mediaType
-        );
+        $media = $mediaType->value == MediaType::ARTIST->value
+            ? (new SearchArtist)->handle(auth()->user(), $this->phrase)
+            : (new SearchTrack)->handle(auth()->user(), $this->phrase);
 
         if ($media->isEmpty()) {
             Flux::toast(variant: 'danger', text: "No records found for search term: {$this->phrase}.", duration: 3000);
@@ -64,7 +61,7 @@ class Edit extends Component
             $this->phrase = '';
         }
 
-        $this->searchedMedia = $media;
+        $this->searchedMedia = $media->toArray();
     }
 
     public function store($mediaId)
@@ -92,5 +89,11 @@ class Edit extends Component
         $media->delete();
 
         Flux::toast(variant: 'success', text: "{$media->type->name} deleted.", duration: 3000);
+    }
+
+    public function resetSearch()
+    {
+        $this->searchedMedia = [];
+        $this->phrase = '';
     }
 }

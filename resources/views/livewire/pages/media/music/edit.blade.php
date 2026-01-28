@@ -1,4 +1,6 @@
 <div>
+    @use(App\Enums\MediaType)
+
     <div class="space-y-4">
         <livewire:panels :type="'music'" :header="'Bands & Music'" />
 
@@ -145,7 +147,7 @@
         </flux:card>
     </div>
 
-    <flux:modal name="create-artist" class="space-y-6 md:w-1/2 md:h-full">
+    <flux:modal name="create-artist" class="space-y-6 md:w-1/2 md:h-full" @close="resetSearch">
         <div class="mb-2">
             <flux:heading size="lg">Search Spotify for an Artist</flux:heading>
         </div>
@@ -156,7 +158,7 @@
             <flux:button
                 type="submit"
                 icon="magnifying-glass"
-                wire:click="searchSpotify({{ $mediaTypes->firstWhere('name', 'Artist')->getKey() }})"
+                wire:click="searchSpotify({{ MediaType::ARTIST  }})"
             />
         </flux:input.group>
 
@@ -188,7 +190,7 @@
         </div>
     </flux:modal>
 
-    <flux:modal name="create-track" class="space-y-6 md:w-1/2 md:h-full">
+    <flux:modal name="create-track" class="space-y-6 md:w-1/2 md:h-full" @close="resetSearch">
         <div class="mb-2">
             <flux:heading size="lg">Search Spotify for a Track</flux:heading>
         </div>
@@ -196,7 +198,7 @@
         <flux:input.group>
             <flux:input wire:model="phrase" placeholder="Search..." required />
 
-            <flux:button type="submit" icon="magnifying-glass" wire:click="searchSpotify" />
+            <flux:button type="submit" icon="magnifying-glass" wire:click="searchSpotify({{ MediaType::TRACK }})" />
         </flux:input.group>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

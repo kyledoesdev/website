@@ -17,7 +17,7 @@
             <flux:separator vertical class="hidden md:block" />
 
             <div class="mx-4">
-                <x-markdown-content :content="App\Models\Panel::where('name', 'bio')->first()->content" />
+                <x-markdown-content :content="App\Models\Panel::firstWhere('name', 'bio')->content" />
             </div>
         </div>
     </div>
