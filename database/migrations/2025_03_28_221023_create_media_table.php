@@ -9,17 +9,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('media_types', function (Blueprint $table) {
+        /* Schema::create('media_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
-        });
+        }); */
 
-        MediaType::create(['name' => 'Movies']);
+        /* MediaType::create(['name' => 'Movies']);
         MediaType::create(['name' => 'TV Shows']);
         MediaType::create(['name' => 'Artist']);
         MediaType::create(['name' => 'Track']);
-        MediaType::create(['name' => 'Video Game']);
+        MediaType::create(['name' => 'Video Game']); */
 
         Schema::create('media', function (Blueprint $table) {
             $table->id();

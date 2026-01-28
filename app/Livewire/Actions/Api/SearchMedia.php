@@ -2,16 +2,16 @@
 
 namespace App\Livewire\Actions\Api;
 
+use App\Enums\MediaType;
 use App\Models\Media;
-use App\Models\MediaType;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 final class SearchMedia
 {
-    public function search(User $user, string $phrase, int $mediaType)
+    public function search(User $user, string $phrase, MediaType $mediaType)
     {
-        $type = $mediaType == MediaType::MOVIE ? 'movie' : 'tv';
+        $type = $mediaType->value == MediaType::MOVIE->value ? 'movie' : 'tv';
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.config('services.movie_db.access_token'),
@@ -34,7 +34,7 @@ final class SearchMedia
                 return [
                     'type_id' => $mediaType,
                     'media_id' => $media['id'],
-                    'name' => $mediaType == MediaType::MOVIE ? $media['original_title'] : $media['original_name'],
+                    'name' => $mediaType->value == MediaType::MOVIE->value ? $media['original_title'] : $media['original_name'],
                     'cover' => 'https://image.tmdb.org/t/p/original'.$media['poster_path'],
                 ];
             })->filter();

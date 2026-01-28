@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Media\Music;
 
+use App\Enums\MediaType;
 use App\Models\Media;
-use App\Models\MediaType;
 use App\Models\Panel;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
@@ -22,10 +22,10 @@ class Show extends Component
     {
         return view('livewire.pages.media.music.show', [
             'favoriteArtists' => Media::query()
-                ->where('type_id', MediaType::ARTIST)
+                ->where('type_id', MediaType::ARTIST->value)
                 ->paginate(10, ['*'], 'artists', $this->artistsPage),
             'favoriteTracks' => Media::query()
-                ->where('type_id', MediaType::TRACK)
+                ->where('type_id', MediaType::TRACK->value)
                 ->paginate(6, ['*'], 'tracks', $this->tracksPage),
             'panel' => Panel::where('name', 'music')->first()->content,
         ]);

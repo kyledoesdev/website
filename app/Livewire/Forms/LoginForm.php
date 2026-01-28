@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Forms;
 
-use App\Livewire\Actions\Api\SearchSpotify;
-use App\Livewire\Actions\Api\Twitch\RefreshToken;
+use App\Livewire\Actions\Api\Spotify\RefreshToken as SpotifyRefreshToken;
+use App\Livewire\Actions\Api\Twitch\RefreshToken as TwitchRefreshToken;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -44,8 +44,8 @@ class LoginForm extends Form
 
         auth()->user()->update(['timezone' => timezone()]);
 
-        (new SearchSpotify)->refreshToken(auth()->user());
-        (new RefreshToken)->handle(auth()->user());
+        (new SpotifyRefreshToken)->handle(auth()->user());
+        (new TwitchRefreshToken)->handle(auth()->user());
     }
 
     /**

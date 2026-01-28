@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Media\Games;
 
-use App\Livewire\Actions\Api\SearchCategories;
+use App\Enums\MediaType;
+use App\Livewire\Actions\Api\Twitch\SearchCategories;
 use App\Livewire\Forms\MediaForm;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
-use App\Models\MediaType;
 use Flux\Flux;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
@@ -37,7 +37,7 @@ class Edit extends Component
     public function games()
     {
         return Media::query()
-            ->where('type_id', MediaType::VIDEO_GAME)
+            ->where('type_id', MediaType::VIDEO_GAME->value)
             ->when($this->search != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->search%"))
             ->paginate(10);
     }
