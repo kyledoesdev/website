@@ -1,7 +1,6 @@
 <?php
 
 use App\Console\Commands\CheckTwitchLiveStatus;
-use App\Console\Commands\RefreshTwitchAccessToken;
 use Illuminate\Support\Facades\Schedule;
 use Spatie\Health\Commands\ScheduleCheckHeartbeatCommand;
 
@@ -13,6 +12,4 @@ Schedule::command('model:prune', [
     ],
 ])->daily();
 
-Schedule::command(RefreshTwitchAccessToken::class)->monthly();
-
-Schedule::command(CheckTwitchLiveStatus::class)->everyMinute();
+Schedule::command(CheckTwitchLiveStatus::class)->everyFiveMinutes();

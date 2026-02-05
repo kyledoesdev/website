@@ -6,7 +6,6 @@ use App\Enums\ConnectionType;
 use App\Livewire\Actions\Api\Twitch\RefreshToken;
 use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -18,7 +17,11 @@ class CheckTwitchLiveStatus extends Command
 
     public function handle(): int
     {
-        $token = User::first()->connections->firstWhere('type_id', ConnectionType::TWITCH->value)->token ?? null;
+        $user = User::first();
+
+        (new RefreshToken)->handle($user);
+
+        $token = $user->connections->firstWhere('type_id', ConnectionType::TWITCH->value)->token ?? null;
 
         if (! $token) {
             return self::FAILURE;
