@@ -22,6 +22,15 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/.claude
+.mcp.json
+boost.json
+.codex
+.aider*
+.copilot
+.cursor
+.github/copilot
+.codeium
 /prezet/*
 /prezet/prezet.sqlite
 /public/prezet_sitemap.xml
