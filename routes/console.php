@@ -1,6 +1,7 @@
 <?php
 
 use App\Console\Commands\CheckTwitchLiveStatus;
+use App\Console\Commands\FetchSteamLibrary;
 use Illuminate\Support\Facades\Schedule;
 use Spatie\Health\Commands\ScheduleCheckHeartbeatCommand;
 
@@ -13,3 +14,5 @@ Schedule::command('model:prune', [
 ])->daily();
 
 Schedule::command(CheckTwitchLiveStatus::class)->everyFiveMinutes();
+
+Schedule::command(FetchSteamLibrary::class, ['--achievements'])->dailyAt('00:00');

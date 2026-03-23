@@ -15,4 +15,5 @@ it('can load public pages', function () {
     $this->get(route('music'))->assertOk();
     $this->get(route('video_games'))->assertOk();
     $this->get(route('gallery'))->assertOk();
+    $this->get(route('steam'))->assertOk();
 });

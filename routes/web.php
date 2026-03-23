@@ -22,6 +22,7 @@ use App\Livewire\Photos\Uploader;
 use App\Livewire\Printing;
 use App\Livewire\Projects;
 use App\Livewire\Resume;
+use App\Livewire\SteamLibrary;
 use App\Livewire\Technologies;
 use App\Livewire\WorkHistory;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,7 @@ Route::livewire('/tv', ShowTv::class)->name('tv_shows');
 Route::livewire('/video_games', ShowGames::class)->name('video_games');
 Route::livewire('/gallery', Gallery::class)->name('gallery');
 Route::livewire('/3d_printing', Printing::class)->name('3d_printing');
+Route::livewire('/steam', SteamLibrary::class)->name('steam');
 
 Route::get('/asset/{slug}', AssetController::class)->name('asset');
 

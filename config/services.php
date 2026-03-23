@@ -49,4 +49,9 @@ return [
         'internal_updates' => env('DISCORD_INTERNAL_UPDATES'),
         'live_now' => env('DISCORD_LIVE_NOW'),
     ],
+
+    'steam' => [
+        'api_key' => env('STEAM_API_KEY'),
+        'steam_id' => env('STEAM_ID'),
+    ],
 ];
