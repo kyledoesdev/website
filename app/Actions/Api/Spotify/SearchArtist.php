@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Actions\Api\Spotify;
+namespace App\Actions\Api\Spotify;
 
 use App\Enums\ConnectionType;
 use App\Enums\MediaType;

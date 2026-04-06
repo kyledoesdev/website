@@ -2,12 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Actions\Blog\DestroyBlogPost;
+use App\Actions\Blog\StoreBlogPost;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\DocumentView;
 use Flux\Flux;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -36,29 +36,7 @@ class Blog extends Component
     {
         $this->validate();
 
-        $this->file->storeAs(
-            path: '/content',
-            name: $this->file->getClientOriginalName(),
-            options: ['disk' => 'prezet']
-        );
-
-        /* index in prezet disk */
-        Artisan::call('prezet:index');
-
-        $document = Document::query()->latest()->first();
-
-        if ($document && $this->images) {
-            foreach ($this->images as $image) {
-                $image->storeAs(
-                    path: "images/{$document->slug}",
-                    name: $image->getClientOriginalName(),
-                    options: ['disk' => 'prezet']
-                );
-            }
-
-            /* index in prezet disk again (for the images) */
-            Artisan::call('prezet:index');
-        }
+        (new StoreBlogPost)->handle($this->file, $this->images);
 
         $this->file = null;
         $this->images = [];
@@ -68,38 +46,13 @@ class Blog extends Component
 
     public function destroy($id)
     {
-        $document = DB::connection('prezet')->table('documents')->find($id);
+        $success = (new DestroyBlogPost)->handle($id);
 
-        if ($document) {
-            try {
-                /* delete the file */
-                Storage::disk('prezet')->delete("content/{$document->slug}.md");
-
-                /* delete the tags */
-                DB::connection('prezet')->table('document_tags')->where('document_id', $id)->delete();
-
-                /* delete images if there are any */
-                $imageDirectory = "images/{$document->slug}";
-
-                if (Storage::disk('prezet')->exists($imageDirectory)) {
-                    Storage::disk('prezet')->deleteDirectory($imageDirectory);
-                }
-
-                /* delete the reference */
-                Document::where('id', $id)->delete();
-
-                /* delete the views */
-                DocumentView::where('document_id', $id)->delete();
-
-                /* Index the sqlite db */
-                Artisan::call('prezet:index');
-
-            } catch (Exception) {
-                Flux::toast(variant: 'danger', text: 'Blog Post could not be deleted.', duration: 3000);
-            }
-
-            Flux::toast(variant: 'success', text: 'Blog Post deleted.', duration: 3000);
-        }
+        Flux::toast(
+            variant: $success ? 'success' : 'danger',
+            text: $success ? 'Blog Post deleted.' : 'Blog Post could not be deleted.',
+            duration: 3000,
+        );
     }
 
     #[Computed]

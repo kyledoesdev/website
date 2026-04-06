@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Media\Music;
 
+use App\Actions\Api\Spotify\SearchArtist;
+use App\Actions\Api\Spotify\SearchTrack;
 use App\Enums\MediaType;
-use App\Livewire\Actions\Api\Spotify\SearchArtist;
-use App\Livewire\Actions\Api\Spotify\SearchTrack;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
 use Flux\Flux;
@@ -24,7 +24,14 @@ class Edit extends Component
 
     public string $searchTracks = '';
 
+    public int $perPageArtists = 10;
+
     public ?array $searchedMedia = [];
+
+    public function updatedPerPageArtists(): void
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
@@ -37,7 +44,8 @@ class Edit extends Component
         return Media::query()
             ->where('type_id', MediaType::ARTIST)
             ->when($this->searchArtists != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->searchArtists%"))
-            ->paginate(10);
+            ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
+            ->paginate($this->perPageArtists);
     }
 
     #[Computed]
@@ -46,7 +54,8 @@ class Edit extends Component
         return Media::query()
             ->where('type_id', MediaType::TRACK)
             ->when($this->searchTracks != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->searchTracks%"))
-            ->paginate(10);
+            ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
+            ->paginate($this->perPage);
     }
 
     public function searchSpotify(MediaType $mediaType)

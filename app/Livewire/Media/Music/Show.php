@@ -14,30 +14,16 @@ class Show extends Component
     use WithoutUrlPagination;
     use WithPagination;
 
-    public $artistsPage = 1;
-
-    public $tracksPage = 1;
-
     public function render()
     {
         return view('livewire.pages.media.music.show', [
             'favoriteArtists' => Media::query()
                 ->where('type_id', MediaType::ARTIST->value)
-                ->paginate(10, ['*'], 'artists', $this->artistsPage),
+                ->paginate(20, pageName: 'artists'),
             'favoriteTracks' => Media::query()
                 ->where('type_id', MediaType::TRACK->value)
-                ->paginate(6, ['*'], 'tracks', $this->tracksPage),
+                ->paginate(9, pageName: 'tracks'),
             'panel' => Panel::where('name', 'music')->first()->content,
         ]);
-    }
-
-    public function setArtistsPage($page)
-    {
-        $this->artistsPage = $page;
-    }
-
-    public function setTracksPage($page)
-    {
-        $this->tracksPage = $page;
     }
 }

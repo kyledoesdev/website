@@ -14,54 +14,26 @@ class Show extends Component
     use WithoutUrlPagination;
     use WithPagination;
 
-    public $favoritesPage = 1;
-
-    public $activePage = 1;
-
-    public $backlogPage = 1;
-
-    public $completedPage = 1;
-
     public function render()
     {
         return view('livewire.pages.media.tv.show', [
             'favorites' => Media::query()
                 ->where('type_id', MediaType::TV->value)
                 ->where('is_favorite', true)
-                ->paginate(9, ['*'], 'favorites', $this->favoritesPage),
+                ->paginate(27, pageName: 'favorites'),
             'current' => Media::query()
                 ->where('type_id', MediaType::TV->value)
                 ->where('is_active', true)
-                ->paginate(9, ['*'], 'currentlyWatching', $this->activePage),
+                ->paginate(27, pageName: 'currentlyWatching'),
             'backlog' => Media::query()
                 ->where('type_id', MediaType::TV->value)
                 ->where('in_backlog', true)
-                ->paginate(9, ['*'], 'backlog', $this->backlogPage),
+                ->paginate(27, pageName: 'backlog'),
             'completed' => Media::query()
                 ->where('type_id', MediaType::TV->value)
                 ->where('is_completed', true)
-                ->paginate(9, ['*'], 'completed', $this->completedPage),
+                ->paginate(27, pageName: 'completed'),
             'panel' => Panel::where('name', 'tv')->first()->content,
         ]);
-    }
-
-    public function setFavoritesPage($page)
-    {
-        $this->favoritesPage = $page;
-    }
-
-    public function setActivePage($page)
-    {
-        $this->activePage = $page;
-    }
-
-    public function setBacklogPage($page)
-    {
-        $this->backlogPage = $page;
-    }
-
-    public function setCompletedPage($page)
-    {
-        $this->completedPage = $page;
     }
 }

@@ -14,43 +14,22 @@ class Show extends Component
     use WithoutUrlPagination;
     use WithPagination;
 
-    public $favoritesPage = 1;
-
-    public $backlogPage = 1;
-
-    public $completedPage = 1;
-
     public function render()
     {
         return view('livewire.pages.media.movies.show', [
             'favorites' => Media::query()
                 ->where('type_id', MediaType::MOVIE->value)
                 ->where('is_favorite', true)
-                ->paginate(9, ['*'], 'favorites', $this->favoritesPage),
+                ->paginate(27, pageName: 'favorites'),
             'backlog' => Media::query()
                 ->where('type_id', MediaType::MOVIE->value)
                 ->where('in_backlog', true)
-                ->paginate(9, ['*'], 'backlog', $this->backlogPage),
+                ->paginate(27, pageName: 'backlog'),
             'completed' => Media::query()
                 ->where('type_id', MediaType::MOVIE->value)
                 ->where('is_completed', true)
-                ->paginate(9, ['*'], 'completed', $this->completedPage),
+                ->paginate(27, pageName: 'completed'),
             'panel' => Panel::where('name', 'movies')->first()->content,
         ]);
-    }
-
-    public function setFavoritesPage($page)
-    {
-        $this->favoritesPage = $page;
-    }
-
-    public function setBacklogPage($page)
-    {
-        $this->backlogPage = $page;
-    }
-
-    public function setCompletedPage($page)
-    {
-        $this->completedPage = $page;
     }
 }

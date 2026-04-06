@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Actions\Api\Spotify\RefreshToken;
 use App\Enums\ConnectionType;
 use App\Enums\MediaType;
-use App\Livewire\Actions\Api\Spotify\RefreshToken;
 use App\Models\Media;
 use App\Models\User;
 use GuzzleHttp\Client;
@@ -34,7 +34,7 @@ class UpdateArtistImages extends Command
                     'GET',
                     "https://api.spotify.com/v1/artists?ids={$ids}", [
                         'headers' => [
-                            'Authorization' => 'Bearer '. $user->connections->firstWhere('type_id', ConnectionType::SPOTIFY->value)->token,
+                            'Authorization' => 'Bearer '.$user->connections->firstWhere('type_id', ConnectionType::SPOTIFY->value)->token,
                         ],
                     ]
                 );

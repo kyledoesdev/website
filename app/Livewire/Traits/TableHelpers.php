@@ -10,7 +10,9 @@ trait TableHelpers
 
     public $sortDirection = 'desc';
 
-    public function sort($column)
+    public int $perPage = 25;
+
+    public function sort($column): void
     {
         if ($this->sortBy === $column) {
             $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
@@ -18,5 +20,10 @@ trait TableHelpers
             $this->sortBy = $column;
             $this->sortDirection = 'asc';
         }
+    }
+
+    public function updatedPerPage(): void
+    {
+        $this->resetPage();
     }
 }

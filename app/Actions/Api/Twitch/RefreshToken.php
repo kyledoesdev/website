@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Actions\Api\Twitch;
+namespace App\Actions\Api\Twitch;
 
 use App\Enums\ConnectionType;
 use App\Models\User;

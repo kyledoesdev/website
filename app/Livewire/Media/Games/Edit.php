@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Media\Games;
 
+use App\Actions\Api\Twitch\SearchCategories;
 use App\Enums\MediaType;
-use App\Livewire\Actions\Api\Twitch\SearchCategories;
 use App\Livewire\Forms\MediaForm;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
@@ -39,7 +39,8 @@ class Edit extends Component
         return Media::query()
             ->where('type_id', MediaType::VIDEO_GAME->value)
             ->when($this->search != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->search%"))
-            ->paginate(10);
+            ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
+            ->paginate($this->perPage);
     }
 
     public function searchCategories()

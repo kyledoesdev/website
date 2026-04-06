@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Actions\Api\Twitch\RefreshToken;
 use App\Enums\ConnectionType;
-use App\Livewire\Actions\Api\Twitch\RefreshToken;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 class CheckTwitchLiveStatus extends Command
 {
     protected $signature = 'twitch:check-live';
+
     protected $description = 'Check if spacelampsix is live on Twitch and notify Discord';
 
     public function handle(): int
@@ -31,6 +32,7 @@ class CheckTwitchLiveStatus extends Command
 
         if (! $stream) {
             $this->info('spacelampsix is not currently live.');
+
             return self::SUCCESS;
         }
 
@@ -38,6 +40,7 @@ class CheckTwitchLiveStatus extends Command
 
         if ($this->alreadyNotified($startedAt)) {
             $this->info('Already notified for this stream session.');
+
             return self::SUCCESS;
         }
 
@@ -45,6 +48,7 @@ class CheckTwitchLiveStatus extends Command
         $this->recordNotification($startedAt);
 
         $this->info('Discord notification sent!');
+
         return self::SUCCESS;
     }
 
@@ -52,7 +56,7 @@ class CheckTwitchLiveStatus extends Command
     {
         $response = Http::withHeaders([
             'Client-ID' => config('services.twitch.client_id'),
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->get('https://api.twitch.tv/helix/streams', [
             'user_login' => 'spacelampsix',
         ]);
@@ -87,6 +91,6 @@ class CheckTwitchLiveStatus extends Command
             ],
         ]);
 
-        Log::channel('discord-internal-updates')->info("Discord notified of live stream successfully. Have a great stream!");
+        Log::channel('discord-internal-updates')->info('Discord notified of live stream successfully. Have a great stream!');
     }
 }
