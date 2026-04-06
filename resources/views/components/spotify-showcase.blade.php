@@ -4,7 +4,7 @@
 ])
 
 <flux:accordion transition>
-    <flux:accordion.item>
+    <flux:accordion.item expanded>
         <flux:accordion.heading>
             My Favorite Artists
         </flux:accordion.heading>
@@ -25,10 +25,10 @@
                 @endforeach
             </div>
 
-            <flux:pagination :paginator="$favoriteArtists" wire:click="setArtistsPage($event.page)" />
+            <flux:pagination :paginator="$favoriteArtists" />
         </flux:accordion.content>
     </flux:accordion.item>
-    <flux:accordion.item>
+    <flux:accordion.item expanded>
         <flux:accordion.heading>
             My Favorite Tracks
         </flux:accordion.heading>
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <flux:pagination :paginator="$favoriteTracks" wire:click="setTracksPage($event.page)"  />
+            <flux:pagination :paginator="$favoriteTracks" />
         </flux:accordion.content>
     </flux:accordion.item>
 </flux:accordion>

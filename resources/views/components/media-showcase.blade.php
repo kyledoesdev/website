@@ -9,7 +9,7 @@
 
 <flux:accordion transition>
     @if ($is_favorite)
-        <flux:accordion.item>
+        <flux:accordion.item expanded>
             <flux:accordion.heading>
                 My Favorites
             </flux:accordion.heading>
@@ -25,7 +25,7 @@
         </flux:accordion.item>
     @endif
     @if ($is_active)
-        <flux:accordion.item>
+        <flux:accordion.item expanded>
             <flux:accordion.heading>
                 Currently {{ $action ?? 'doing' }}
             </flux:accordion.heading>
@@ -41,7 +41,7 @@
         </flux:accordion.item>
     @endif
     @if ($in_backlog)
-        <flux:accordion.item>
+        <flux:accordion.item expanded>
             <flux:accordion.heading>
                 In Backlog
             </flux:accordion.heading>
@@ -57,7 +57,7 @@
         </flux:accordion.item>
     @endif
     @if ($is_completed)
-        <flux:accordion.item>
+        <flux:accordion.item expanded>
             <flux:accordion.heading>
                 Completed
             </flux:accordion.heading>

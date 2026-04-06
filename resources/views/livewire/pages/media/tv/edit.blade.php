@@ -20,28 +20,27 @@
             <div class="py-2">
                 <div class="max-w-7xl mx-auto">
                     <div class="overflow-hidden shadow-2xs sm:rounded-lg">
-                        <div class="flex justify-end w-full">
-                            <flux:input 
+                        <div class="flex justify-end items-center gap-2 w-full my-2">
+                            <x-per-page-selector />
+                            <flux:input
                                 size="sm"
                                 wire:model.live.debounce.500ms="search"
                                 icon-trailing="magnifying-glass"
-                                class="my-2 w-full md:w-1/4"
+                                class="w-full md:w-1/4"
                             />
                         </div>
 
                         <flux:table :paginate="$this->medias">
+                            <flux:table.columns>
+                                <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:table.column>
+                                <flux:table.column sortable :sorted="$sortBy === 'is_favorite'" :direction="$sortDirection" wire:click="sort('is_favorite')">Favorite</flux:table.column>
+                                <flux:table.column sortable :sorted="$sortBy === 'is_active'" :direction="$sortDirection" wire:click="sort('is_active')">Watching</flux:table.column>
+                                <flux:table.column sortable :sorted="$sortBy === 'in_backlog'" :direction="$sortDirection" wire:click="sort('in_backlog')">Backlog</flux:table.column>
+                                <flux:table.column sortable :sorted="$sortBy === 'is_completed'" :direction="$sortDirection" wire:click="sort('is_completed')">Completed</flux:table.column>
+                                <flux:table.column>Actions</flux:table.column>
+                            </flux:table.columns>
+
                             @forelse ($this->medias as $media)
-                                @if ($loop->first)
-                                    <flux:table.columns>
-                                        <flux:table.column>Name</flux:table.column>
-                                        <flux:table.column>Favorite</flux:table.column>
-                                        <flux:table.column>Watching</flux:table.column>
-                                        <flux:table.column>Backlog</flux:table.column>
-                                        <flux:table.column>Completed</flux:table.column>
-                                        <flux:table.column>Actions</flux:table.column>
-                                    </flux:table.columns>
-                                @endif
-        
                                 <flux:table.row :key="$media->getKey()">
                                     <flux:table.cell>
                                         {{ $media->name }}

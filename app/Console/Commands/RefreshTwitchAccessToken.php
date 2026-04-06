@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Livewire\Actions\Api\Twitch\RefreshToken;
+use App\Actions\Api\Twitch\RefreshToken;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -30,6 +30,6 @@ class RefreshTwitchAccessToken extends Command
     {
         (new RefreshToken)->handle(User::first());
 
-        Log::channel('discord-internal-updates')->info("Twitch Token updated automatically.");
+        Log::channel('discord-internal-updates')->info('Twitch Token updated automatically.');
     }
 }

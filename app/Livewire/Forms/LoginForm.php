@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Forms;
 
-use App\Livewire\Actions\Api\Spotify\RefreshToken as SpotifyRefreshToken;
-use App\Livewire\Actions\Api\Twitch\RefreshToken as TwitchRefreshToken;
+use App\Actions\Api\Spotify\RefreshToken as SpotifyRefreshToken;
+use App\Actions\Api\Twitch\RefreshToken as TwitchRefreshToken;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -26,7 +26,7 @@ class LoginForm extends Form
     /**
      * Attempt to authenticate the request's credentials.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function authenticate(): void
     {

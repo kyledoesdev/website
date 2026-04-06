@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Actions\Api;
+namespace App\Actions\Api;
 
 use App\Enums\MediaType;
 use App\Models\Media;

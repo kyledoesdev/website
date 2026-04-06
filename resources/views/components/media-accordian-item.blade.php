@@ -2,10 +2,9 @@
     'collection',
     'title',
     'description',
-    'pageName',
 ])
 
-<flux:accordion.item>
+<flux:accordion.item expanded>
     <flux:accordion.heading>
         {{ $title }}
     </flux:accordion.heading>
@@ -21,10 +20,6 @@
             </div>
         </div>
 
-        @if (isset($pageName))
-            <flux:pagination :paginator="$collection" wire:click="set{{ $pageName }}Page($event.page)" />
-        @else
-            <flux:pagination :paginator="$collection" />
-        @endif      
+        <flux:pagination :paginator="$collection" />
     </flux:accordion.content>
 </flux:accordion.item>

@@ -80,7 +80,7 @@
 
     <flux:spacer />
 
-    <flux:button x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" />
+    <flux:button x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" class="cursor-pointer" />
 
     @auth
         <flux:dropdown position="top" align="start">
@@ -184,7 +184,7 @@
 
         <flux:spacer />
 
-        <flux:button x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" />
+        <flux:button x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" class="cursor-pointer" />
 
         @auth
             <flux:dropdown position="top" align="start">

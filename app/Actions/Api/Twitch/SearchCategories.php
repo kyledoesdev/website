@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Actions\Api\Twitch;
+namespace App\Actions\Api\Twitch;
 
 use App\Enums\ConnectionType;
 use App\Enums\MediaType;
@@ -42,7 +42,7 @@ final class SearchCategories
 
         return collect();
     }
-    
+
     /* disgusting hack to get high rez images from this endpoint */
     private function fix_box_art(string $string): string
     {

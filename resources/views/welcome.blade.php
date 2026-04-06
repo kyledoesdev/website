@@ -3,8 +3,12 @@
 
     <div class="mt-4">
         <div class="flex flex-col md:flex-row">
-            <div class="w-full md:w-auto md:mr-4">
-                <img class="rounded-lg border-8 border-zinc-800 mx-auto md:mx-0 max-w-64" src="{{ asset('me.jfif') }}">
+            <div class="flex flex-col items-center shrink-0 md:mr-4">
+                <img
+                    src="{{ asset('photos/me.jpg') }}"
+                    alt="Kyle"
+                    class="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-4 border-gray-800 object-cover shadow-lg"
+                />
 
                 <div class="my-4 md:mt-4 items-center text-center md:block">
                     <flux:text class="text-xs italic">

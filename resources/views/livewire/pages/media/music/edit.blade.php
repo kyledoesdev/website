@@ -20,24 +20,23 @@
             <div class="py-2">
                 <div class="max-w-7xl mx-auto">
                     <div class="overflow-hidden shadow-2xs sm:rounded-lg">
-                        <div class="flex justify-end w-full">
-                            <flux:input 
+                        <div class="flex justify-end items-center gap-2 w-full my-2">
+                            <x-per-page-selector model="perPageArtists" />
+                            <flux:input
                                 size="sm"
                                 wire:model.live.debounce.500ms="searchArtists"
                                 icon-trailing="magnifying-glass"
-                                class="my-2 w-full md:w-1/4"
+                                class="w-full md:w-1/4"
                             />
                         </div>
 
                         <flux:table :paginate="$this->artists">
+                            <flux:table.columns>
+                                <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:table.column>
+                                <flux:table.column>Actions</flux:table.column>
+                            </flux:table.columns>
+
                             @forelse ($this->artists as $artist)
-                                @if ($loop->first)
-                                    <flux:table.columns>
-                                        <flux:table.column>Name</flux:table.column>
-                                        <flux:table.column>Actions</flux:table.column>
-                                    </flux:table.columns>
-                                @endif
-        
                                 <flux:table.row :key="$artist->getKey()">
                                     <flux:table.cell>
                                         {{ $artist->name }}
@@ -87,26 +86,25 @@
             <div class="py-2">
                 <div class="max-w-7xl mx-auto">
                     <div class="overflow-hidden shadow-2xs sm:rounded-lg">
-                        <div class="flex justify-end w-full">
-                            <flux:input 
+                        <div class="flex justify-end items-center gap-2 w-full my-2">
+                            <x-per-page-selector />
+                            <flux:input
                                 size="sm"
                                 wire:model.live.debounce.500ms="searchTracks"
                                 icon-trailing="magnifying-glass"
-                                class="my-2 w-full md:w-1/4"
+                                class="w-full md:w-1/4"
                             />
                         </div>
 
                         <flux:table :paginate="$this->tracks">
+                            <flux:table.columns>
+                                <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Track</flux:table.column>
+                                <flux:table.column>Artist</flux:table.column>
+                                <flux:table.column>Album</flux:table.column>
+                                <flux:table.column>Actions</flux:table.column>
+                            </flux:table.columns>
+
                             @forelse ($this->tracks as $track)
-                                @if ($loop->first)
-                                    <flux:table.columns>
-                                        <flux:table.column>Track</flux:table.column>
-                                        <flux:table.column>Artist</flux:table.column>
-                                        <flux:table.column>Album</flux:table.column>
-                                        <flux:table.column>Actions</flux:table.column>
-                                    </flux:table.columns>
-                                @endif
-        
                                 <flux:table.row :key="$track->getKey()">
                                     <flux:table.cell>
                                         {{ $track->name }}
