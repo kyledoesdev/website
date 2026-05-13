@@ -12,7 +12,10 @@ class Navigation extends Component
     public function render()
     {
         return view('navigation', [
-            'resume' => Asset::where('type_id', Asset::RESUME)->first()?->slug
+            'resume' => Asset::query()
+                ->where('type_id', Asset::RESUME)
+                ->latest()
+                ->first()?->slug
         ]);
     }
 
