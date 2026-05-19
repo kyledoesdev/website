@@ -3,6 +3,7 @@
 namespace App\Livewire\Media\Movies;
 
 use App\Actions\Api\SearchMedia;
+use App\Enums\Media\MovieState;
 use App\Enums\MediaType;
 use App\Livewire\Forms\MediaForm;
 use App\Livewire\Traits\TableHelpers;
@@ -28,7 +29,9 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.pages.media.movies.edit');
+        return view('livewire.pages.media.movies.edit', [
+            'states' => MovieState::cases(),
+        ]);
     }
 
     #[Computed]
@@ -83,19 +86,13 @@ class Edit extends Component
         Flux::toast(variant: 'success', text: 'Successfully added the movie!');
     }
 
-    public function edit($id)
+    public function toggleState(int $id, string $state): void
     {
-        $this->form->edit($id);
+        $state = MovieState::tryFrom($state) ?? abort(422);
 
-        Flux::modal('edit-media')->show();
-    }
+        $media = Media::findOrFail($id);
 
-    public function update()
-    {
-        $this->form->update();
-
-        Flux::modal('edit-media')->close();
-        Flux::toast(variant: 'success', text: 'Successfully updated the movie.');
+        $media->update([$state->value => ! $media->{$state->value}]);
     }
 
     public function destroy($id)

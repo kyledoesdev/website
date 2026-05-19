@@ -33,9 +33,9 @@
                         <flux:table :paginate="$this->medias">
                             <flux:table.columns>
                                 <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:table.column>
-                                <flux:table.column sortable :sorted="$sortBy === 'is_favorite'" :direction="$sortDirection" wire:click="sort('is_favorite')">Favorite</flux:table.column>
-                                <flux:table.column sortable :sorted="$sortBy === 'in_backlog'" :direction="$sortDirection" wire:click="sort('in_backlog')">Backlog</flux:table.column>
-                                <flux:table.column sortable :sorted="$sortBy === 'is_completed'" :direction="$sortDirection" wire:click="sort('is_completed')">Completed</flux:table.column>
+                                @foreach ($states as $state)
+                                    <flux:table.column sortable :sorted="$sortBy === $state->value" :direction="$sortDirection" wire:click="sort('{{ $state->value }}')">{{ $state->label() }}</flux:table.column>
+                                @endforeach
                                 <flux:table.column>Actions</flux:table.column>
                             </flux:table.columns>
 
@@ -44,47 +44,23 @@
                                     <flux:table.cell>
                                         {{ $media->name }}
                                     </flux:table.cell>
+                                    @foreach ($states as $state)
+                                        <flux:table.cell>
+                                            <flux:checkbox
+                                                :checked="$state->getValue($media)"
+                                                wire:click="toggleState({{ $media->getKey() }}, '{{ $state->value }}')"
+                                            />
+                                        </flux:table.cell>
+                                    @endforeach
                                     <flux:table.cell>
-                                        @if ($media->is_favorite)
-                                            <flux:icon.check size="micro" />
-                                        @else
-                                            <flux:icon.x-mark size="micro" />
-                                        @endif
-                                    </flux:table.cell>
-                                    <flux:table.cell>
-                                        @if ($media->in_backlog)
-                                            <flux:icon.check size="micro" />
-                                        @else
-                                            <flux:icon.x-mark size="micro" />
-                                        @endif
-                                    </flux:table.cell>
-                                    <flux:table.cell>
-                                        @if ($media->is_completed)
-                                            <flux:icon.check size="micro" />
-                                        @else
-                                            <flux:icon.x-mark size="micro" />
-                                        @endif
-                                    </flux:table.cell>
-                                    <flux:table.cell>
-                                        <flux:dropdown>
-                                            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />
-
-                                            <flux:menu>
-                                                <flux:menu.item
-                                                    icon="pencil"
-                                                    wire:click="edit({{ $media->getKey() }})"
-                                                >
-                                                    Edit
-                                                </flux:menu.item>
-                                                <flux:menu.item
-                                                    icon="trash"
-                                                    wire:click="destroy({{ $media->getKey() }})"
-                                                    wire:confirm="Are you sure you want to delete this movie?"
-                                                >
-                                                    Delete
-                                                </flux:menu.item>
-                                            </flux:menu>
-                                        </flux:dropdown>
+                                        <flux:button
+                                            variant="danger"
+                                            size="sm"
+                                            icon="trash"
+                                            inset="top bottom"
+                                            wire:click="destroy({{ $media->getKey() }})"
+                                            wire:confirm="Are you sure you want to delete this movie?"
+                                        />
                                     </flux:table.cell>
                                 </flux:table.row>
                             @empty
@@ -147,10 +123,9 @@
 
                 <div>
                     <flux:checkbox.group wire:model.live="form.states">
-                        <flux:checkbox label="Is Favorite?" value="is_favorite" />
-                        <flux:checkbox label="Currently Watching?" value="is_active" />
-                        <flux:checkbox label="In Backlog?" value="in_backlog" />
-                        <flux:checkbox label="Completed?" value="is_completed" />
+                        @foreach ($states as $state)
+                            <flux:checkbox label="{{ $state->label() }}?" value="{{ $state->value }}" />
+                        @endforeach
                     </flux:checkbox.group>
                 </div>
 
@@ -163,25 +138,4 @@
         @endif
     </flux:modal>
 
-    <flux:modal name="edit-media" class="space-y-6 md:w-1/2">
-        <div>
-            <flux:heading size="lg">Edit Movie: {{ $form->media?->name }}.</flux:heading>
-        </div>
-
-        <form wire:submit="update">
-            <div>
-                <flux:checkbox.group wire:model.live="form.states">
-                    <flux:checkbox label="Is Favorite?" value="is_favorite" />
-                    <flux:checkbox label="Currently Watching?" value="is_active" />
-                    <flux:checkbox label="In Backlog?" value="in_backlog" />
-                    <flux:checkbox label="Completed?" value="is_completed" />
-                </flux:checkbox.group>
-            </div>
-                    
-            <div class="flex my-2">
-                <flux:spacer />
-                <flux:button type="submit" variant="primary" wire:click="update">Update</flux:button>
-            </div>
-        </form>
-    </flux:modal>
 </div>

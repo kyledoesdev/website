@@ -12,7 +12,7 @@ enum MediaType: int
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::MOVIE => 'Movie',
             self::TV => 'Tv',
             self::ARTIST => 'Artist',
