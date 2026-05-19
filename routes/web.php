@@ -25,7 +25,6 @@ use App\Livewire\Resume;
 use App\Livewire\Technologies;
 use App\Livewire\WorkHistory;
 use Illuminate\Support\Facades\Route;
-use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 Route::view('/', 'welcome')->name('welcome');
 
@@ -65,8 +64,6 @@ Route::middleware(['auth'])->group(function () {
     Route::livewire('/tv/edit', EditTv::class)->name('tv.edit');
     Route::livewire('/music/edit', EditMusic::class)->name('music.edit');
     Route::livewire('/video_games/edit', EditGames::class)->name('video_games.edit');
-
-    Route::get('/health', HealthCheckResultsController::class)->name('health.index');
 });
 
 require __DIR__.'/auth.php';

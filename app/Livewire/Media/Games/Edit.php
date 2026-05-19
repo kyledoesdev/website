@@ -3,6 +3,7 @@
 namespace App\Livewire\Media\Games;
 
 use App\Actions\Api\Twitch\SearchCategories;
+use App\Enums\Media\GameState;
 use App\Enums\MediaType;
 use App\Livewire\Forms\MediaForm;
 use App\Livewire\Traits\TableHelpers;
@@ -30,7 +31,9 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.pages.media.games.edit');
+        return view('livewire.pages.media.games.edit', [
+            'states' => GameState::cases(),
+        ]);
     }
 
     #[Computed]
@@ -85,19 +88,21 @@ class Edit extends Component
         Flux::toast(variant: 'success', text: 'Successfully added game.');
     }
 
-    public function edit($id)
+    public function toggleState(int $id, string $state): void
     {
-        $this->form->edit($id);
+        $state = GameState::tryFrom($state) ?? abort(422);
 
-        Flux::modal('edit-video_game')->show();
-    }
+        $media = Media::findOrFail($id);
 
-    public function update()
-    {
-        $this->form->update();
+        if ($state === GameState::TotalCompletion) {
+            $data = $media->data ?? [];
+            $data['total_completion'] = ! ($data['total_completion'] ?? false);
+            $media->update(['data' => $data]);
 
-        Flux::modal('edit-video_game')->close();
-        Flux::toast(variant: 'success', text: 'Successfully updated the game.');
+            return;
+        }
+
+        $media->update([$state->value => ! $media->{$state->value}]);
     }
 
     public function destroy($id)

@@ -10,6 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
+        "glhd/laravel-dumper": "^3.0",
         "intervention/image": "^3.11",
         "kyledoesdev/essentials": "0.0.6",
         "laravel/framework": "^12.16",
@@ -23,8 +24,7 @@
         "marvinlabs/laravel-discord-logger": "^1.4",
         "prezet/prezet": "^1.1",
         "socialiteproviders/spotify": "^4.1",
-        "socialiteproviders/twitch": "^5.4",
-        "spatie/laravel-health": "^1.34"
+        "socialiteproviders/twitch": "^5.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

@@ -3,6 +3,7 @@
 namespace App\Livewire\Media\Tv;
 
 use App\Actions\Api\SearchMedia;
+use App\Enums\Media\TvState;
 use App\Enums\MediaType;
 use App\Livewire\Forms\MediaForm;
 use App\Livewire\Traits\TableHelpers;
@@ -28,7 +29,9 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.pages.media.tv.edit');
+        return view('livewire.pages.media.tv.edit', [
+            'states' => TvState::cases(),
+        ]);
     }
 
     #[Computed]
@@ -83,19 +86,13 @@ class Edit extends Component
         Flux::toast(variant: 'success', text: 'Successfully added the TV show!');
     }
 
-    public function edit($id)
+    public function toggleState(int $id, string $state): void
     {
-        $this->form->edit($id);
+        $state = TvState::tryFrom($state) ?? abort(422);
 
-        Flux::modal('edit-media')->show();
-    }
+        $media = Media::findOrFail($id);
 
-    public function update()
-    {
-        $this->form->update();
-
-        Flux::modal('edit-media')->close();
-        Flux::toast(variant: 'success', text: 'Successfully updated the tv show.');
+        $media->update([$state->value => ! $media->{$state->value}]);
     }
 
     public function destroy($id)
