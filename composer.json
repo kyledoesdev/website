@@ -56,7 +56,7 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
-            "@php artisan ide-helper:models --nowrite --no-interaction --ansi"
+            "@php -r \"file_exists('vendor/barryvdh/laravel-ide-helper') && passthru('php artisan ide-helper:models --nowrite --no-interaction --ansi');\""
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
