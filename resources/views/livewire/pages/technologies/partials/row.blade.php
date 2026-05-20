@@ -17,7 +17,7 @@
 
     <flux:table.cell>
         <flux:button
-            variant="ghost"
+            variant="danger"
             size="sm"
             icon="trash"
             inset="top bottom"
