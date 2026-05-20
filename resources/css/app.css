@@ -33,6 +33,6 @@
     }
 }
 
-@import './components//theme.css';
+@import './components/theme.css';
 @import './components/flux.css';
 @import './components/prezet.css';
