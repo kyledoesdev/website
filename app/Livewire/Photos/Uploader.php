@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Photos;
 
+use App\Enums\AssetType;
 use App\Livewire\Forms\PhotoForm;
-use App\Models\Asset;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -17,7 +17,7 @@ class Uploader extends Component
 
     public bool $showGallery = true;
 
-    public array|int $galleryType = Asset::PHOTO;
+    public array|int $galleryType = AssetType::PHOTO->value;
 
     public function render()
     {

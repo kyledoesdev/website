@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Enums\AssetType;
 use App\Models\Asset;
 use Flux\Flux;
 use Illuminate\Support\Facades\Storage;
@@ -9,6 +10,7 @@ use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 class Resume extends Component
@@ -16,7 +18,7 @@ class Resume extends Component
     use WithFileUploads;
 
     #[Validate('required|file|mimes:pdf')]
-    public $resume;
+    public ?TemporaryUploadedFile $resume = null;
 
     public function render()
     {
@@ -32,7 +34,7 @@ class Resume extends Component
         $path = $this->resume->storePubliclyAs('resumes', $name, 's3');
 
         Asset::create([
-            'type_id' => Asset::RESUME,
+            'type_id' => AssetType::RESUME->value,
             'slug' => Str::uuid(),
             'name' => $name,
             'path' => $path,
@@ -60,6 +62,6 @@ class Resume extends Component
     #[Computed]
     public function resumes()
     {
-        return Asset::where('type_id', Asset::RESUME)->get();
+        return Asset::where('type_id', AssetType::RESUME->value)->get();
     }
 }

@@ -1,0 +1,15 @@
+@theme {
+    --font-sans: Inter, sans-serif;
+
+    --color-accent: var(--color-violet-500);
+    --color-accent-content: var(--color-violet-600);
+    --color-accent-foreground: var(--color-white);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-violet-500);
+        --color-accent-content: var(--color-violet-400);
+        --color-accent-foreground: var(--color-white);
+    }
+}

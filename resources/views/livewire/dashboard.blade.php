@@ -63,7 +63,7 @@
                     <span>Resumes</span>
                 </flux:card>
             </a>
-            <a href="{{ route('technologies') }}">
+            <a href="{{ route('technologies.edit') }}">
                 <flux:card class="flex space-x-2">
                     <flux:icon.command-line />
                     <span>Technology</span>

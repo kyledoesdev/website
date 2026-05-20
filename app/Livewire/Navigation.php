@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Enums\AssetType;
 use App\Models\Asset;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -13,9 +14,9 @@ class Navigation extends Component
     {
         return view('navigation', [
             'resume' => Asset::query()
-                ->where('type_id', Asset::RESUME)
+                ->where('type_id', AssetType::RESUME->value)
                 ->latest()
-                ->first()?->slug
+                ->first()?->slug,
         ]);
     }
 

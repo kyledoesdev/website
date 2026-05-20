@@ -8,7 +8,7 @@
             <livewire:photos.uploader
                 :header="'Upload 3D Prints'"
                 :showGallery="true"
-                :galleryType="App\Models\Asset::THREE_D_PRINTS"
+                :galleryType="App\Enums\AssetType::THREE_D_PRINTS->value"
             />
         </div>
     @endauth
@@ -19,7 +19,7 @@
         </flux:card>
 
         <livewire:photos.gallery
-            :type="App\Models\Asset::THREE_D_PRINTS"
+            :type="App\Enums\AssetType::THREE_D_PRINTS->value"
             :header="'3D Printed Creations'"
             :emptyMessage="'No Creations'"
         />

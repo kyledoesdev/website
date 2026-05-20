@@ -23,6 +23,12 @@ export default defineConfig({
                 delay: 1000,
                 // watchKind: ['add', 'change', 'unlink'], // (default)
             },
+            {
+                name: 'ide-helper:models',
+                watch: path.resolve('app/**/*.php'),
+                run: 'php artisan ide-helper:models --nowrite --no-interaction',
+                delay: 500,
+            },
         ]),
         prismjs({
             languages: ['php', 'javascript', 'html', 'css', 'bash', 'typescript'],

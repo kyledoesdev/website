@@ -2,30 +2,26 @@
 
 namespace App\Livewire\Forms;
 
+use App\Enums\AssetType;
 use App\Models\Asset;
 use Flux\Flux;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
-use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class PhotoForm extends Form
 {
-    #[Validate('required|string')]
     public string $name = '';
 
-    #[Validate('nullable|date')]
     public string $capturedAt = '';
 
-    #[Validate('nullable|string|max:255')]
     public string $description = '';
 
-    #[Validate('required|integer|in:1,3', message: 'The Photo Type is Required')]
-    public int $type = Asset::PHOTO;
+    public int $type = AssetType::PHOTO->value;
 
-    #[Validate('image:mimes:png,jpg,jpeg,gif,jfif')]
     public $photo;
 
     public function store()
@@ -72,10 +68,7 @@ class PhotoForm extends Form
 
     private function getStorageDirectory(): string
     {
-        return match ($this->type) {
-            Asset::THREE_D_PRINTS => '3D_prints',
-            default => 'photos',
-        };
+        return AssetType::from($this->type)->storageDirectory();
     }
 
     private function generateFilename(): string
@@ -97,5 +90,27 @@ class PhotoForm extends Form
             $image->scaleDown(width: 2000, height: 1500);
             $image->save($this->photo->getRealPath());
         }
+    }
+
+    protected function rules(): array
+    {
+        return [
+            'name' => 'required|string',
+            'capturedAt' => 'nullable|date',
+            'description' => 'nullable|string|max:255',
+            'type' => [
+                'required',
+                'integer',
+                Rule::in([AssetType::PHOTO->value, AssetType::THREE_D_PRINTS->value]),
+            ],
+            'photo' => 'image:mimes:png,jpg,jpeg,gif,jfif',
+        ];
+    }
+
+    protected function messages(): array
+    {
+        return [
+            'type.in' => 'The Photo Type is Required',
+        ];
     }
 }

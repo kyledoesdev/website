@@ -125,6 +125,7 @@
             
             <flux:navlist.group
                 expandable
+                :expanded="false"
                 heading="Career"
                 icon="briefcase"
                 :current="request()->is('work_history', 'education', 'technology', 'projects')"
@@ -151,6 +152,7 @@
 
             <flux:navlist.group
                 expandable
+                :expanded="false"
                 heading="Fun Hobbies"
                 icon="fire"
                 :current="request()->is('board_games', 'music', 'movies', 'tv_shows', 'video_games')"

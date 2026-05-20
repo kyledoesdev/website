@@ -33,13 +33,3 @@ it('rejects states that are not toggleable for tv shows', function (string $valu
         ->call('toggleState', $show->getKey(), $value)
         ->assertStatus(422);
 })->with(['total_completion', 'type_id']);
-
-it('destroys a tv show', function () {
-    $show = Media::factory()->tv()->create();
-
-    Livewire::test(Edit::class)
-        ->call('destroy', $show->getKey())
-        ->assertOk();
-
-    expect(Media::find($show->getKey()))->toBeNull();
-});

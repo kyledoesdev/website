@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Photos;
 
+use App\Enums\AssetType;
 use App\Livewire\Forms\PhotoForm;
 use App\Models\Asset;
 use Livewire\Attributes\Computed;
@@ -17,7 +18,7 @@ class Gallery extends Component
 
     public string $emptyMessage = 'No Photos';
 
-    public array|int $type = Asset::PHOTO;
+    public array|int $type = AssetType::PHOTO->value;
 
     public PhotoForm $form;
 
