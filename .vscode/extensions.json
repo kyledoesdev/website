@@ -1,0 +1,17 @@
+{
+    "recommendations": [
+        "bmewburn.vscode-intelephense-client",
+        "laravel.vscode-laravel",
+        "onecentlin.laravel-blade",
+        "open-southeners.laravel-pint",
+        "mehedidracula.php-namespace-resolver",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "ryannaddy.laravel-artisan",
+        "mikestead.dotenv",
+        "bradlc.vscode-tailwindcss"
+    ],
+    "unwantedRecommendations": [
+        "hbenl.vscode-test-explorer",
+        "felixfbecker.php-intellisense"
+    ]
+}

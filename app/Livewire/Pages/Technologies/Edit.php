@@ -1,27 +1,31 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Pages\Technologies;
 
 use App\Livewire\Forms\TechnologyForm;
 use App\Livewire\Traits\TableHelpers;
 use App\Models\Technology;
-use Flux\Flux;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Technologies extends Component
+class Edit extends Component
 {
     use TableHelpers;
     use WithPagination;
 
     public TechnologyForm $createForm;
 
-    public TechnologyForm $editForm;
+    public function mount(): void
+    {
+        $this->sortBy = 'name';
+        $this->sortDirection = 'asc';
+    }
 
     public function render()
     {
-        return view('livewire.technologies');
+        return view('livewire.pages.technologies.edit');
     }
 
     #[Computed]
@@ -32,25 +36,14 @@ class Technologies extends Component
             ->paginate(10);
     }
 
-    public function store()
+    public function store(): void
     {
         $this->createForm->store();
     }
 
-    public function edit(int $technologyId)
+    #[On('technology-deleted')]
+    public function refreshTechnologies(): void
     {
-        $this->editForm->edit($technologyId);
-    }
-
-    public function update()
-    {
-        $this->editForm->update();
-    }
-
-    public function destroy($id)
-    {
-        Technology::findOrFail($id)->delete();
-
-        Flux::toast(variant: 'success', text: 'Technology Deleted!', duration: 3000);
+        unset($this->technologies);
     }
 }

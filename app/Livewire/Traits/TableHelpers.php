@@ -6,9 +6,9 @@ trait TableHelpers
 {
     public string $search = '';
 
-    public $sortBy = 'id';
+    public string $sortBy = 'id';
 
-    public $sortDirection = 'desc';
+    public string $sortDirection = 'desc';
 
     public int $perPage = 25;
 

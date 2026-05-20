@@ -2,17 +2,12 @@
 
 namespace App\Models;
 
+use App\Enums\AssetType;
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class Asset extends Model
 {
-    const PHOTO = 1;
-
-    const RESUME = 2;
-
-    const THREE_D_PRINTS = 3;
-
     protected $fillable = [
         'type_id',
         'name',
@@ -32,6 +27,7 @@ class Asset extends Model
     public function casts(): array
     {
         return [
+            'type_id' => AssetType::class,
             'data' => 'array',
         ];
     }

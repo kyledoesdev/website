@@ -18,9 +18,7 @@ class TechnologyForm extends Form
     #[Validate('required|string')]
     public $icon;
 
-    public ?int $technologyId;
-
-    public function store()
+    public function store(): void
     {
         $this->validate();
 
@@ -35,30 +33,5 @@ class TechnologyForm extends Form
         Flux::modal('create-technology')->close();
 
         Flux::toast(variant: 'success', text: 'Technology Created!', duration: 3000);
-    }
-
-    public function edit(int $technologyId)
-    {
-        $technology = Technology::findOrFail($technologyId);
-        $this->technologyId = $technologyId;
-
-        $this->name = $technology->name;
-        $this->description = $technology->description;
-        $this->icon = $technology->icon;
-
-        Flux::modal('edit-technology')->show();
-    }
-
-    public function update()
-    {
-        $this->validate();
-
-        Technology::findOrFail($this->technologyId)->update([
-            'name' => $this->name,
-            'description' => $this->description,
-            'icon' => $this->icon,
-        ]);
-
-        Flux::toast(variant: 'success', text: 'Technology Updated!', duration: 3000);
     }
 }

@@ -34,7 +34,14 @@
                             <flux:table.columns>
                                 <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:table.column>
                                 @foreach ($states as $state)
-                                    <flux:table.column sortable :sorted="$sortBy === $state->value" :direction="$sortDirection" wire:click="sort('{{ $state->value }}')">{{ $state->label() }}</flux:table.column>
+                                    <flux:table.column
+                                        sortable
+                                        :sorted="$sortBy === $state->value"
+                                        :direction="$sortDirection"
+                                        wire:click="sort('{{ $state->value }}')"
+                                    >
+                                        {{ $state->label() }}
+                                    </flux:table.column>
                                 @endforeach
                                 <flux:table.column>Actions</flux:table.column>
                             </flux:table.columns>

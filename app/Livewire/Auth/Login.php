@@ -17,8 +17,6 @@ class Login extends Component
 
     public function login(): void
     {
-        $this->validate();
-
         $this->form->authenticate();
 
         Session::regenerate();

@@ -12,8 +12,8 @@
             <flux:input wire:model="form.description" label="Description" desription="What the photo is." required />
             <flux:input wire:model="form.capturedAt" type="date" label="Captured At" requried />
             <flux:radio.group wire:model="form.type" variant="buttons" class="w-full md:w-1/3 *:flex-1" label="Photo Type">
-                <flux:radio icon="camera" :value="App\Models\Asset::PHOTO">Photo</flux:radio>
-                <flux:radio icon="cube" :value="App\Models\Asset::THREE_D_PRINTS">3D Print</flux:radio>
+                <flux:radio icon="camera" :value="App\Enums\AssetType::PHOTO->value">Photo</flux:radio>
+                <flux:radio icon="cube" :value="App\Enums\AssetType::THREE_D_PRINTS->value">3D Print</flux:radio>
             </flux:radio.group>
 
             <flux:input wire:model="form.photo" type="file" label="Photo" />

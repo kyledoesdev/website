@@ -12,6 +12,9 @@
 .env.testing
 .phpactor.json
 .phpunit.result.cache
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
 Homestead.json
 Homestead.yaml
 auth.json
@@ -20,7 +23,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.nova
-/.vscode
 /.zed
 /.claude
 .mcp.json

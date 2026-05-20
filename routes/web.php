@@ -16,14 +16,16 @@ use App\Livewire\Media\Music\Edit as EditMusic;
 use App\Livewire\Media\Music\Show as ShowMusic;
 use App\Livewire\Media\Tv\Edit as EditTv;
 use App\Livewire\Media\Tv\Show as ShowTv;
+use App\Livewire\Pages\Technologies\Edit as EditTechnologies;
+use App\Livewire\Pages\Technologies\Show as ShowTechnologies;
 use App\Livewire\Panels;
 use App\Livewire\Photos\Gallery;
 use App\Livewire\Photos\Uploader;
 use App\Livewire\Printing;
 use App\Livewire\Projects;
 use App\Livewire\Resume;
-use App\Livewire\Technologies;
 use App\Livewire\WorkHistory;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('welcome');
@@ -31,7 +33,7 @@ Route::view('/', 'welcome')->name('welcome');
 /* Career Views */
 Route::livewire('/education', Education::class)->name('education');
 Route::livewire('/projects', Projects::class)->name('projects');
-Route::livewire('/technology', Technologies::class)->name('technologies');
+Route::livewire('/technology', ShowTechnologies::class)->name('technologies');
 Route::livewire('/work_history', WorkHistory::class)->name('work_history');
 
 /* Hobby Views */
@@ -45,7 +47,7 @@ Route::livewire('/3d_printing', Printing::class)->name('3d_printing');
 
 Route::get('/asset/{slug}', AssetController::class)->name('asset');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(Authenticate::class)->group(function () {
     Route::livewire('/dashboard', Dashboard::class)->name('dashboard');
 
     Route::get('/connect/{type}', [ConnectionController::class, 'connect'])->name('connect');
@@ -64,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
     Route::livewire('/tv/edit', EditTv::class)->name('tv.edit');
     Route::livewire('/music/edit', EditMusic::class)->name('music.edit');
     Route::livewire('/video_games/edit', EditGames::class)->name('video_games.edit');
+    Route::livewire('/technology/edit', EditTechnologies::class)->name('technologies.edit');
 });
 
 require __DIR__.'/auth.php';
