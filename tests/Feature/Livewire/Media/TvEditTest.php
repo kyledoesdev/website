@@ -32,4 +32,4 @@ it('rejects states that are not toggleable for tv shows', function (string $valu
     Livewire::test(Edit::class)
         ->call('toggleState', $show->getKey(), $value)
         ->assertStatus(422);
-})->with(['total_completion', 'type_id']);
+})->with(['total_completion', 'type']);

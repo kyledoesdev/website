@@ -24,7 +24,7 @@ final class SearchMedia
         ]);
 
         if ($response->successful()) {
-            $existingMedia = Media::where('type_id', $mediaType)->pluck('media_id')->toArray();
+            $existingMedia = Media::where('type', $mediaType)->pluck('media_id')->toArray();
 
             return collect($response->json('results'))->map(function ($media) use ($existingMedia, $mediaType) {
                 if (in_array($media['id'], $existingMedia)) {
@@ -32,7 +32,7 @@ final class SearchMedia
                 }
 
                 return [
-                    'type_id' => $mediaType,
+                    'type' => $mediaType,
                     'media_id' => $media['id'],
                     'name' => $mediaType->value == MediaType::MOVIE->value ? $media['original_title'] : $media['original_name'],
                     'cover' => 'https://image.tmdb.org/t/p/original'.$media['poster_path'],

@@ -27,7 +27,7 @@ final class SearchTrack
 
         if ($response->successful()) {
             $tracks = Media::query()
-                ->where('type_id', MediaType::TRACK->value)
+                ->where('type', MediaType::TRACK->value)
                 ->pluck('media_id')
                 ->toArray();
 
@@ -39,7 +39,7 @@ final class SearchTrack
                 }
 
                 return [
-                    'type_id' => MediaType::TRACK->value,
+                    'type' => MediaType::TRACK->value,
                     'media_id' => $track['id'],
                     'name' => $track['name'],
                     'cover' => $cover,

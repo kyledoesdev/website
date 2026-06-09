@@ -24,7 +24,7 @@ class UpdateArtistImages extends Command
 
         /* Loop through every artist in chunks of 50 and attempt to update their image. */
         Media::query()
-            ->where('type_id', MediaType::ARTIST->value)
+            ->where('type', MediaType::ARTIST->value)
             ->get()
             ->chunk(50)
             ->each(function ($chunk) use ($user) {

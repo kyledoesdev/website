@@ -42,7 +42,7 @@ class Edit extends Component
     public function artists()
     {
         return Media::query()
-            ->where('type_id', MediaType::ARTIST)
+            ->where('type', MediaType::ARTIST->value)
             ->when($this->searchArtists != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->searchArtists%"))
             ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
             ->paginate($this->perPageArtists);
@@ -52,7 +52,7 @@ class Edit extends Component
     public function tracks()
     {
         return Media::query()
-            ->where('type_id', MediaType::TRACK)
+            ->where('type', MediaType::TRACK->value)
             ->when($this->searchTracks != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->searchTracks%"))
             ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
             ->paginate($this->perPage);
@@ -78,7 +78,7 @@ class Edit extends Component
         $selectedMedia = collect($this->searchedMedia)->firstWhere('media_id', $mediaId);
 
         $media = Media::create([
-            'type_id' => $selectedMedia['type_id'],
+            'type' => $selectedMedia['type'],
             'media_id' => $selectedMedia['media_id'],
             'name' => $selectedMedia['name'],
             'cover' => $selectedMedia['cover'],
@@ -88,7 +88,7 @@ class Edit extends Component
         $this->phrase = '';
         $this->searchedMedia = [];
 
-        Flux::toast(variant: 'success', text: "{$media->type->name} added!", duration: 3000);
+        Flux::toast(variant: 'success', text: "{$media->type->label()} added!", duration: 3000);
     }
 
     public function destroy($id)
@@ -97,7 +97,7 @@ class Edit extends Component
 
         $media->delete();
 
-        Flux::toast(variant: 'success', text: "{$media->type->name} deleted.", duration: 3000);
+        Flux::toast(variant: 'success', text: "{$media->type->label()} deleted.", duration: 3000);
     }
 
     public function resetSearch()

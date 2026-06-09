@@ -17,7 +17,7 @@ class MediaFactory extends Factory
     public function definition(): array
     {
         return [
-            'type_id' => MediaType::VIDEO_GAME->value,
+            'type' => MediaType::VIDEO_GAME->value,
             'media_id' => (string) $this->faker->unique()->numberBetween(1, 1_000_000),
             'name' => $this->faker->words(3, true),
             'cover' => $this->faker->imageUrl(),
@@ -31,16 +31,16 @@ class MediaFactory extends Factory
 
     public function videoGame(): static
     {
-        return $this->state(fn () => ['type_id' => MediaType::VIDEO_GAME->value]);
+        return $this->state(fn () => ['type' => MediaType::VIDEO_GAME->value]);
     }
 
     public function movie(): static
     {
-        return $this->state(fn () => ['type_id' => MediaType::MOVIE->value]);
+        return $this->state(fn () => ['type' => MediaType::MOVIE->value]);
     }
 
     public function tv(): static
     {
-        return $this->state(fn () => ['type_id' => MediaType::TV->value]);
+        return $this->state(fn () => ['type' => MediaType::TV->value]);
     }
 }

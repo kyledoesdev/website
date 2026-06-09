@@ -40,7 +40,7 @@ class Edit extends Component
     public function games()
     {
         return Media::query()
-            ->where('type_id', MediaType::VIDEO_GAME->value)
+            ->where('type', MediaType::VIDEO_GAME->value)
             ->when($this->search != '', fn (Builder $query) => $query->where('name', 'LIKE', "%$this->search%"))
             ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
             ->paginate($this->perPage);
