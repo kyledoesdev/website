@@ -26,7 +26,7 @@ final class SearchArtist
 
         if ($response->successful()) {
             $artists = Media::query()
-                ->where('type_id', MediaType::ARTIST->value)
+                ->where('type', MediaType::ARTIST->value)
                 ->pluck('media_id')
                 ->toArray();
 
@@ -38,7 +38,7 @@ final class SearchArtist
                 }
 
                 return [
-                    'type_id' => MediaType::ARTIST->value,
+                    'type' => MediaType::ARTIST->value,
                     'media_id' => $artist['id'],
                     'name' => $artist['name'],
                     'cover' => $cover,

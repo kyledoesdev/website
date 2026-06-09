@@ -15,7 +15,7 @@ class MediaForm extends Form
         $states = collect($this->states);
 
         Media::create([
-            'type_id' => $media['type_id'],
+            'type' => $media['type'],
             'media_id' => $media['media_id'],
             'name' => $media['name'],
             'cover' => $media['cover'],

@@ -49,10 +49,10 @@ it('rejects unknown state names', function () {
     $game = Media::factory()->videoGame()->create();
 
     Livewire::test(Edit::class)
-        ->call('toggleState', $game->getKey(), 'type_id')
+        ->call('toggleState', $game->getKey(), 'type')
         ->assertStatus(422);
 
-    expect($game->fresh()->type_id)->toBe(MediaType::VIDEO_GAME->value);
+    expect($game->fresh()->type)->toBe(MediaType::VIDEO_GAME);
 });
 
 it('destroys a game', function () {

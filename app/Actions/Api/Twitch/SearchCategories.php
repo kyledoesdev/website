@@ -24,7 +24,7 @@ final class SearchCategories
         ]);
 
         if ($response->successful()) {
-            $games = Media::where('type_id', $mediaType->value)->pluck('media_id')->toArray();
+            $games = Media::where('type', $mediaType->value)->pluck('media_id')->toArray();
 
             return collect($response->json('data'))->map(function ($game) use ($games, $mediaType) {
                 if (in_array($game['id'], $games)) {
@@ -32,7 +32,7 @@ final class SearchCategories
                 }
 
                 return [
-                    'type_id' => $mediaType->value,
+                    'type' => $mediaType->value,
                     'media_id' => $game['id'],
                     'name' => $game['name'],
                     'cover' => $this->fix_box_art($game['box_art_url']),

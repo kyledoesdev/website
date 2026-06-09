@@ -18,10 +18,10 @@ class Show extends Component
     {
         return view('livewire.pages.media.music.show', [
             'favoriteArtists' => Media::query()
-                ->where('type_id', MediaType::ARTIST->value)
+                ->where('type', MediaType::ARTIST->value)
                 ->paginate(20, pageName: 'artists'),
             'favoriteTracks' => Media::query()
-                ->where('type_id', MediaType::TRACK->value)
+                ->where('type', MediaType::TRACK->value)
                 ->paginate(9, pageName: 'tracks'),
             'panel' => Panel::where('name', 'music')->first()->content,
         ]);

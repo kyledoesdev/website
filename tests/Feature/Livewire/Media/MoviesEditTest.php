@@ -31,7 +31,7 @@ it('rejects states that are not toggleable for movies', function (string $value)
     Livewire::test(Edit::class)
         ->call('toggleState', $movie->getKey(), $value)
         ->assertStatus(422);
-})->with(['is_active', 'total_completion', 'type_id']);
+})->with(['is_active', 'total_completion', 'type']);
 
 it('destroys a movie', function () {
     $movie = Media::factory()->movie()->create();

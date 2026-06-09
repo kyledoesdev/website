@@ -2,13 +2,13 @@
 
 namespace App\Enums;
 
-enum MediaType: int
+enum MediaType: string
 {
-    case MOVIE = 1;
-    case TV = 2;
-    case ARTIST = 3;
-    case TRACK = 4;
-    case VIDEO_GAME = 5;
+    case MOVIE = 'movie';
+    case TV = 'tv';
+    case ARTIST = 'artist';
+    case TRACK = 'track';
+    case VIDEO_GAME = 'video_game';
 
     public function label(): string
     {

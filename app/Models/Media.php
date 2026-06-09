@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Model;
+use App\Enums\MediaType;
 use Illuminate\Contracts\Database\Query\Builder;
 
 class Media extends Model
 {
     protected $fillable = [
-        'type_id',
+        'type',
         'media_id',
         'name',
         'cover',
@@ -29,6 +29,7 @@ class Media extends Model
     public function casts(): array
     {
         return [
+            'type' => MediaType::class,
             'is_favorite' => 'boolean',
             'is_active' => 'boolean',
             'in_backlog' => 'boolean',
