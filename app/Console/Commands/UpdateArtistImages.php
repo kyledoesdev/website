@@ -34,7 +34,7 @@ class UpdateArtistImages extends Command
                     'GET',
                     "https://api.spotify.com/v1/artists?ids={$ids}", [
                         'headers' => [
-                            'Authorization' => 'Bearer '.$user->connections->firstWhere('type_id', ConnectionType::SPOTIFY->value)->token,
+                            'Authorization' => 'Bearer '.$user->connections->firstWhere('type', ConnectionType::SPOTIFY->value)->token,
                         ],
                     ]
                 );

@@ -9,7 +9,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 class Asset extends Model
 {
     protected $fillable = [
-        'type_id',
+        'type',
         'name',
         'slug',
         'path',
@@ -27,7 +27,7 @@ class Asset extends Model
     public function casts(): array
     {
         return [
-            'type_id' => AssetType::class,
+            'type' => AssetType::class,
             'data' => 'array',
         ];
     }

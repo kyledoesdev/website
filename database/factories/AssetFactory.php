@@ -22,7 +22,7 @@ class AssetFactory extends Factory
         $name = $this->faker->words(3, true);
 
         return [
-            'type_id' => $this->faker->randomElement([AssetType::PHOTO->value, AssetType::RESUME->value]),
+            'type' => $this->faker->randomElement([AssetType::PHOTO->value, AssetType::RESUME->value]),
             'name' => $name,
             'slug' => Str::slug($name),
             'path' => $this->faker->filePath(),
@@ -41,7 +41,7 @@ class AssetFactory extends Factory
     public function photo(): static
     {
         return $this->state(fn (array $attributes) => [
-            'type_id' => AssetType::PHOTO->value,
+            'type' => AssetType::PHOTO->value,
             'mime_type' => $this->faker->randomElement([
                 'image/jpeg',
                 'image/png',
@@ -59,7 +59,7 @@ class AssetFactory extends Factory
     public function resume(): static
     {
         return $this->state(fn (array $attributes) => [
-            'type_id' => AssetType::RESUME->value,
+            'type' => AssetType::RESUME->value,
             'mime_type' => $this->faker->randomElement([
                 'application/pdf',
             ]),

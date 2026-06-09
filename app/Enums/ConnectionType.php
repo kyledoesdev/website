@@ -2,24 +2,16 @@
 
 namespace App\Enums;
 
-enum ConnectionType: int
+enum ConnectionType: string
 {
-    case SPOTIFY = 1;
-    case TWITCH = 2;
+    case SPOTIFY = 'spotify';
+    case TWITCH = 'twitch';
 
-    public function label()
+    public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::SPOTIFY => 'Spotify',
             self::TWITCH => 'Twitch',
-        };
-    }
-
-    public function slug()
-    {
-        return match($this) {
-            self::SPOTIFY => 'spotify',
-            self::TWITCH => 'twitch',
         };
     }
 }

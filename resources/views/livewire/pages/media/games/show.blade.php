@@ -28,7 +28,7 @@
                 />
                 <x-media-accordian-item
                     :collection="$playedBefore"
-                    :title="'Played Before'"
+                    :title="'Catalog'"
                 />
                 <x-media-accordian-item
                     :collection="$completed"

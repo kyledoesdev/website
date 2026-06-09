@@ -2,11 +2,11 @@
 
 namespace App\Enums;
 
-enum AssetType: int
+enum AssetType: string
 {
-    case PHOTO = 1;
-    case RESUME = 2;
-    case THREE_D_PRINTS = 3;
+    case PHOTO = 'photo';
+    case RESUME = 'resume';
+    case THREE_D_PRINTS = 'three_d_prints';
 
     public function label(): string
     {
