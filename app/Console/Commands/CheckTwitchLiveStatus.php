@@ -22,7 +22,7 @@ class CheckTwitchLiveStatus extends Command
 
         (new RefreshToken)->handle($user);
 
-        $token = $user->connections->firstWhere('type_id', ConnectionType::TWITCH->value)->token ?? null;
+        $token = $user->connections->firstWhere('type', ConnectionType::TWITCH->value)->token ?? null;
 
         if (! $token) {
             return self::FAILURE;

@@ -13,7 +13,7 @@ final class RefreshToken
     public function handle(User $user): bool
     {
         try {
-            $twitchConnection = $user->connections->firstWhere('type_id', ConnectionType::TWITCH->value);
+            $twitchConnection = $user->connections->firstWhere('type', ConnectionType::TWITCH->value);
 
             $response = Http::asForm()->post('https://id.twitch.tv/oauth2/token', [
                 'client_id' => config('services.twitch.client_id'),

@@ -17,7 +17,7 @@ class Uploader extends Component
 
     public bool $showGallery = true;
 
-    public array|int $galleryType = AssetType::PHOTO->value;
+    public array|string $galleryType = AssetType::PHOTO->value;
 
     public function render()
     {

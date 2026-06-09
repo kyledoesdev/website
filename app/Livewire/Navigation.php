@@ -14,7 +14,7 @@ class Navigation extends Component
     {
         return view('navigation', [
             'resume' => Asset::query()
-                ->where('type_id', AssetType::RESUME->value)
+                ->where('type', AssetType::RESUME->value)
                 ->latest()
                 ->first()?->slug,
         ]);

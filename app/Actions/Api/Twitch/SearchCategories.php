@@ -15,7 +15,7 @@ final class SearchCategories
         (new RefreshToken)->handle($user);
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.$user->connections->firstWhere('type_id', ConnectionType::TWITCH->value)->token,
+            'Authorization' => 'Bearer '.$user->connections->firstWhere('type', ConnectionType::TWITCH->value)->token,
             'Content-Type' => 'application/json',
             'Client-Id' => config('services.twitch.client_id'),
         ])->get('https://api.twitch.tv/helix/search/categories', [

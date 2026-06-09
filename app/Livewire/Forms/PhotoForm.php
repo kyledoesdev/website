@@ -20,7 +20,7 @@ class PhotoForm extends Form
 
     public string $description = '';
 
-    public int $type = AssetType::PHOTO->value;
+    public string $type = AssetType::PHOTO->value;
 
     public $photo;
 
@@ -37,7 +37,7 @@ class PhotoForm extends Form
         );
 
         Asset::create([
-            'type_id' => $this->type,
+            'type' => $this->type,
             'name' => $this->name,
             'slug' => Str::uuid(),
             'path' => $path,
@@ -100,7 +100,7 @@ class PhotoForm extends Form
             'description' => 'nullable|string|max:255',
             'type' => [
                 'required',
-                'integer',
+                'string',
                 Rule::in([AssetType::PHOTO->value, AssetType::THREE_D_PRINTS->value]),
             ],
             'photo' => 'image:mimes:png,jpg,jpeg,gif,jfif',

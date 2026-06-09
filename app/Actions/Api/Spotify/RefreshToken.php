@@ -13,7 +13,7 @@ final class RefreshToken
     public function handle(User $user): bool
     {
         try {
-            $spotifyConnection = $user->connections->firstWhere('type_id', ConnectionType::SPOTIFY->value);
+            $spotifyConnection = $user->connections->firstWhere('type', ConnectionType::SPOTIFY->value);
 
             $response = Http::asForm()->post('https://accounts.spotify.com/api/token', [
                 'grant_type' => 'refresh_token',

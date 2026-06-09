@@ -10,34 +10,28 @@ class ConnectionController extends Controller
 {
     public function connect(Request $request, string $type)
     {
-        session()->put('current_connection_type_id', $this->getConnectionTypeId($type));
-        session()->put('current_connection_type', $type);
+        $connectionType = ConnectionType::from($type);
 
-        return Socialite::driver($type)->redirect();
+        session()->put('current_connection_type', $connectionType->value);
+
+        return Socialite::driver($connectionType->value)->redirect();
     }
 
     public function processConnection(Request $request)
     {
-        $user = Socialite::driver(session()->get('current_connection_type'))->stateless()->user();
+        $type = session()->get('current_connection_type');
 
-        auth()->user()->connections()->updateOrCreate(['type_id' => session()->get('current_connection_type_id')], [
-            'type_id' => session()->get('current_connection_type_id'),
+        $user = Socialite::driver($type)->stateless()->user();
+
+        auth()->user()->connections()->updateOrCreate(['type' => $type], [
+            'type' => $type,
             'external_id' => $user->id,
             'token' => $user->token,
             'refresh_token' => $user->refreshToken,
         ]);
 
-        session()->forget('current_connection_type_id');
         session()->forget('current_connection_type');
 
         return redirect(route('dashboard'));
-    }
-
-    private function getConnectionTypeId(string $type)
-    {
-        return match ($type) {
-            'twitch' => ConnectionType::TWITCH->slug(),
-            'spotify' => ConnectionType::SPOTIFY->slug()
-        };
     }
 }

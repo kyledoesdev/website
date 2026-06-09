@@ -34,7 +34,7 @@ class Resume extends Component
         $path = $this->resume->storePubliclyAs('resumes', $name, 's3');
 
         Asset::create([
-            'type_id' => AssetType::RESUME->value,
+            'type' => AssetType::RESUME->value,
             'slug' => Str::uuid(),
             'name' => $name,
             'path' => $path,
@@ -62,6 +62,6 @@ class Resume extends Component
     #[Computed]
     public function resumes()
     {
-        return Asset::where('type_id', AssetType::RESUME->value)->get();
+        return Asset::where('type', AssetType::RESUME->value)->get();
     }
 }

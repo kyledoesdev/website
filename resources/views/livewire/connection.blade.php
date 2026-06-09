@@ -4,13 +4,13 @@
     @php
         $connections = [
             'spotify' => [
-                'connection' => auth()->user()->connections->firstWhere('type_id', App\Enums\ConnectionType::SPOTIFY->value),
+                'connection' => auth()->user()->connections->firstWhere('type', App\Enums\ConnectionType::SPOTIFY->value),
                 'icon' => 'musical-note',
                 'color' => 'lime',
                 'name' => 'Spotify'
             ],
             'twitch' => [
-                'connection' => auth()->user()->connections->firstWhere('type_id', App\Enums\ConnectionType::TWITCH->value),
+                'connection' => auth()->user()->connections->firstWhere('type', App\Enums\ConnectionType::TWITCH->value),
                 'icon' => 'tv',
                 'color' => 'purple', 
                 'name' => 'Twitch'

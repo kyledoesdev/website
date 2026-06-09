@@ -16,7 +16,7 @@ final class SearchTrack
         (new RefreshToken)->handle($user);
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.$user->connections->firstWhere('type_id', ConnectionType::SPOTIFY->value)->token,
+            'Authorization' => 'Bearer '.$user->connections->firstWhere('type', ConnectionType::SPOTIFY->value)->token,
             'Content-Type' => 'application/json',
             'Client-Id' => config('services.spotify.client_id'),
         ])->get('https://api.spotify.com/v1/search', [
