@@ -24,16 +24,16 @@
 
         <flux:main container class="px-4 md:px-8 md:mt-4">
             @if (isset($header))
-                <div class="flex justify-between">
-                    <div class="w-full sm:w-auto">
+                <div class="flex justify-between items-center gap-4">
+                    <div class="min-w-0">
                         <h5 class="text-2xl lg:text-4xl font-bold">
                             {{ $header }}
                         </h5>
                     </div>
-                    <div class="flex">
+                    <div class="flex shrink-0">
                         <x-socials />
                     </div>
-                </div>  
+                </div>
                 
                 <flux:separator class="mt-2 mb-1" />
             @endif
