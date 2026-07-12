@@ -2,15 +2,22 @@
     <x-slot name="header">{{ $header }}</x-slot>
 
     <div class="my-2">
-        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 mb-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4 mb-4">
             @forelse($this->photos as $photo)
                 <flux:card>
-                    <img
-                        src="{{ route('asset', ['slug' => $photo->slug]) }}"
-                        alt="{{ $photo->name }}"
-                        {{-- disgusting ahhhh hack --}}
-                        onload="if (this.naturalHeight > this.naturalWidth) { this.style.width = '50%'; }"
+                    <a
+                        href="{{ route('asset', ['slug' => $photo->slug]) }}"
+                        target="_blank"
+                        rel="noopener"
+                        title="Open '{{ $photo->name }}' in a new tab"
                     >
+                        <img
+                            src="{{ route('asset', ['slug' => $photo->slug]) }}"
+                            alt="{{ $photo->name }}"
+                            loading="lazy"
+                            class="w-full aspect-[4/5] object-cover rounded-lg hover:opacity-90 transition"
+                        >
+                    </a>
 
                     <div class="mt-1">
                         <div class="flex flex-col">
@@ -21,7 +28,7 @@
                                     <flux:text variant="subtle" class="text-xs">{{ $photo->description }}</flux:text>
                                 @endif
 
-                                <flux:text class="mt-2" size="sm">{{ $photo->captured_at ?? $photo->created_at }}</flux:text>
+                                <flux:text variant="subtle" class="mt-2" size="sm">{{ $photo->captured_at ?? $photo->created_at }}</flux:text>
                             </div>
                         </div>
 

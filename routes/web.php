@@ -21,7 +21,8 @@ use App\Livewire\Pages\Technologies\Show as ShowTechnologies;
 use App\Livewire\Panels;
 use App\Livewire\Photos\Gallery;
 use App\Livewire\Photos\Uploader;
-use App\Livewire\Printing;
+use App\Livewire\Printing\Edit as EditPrinting;
+use App\Livewire\Printing\Show as ShowPrinting;
 use App\Livewire\Projects;
 use App\Livewire\Resume;
 use App\Livewire\WorkHistory;
@@ -43,7 +44,7 @@ Route::livewire('/music', ShowMusic::class)->name('music');
 Route::livewire('/tv', ShowTv::class)->name('tv_shows');
 Route::livewire('/video_games', ShowGames::class)->name('video_games');
 Route::livewire('/gallery', Gallery::class)->name('gallery');
-Route::livewire('/3d_printing', Printing::class)->name('3d_printing');
+Route::livewire('/3d_printing', ShowPrinting::class)->name('3d_printing');
 
 Route::get('/asset/{slug}', AssetController::class)->name('asset');
 
@@ -58,6 +59,8 @@ Route::middleware(Authenticate::class)->group(function () {
     Route::livewire('/blog/{post}/views', BlogViews::class)->name('blog.post_views');
 
     Route::livewire('/panels', Panels::class)->name('panels');
+
+    Route::livewire('/3d_printing/edit', EditPrinting::class)->name('3d_printing.edit');
 
     Route::livewire('/gallery/edit', Uploader::class)->name('gallery.edit');
     Route::livewire('/resumes/edit', Resume::class)->name('resume.edit');
