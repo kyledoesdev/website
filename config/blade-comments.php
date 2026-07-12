@@ -12,7 +12,7 @@ use Spatie\BladeComments\Commenters\RequestCommenters\ViewCommenter;
 use Spatie\BladeComments\Http\Middleware\AddRequestComments;
 
 return [
-    'enable' => env('APP_DEBUG'),
+    'enable' => env('APP_DEBUG') && env('APP_ENV') !== 'testing',
 
     /**
      * Add a comment at the beginning and end of every blade
