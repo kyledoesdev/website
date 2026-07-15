@@ -11,11 +11,11 @@
     "require": {
         "php": "^8.4",
         "intervention/image": "^3.11",
-        "kyledoesdev/essentials": "0.0.6",
-        "laravel/framework": "^12.16",
+        "kyledoesdev/essentials": "^0.0.7",
+        "laravel/framework": "^13.0",
         "laravel/nightwatch": "^1.8",
         "laravel/socialite": "^5.18",
-        "laravel/tinker": "^2.9",
+        "laravel/tinker": "^3.0",
         "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/flux": "^2.10",
         "livewire/flux-pro": "^2.10",
@@ -26,7 +26,7 @@
         "socialiteproviders/twitch": "^5.4"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.14",
+        "barryvdh/laravel-debugbar": "^4.0",
         "barryvdh/laravel-ide-helper": "^3.7",
         "fakerphp/faker": "^1.23",
         "glhd/laravel-dumper": "^3.0",
@@ -37,8 +37,8 @@
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "^3.8",
-        "pestphp/pest-plugin-laravel": "^3.2",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0",
         "spatie/laravel-blade-comments": "^2.0"
     },
     "autoload": {
