@@ -5,11 +5,11 @@ use App\Http\Controllers\Prezet\IndexController;
 use App\Http\Controllers\Prezet\OgimageController;
 use App\Http\Controllers\Prezet\SearchController;
 use App\Http\Controllers\Prezet\ShowController;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-Route::withoutMiddleware([ShareErrorsFromSession::class, VerifyCsrfToken::class])->group(function () {
+Route::withoutMiddleware([ShareErrorsFromSession::class, PreventRequestForgery::class])->group(function () {
     Route::get('blog/search', SearchController::class)->name('prezet.search');
 
     Route::get('blog/img/{path}', ImageController::class)
