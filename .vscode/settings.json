@@ -1,5 +1,5 @@
 {
-    "intelephense.environment.phpVersion": "8.4.15",
+    "intelephense.environment.phpVersion": "8.5.9",
     "intelephense.environment.includePaths": [
         "vendor"
     ],
