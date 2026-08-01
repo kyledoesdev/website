@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "382d9bbeb35740c223d00c6145ebefe5",
+    "content-hash": "40c91121cc1b54bc21fb802030080df6",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1420,23 +1420,23 @@
         },
         {
             "name": "kyledoesdev/essentials",
-            "version": "v0.0.7",
+            "version": "v0.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kyledoesdev/essentials.git",
-                "reference": "432041c5e4a7c0113c7252185bc4bc332324c1c3"
+                "reference": "34879ed7c77cbd8151440302cb443cf84e983d6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kyledoesdev/essentials/zipball/432041c5e4a7c0113c7252185bc4bc332324c1c3",
-                "reference": "432041c5e4a7c0113c7252185bc4bc332324c1c3",
+                "url": "https://api.github.com/repos/kyledoesdev/essentials/zipball/34879ed7c77cbd8151440302cb443cf84e983d6c",
+                "reference": "34879ed7c77cbd8151440302cb443cf84e983d6c",
                 "shasum": ""
             },
             "require": {
                 "illuminate/contracts": "^12.0|^13.0",
                 "illuminate/http": "^12.0|^13.0",
                 "illuminate/support": "^12.0|^13.0",
-                "php": "^8.4",
+                "php": "^8.4|^8.5",
                 "spatie/laravel-package-tools": "^1.16",
                 "spatie/laravel-stats": "^2.3"
             },
@@ -1488,9 +1488,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kyledoesdev/essentials/issues",
-                "source": "https://github.com/kyledoesdev/essentials/tree/v0.0.7"
+                "source": "https://github.com/kyledoesdev/essentials/tree/v0.0.9"
             },
-            "time": "2026-04-24T22:56:10+00:00"
+            "time": "2026-08-01T22:14:13+00:00"
         },
         {
             "name": "laravel/framework",

@@ -11,7 +11,7 @@
     "require": {
         "php": "^8.4",
         "intervention/image": "^3.11",
-        "kyledoesdev/essentials": "^0.0.7",
+        "kyledoesdev/essentials": "0.0.9",
         "laravel/framework": "^13.0",
         "laravel/nightwatch": "^1.8",
         "laravel/socialite": "^5.18",
