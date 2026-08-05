@@ -49,4 +49,8 @@ return [
         'internal_updates' => env('DISCORD_INTERNAL_UPDATES'),
         'live_now' => env('DISCORD_LIVE_NOW'),
     ],
+
+    'royal-tea' => [
+        'webhook_url' => env('ROYALTY_WEBHOOK_URL'),
+    ]
 ];
