@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Asset;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,8 +15,13 @@
 |
 */
 
-pest()->extend(Tests\TestCase::class)
-    ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+/**
+ * The shared navigation links to the latest resume asset, so every page render
+ * needs one to exist before the route can be generated.
+ */
+pest()->extend(TestCase::class)
+    ->use(RefreshDatabase::class)
+    ->beforeEach(fn () => Asset::factory()->resume()->create())
     ->in('Feature');
 
 /*

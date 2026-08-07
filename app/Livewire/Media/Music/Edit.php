@@ -5,7 +5,7 @@ namespace App\Livewire\Media\Music;
 use App\Actions\Api\Spotify\SearchArtist;
 use App\Actions\Api\Spotify\SearchTrack;
 use App\Enums\MediaType;
-use App\Livewire\Traits\TableHelpers;
+use App\Livewire\Concerns\HasTableHelpers;
 use App\Models\Media;
 use Flux\Flux;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,7 +15,7 @@ use Livewire\WithPagination;
 
 class Edit extends Component
 {
-    use TableHelpers;
+    use HasTableHelpers;
     use WithPagination;
 
     public string $phrase = '';

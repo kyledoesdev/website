@@ -5,8 +5,8 @@ namespace App\Livewire\Media\Games;
 use App\Actions\Api\Twitch\SearchCategories;
 use App\Enums\Media\GameState;
 use App\Enums\MediaType;
+use App\Livewire\Concerns\HasTableHelpers;
 use App\Livewire\Forms\MediaForm;
-use App\Livewire\Traits\TableHelpers;
 use App\Models\Media;
 use Flux\Flux;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +16,7 @@ use Livewire\WithPagination;
 
 class Edit extends Component
 {
-    use TableHelpers;
+    use HasTableHelpers;
     use WithPagination;
 
     public string $search = '';

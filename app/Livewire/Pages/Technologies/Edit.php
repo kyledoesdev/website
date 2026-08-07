@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Pages\Technologies;
 
+use App\Livewire\Concerns\HasTableHelpers;
 use App\Livewire\Forms\TechnologyForm;
-use App\Livewire\Traits\TableHelpers;
 use App\Models\Technology;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -12,7 +12,7 @@ use Livewire\WithPagination;
 
 class Edit extends Component
 {
-    use TableHelpers;
+    use HasTableHelpers;
     use WithPagination;
 
     public TechnologyForm $createForm;

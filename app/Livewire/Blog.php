@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Actions\Blog\DestroyBlogPost;
 use App\Actions\Blog\StoreBlogPost;
-use App\Livewire\Traits\TableHelpers;
+use App\Livewire\Concerns\HasTableHelpers;
 use App\Models\DocumentView;
 use Flux\Flux;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +17,7 @@ use Prezet\Prezet\Models\Document;
 
 class Blog extends Component
 {
-    use TableHelpers;
+    use HasTableHelpers;
     use WithFileUploads;
     use WithPagination;
 

@@ -18,6 +18,7 @@ use App\Livewire\Media\Tv\Edit as EditTv;
 use App\Livewire\Media\Tv\Show as ShowTv;
 use App\Livewire\Pages\Technologies\Edit as EditTechnologies;
 use App\Livewire\Pages\Technologies\Show as ShowTechnologies;
+use App\Livewire\Pages\WeatherReport\Edit as EditWeatherReport;
 use App\Livewire\Panels;
 use App\Livewire\Photos\Gallery;
 use App\Livewire\Photos\Uploader;
@@ -70,6 +71,8 @@ Route::middleware(Authenticate::class)->group(function () {
     Route::livewire('/music/edit', EditMusic::class)->name('music.edit');
     Route::livewire('/video_games/edit', EditGames::class)->name('video_games.edit');
     Route::livewire('/technology/edit', EditTechnologies::class)->name('technologies.edit');
+
+    Route::livewire('/weather_report/edit', EditWeatherReport::class)->name('weather_report.edit');
 });
 
 require __DIR__.'/auth.php';

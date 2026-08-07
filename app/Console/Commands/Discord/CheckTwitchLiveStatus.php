@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Discord;
 
 use App\Actions\Api\Twitch\RefreshToken;
 use App\Enums\ConnectionType;
@@ -84,7 +84,7 @@ class CheckTwitchLiveStatus extends Command
         $title = $stream['title'] ?? 'Untitled Stream';
         $game = $stream['game_name'] ?? 'Unknown Game';
 
-        Http::post(config('services.discord.live_now'), [
+        Http::post(config('services.discord.song-rank.live-now.webhook_url'), [
             'content' => "@everyone 🔴 **spacelampsix is LIVE!**\n\n**{$title}**\nPlaying: {$game}\n\nhttps://twitch.tv/spacelampsix",
             'allowed_mentions' => [
                 'parse' => ['everyone'],

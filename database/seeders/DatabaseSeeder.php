@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'kyledoesdev@gmail.com',
             'password' => bcrypt('password'),
         ]);
+
+        $this->call(WeatherReportCitySeeder::class);
     }
 }
