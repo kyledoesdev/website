@@ -1,5 +1,6 @@
 <?php
 
+use MarvinLabs\DiscordLogger\Logger;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -129,17 +130,17 @@ return [
 
         'discord-live-now' => [
             'driver' => 'custom',
-            'via'    => MarvinLabs\DiscordLogger\Logger::class,
-            'level'  => 'debug',
-            'url'    => env('DISCORD_LIVE_NOW'),
+            'via' => Logger::class,
+            'level' => 'debug',
+            'url' => env('DISCORD_SONGRANK_LIVENOW_WEBHOOK_URL'),
             'ignore_exceptions' => env('LOG_DISCORD_IGNORE_EXCEPTIONS', false),
         ],
 
         'discord-internal-updates' => [
             'driver' => 'custom',
-            'via'    => MarvinLabs\DiscordLogger\Logger::class,
-            'level'  => 'debug',
-            'url'    => env('DISCORD_INTERNAL_UPDATES'),
+            'via' => Logger::class,
+            'level' => 'debug',
+            'url' => env('DISCORD_SONGRANK_INTERNALUPDATES_WEBHOOK_URL'),
             'ignore_exceptions' => env('LOG_DISCORD_IGNORE_EXCEPTIONS', false),
         ],
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Traits;
+namespace App\Livewire\Concerns;
 
-trait TableHelpers
+trait HasTableHelpers
 {
     public string $search = '';
 

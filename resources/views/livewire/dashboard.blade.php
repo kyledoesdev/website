@@ -75,9 +75,14 @@
             <flux:heading size="lg" class="mb-2">Internal Tools</flux:heading>
 
             <flux:card>
-                <flux:text class="text-center py-6">
-                    No tools yet — coming soon.
-                </flux:text>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <a href="{{ route('weather_report.edit') }}">
+                        <flux:card class="flex space-x-2">
+                            <flux:icon.cloud />
+                            <span>Weather Report</span>
+                        </flux:card>
+                    </a>
+                </div>
             </flux:card>
         </div>
     </div>

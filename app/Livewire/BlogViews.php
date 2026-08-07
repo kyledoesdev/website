@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Traits\TableHelpers;
+use App\Livewire\Concerns\HasTableHelpers;
 use App\Models\DocumentView;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -11,7 +11,7 @@ use Prezet\Prezet\Models\Document;
 
 class BlogViews extends Component
 {
-    use TableHelpers;
+    use HasTableHelpers;
     use WithPagination;
 
     public Document $post;

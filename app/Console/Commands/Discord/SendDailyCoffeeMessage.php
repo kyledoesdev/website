@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Discord;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
 class SendDailyCoffeeMessage extends Command
 {
-    protected $signature = 'royal-tea:send';
+    protected $signature = 'royal-tea:send-daily-coffee';
 
     protected $description = 'Send the daily coffee message to Discord';
 
@@ -35,22 +35,22 @@ class SendDailyCoffeeMessage extends Command
         'Irish Coffee',
         'Drip Coffee',
         'Matcha Latte',
-        "Earl Grey Tea",
-        "Jasmine Tea",
-        "Hōjicha",
-        "Hot Chocolate",
-        "Pumpkin Spice Latte",
-        "Charlie Drink",
-        "Espresso Martini",
-        "Mimosa",
-        "Bloody Mary",
+        'Earl Grey Tea',
+        'Jasmine Tea',
+        'Hōjicha',
+        'Hot Chocolate',
+        'Pumpkin Spice Latte',
+        'Charlie Drink',
+        'Espresso Martini',
+        'Mimosa',
+        'Bloody Mary',
     ];
 
     public function handle(): int
     {
         $drink = $this->getRandomDrink();
 
-        $response = Http::post(config('services.royal-tea.webhook_url'), [
+        $response = Http::post(config('services.discord.royalty.beans.webhook_url'), [
             'content' => "Your daily drink is here! Scroll up for your {$drink} - get to sippin!",
         ]);
 

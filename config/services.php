@@ -14,18 +14,10 @@ return [
     |
     */
 
-    'postmark' => [
-        'token' => env('POSTMARK_TOKEN'),
-    ],
-
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-    ],
-
-    'resend' => [
-        'key' => env('RESEND_KEY'),
     ],
 
     'spotify' => [
@@ -45,12 +37,29 @@ return [
         'access_token' => env('MOVIEDB_KEY'),
     ],
 
-    'discord' => [
-        'internal_updates' => env('DISCORD_INTERNAL_UPDATES'),
-        'live_now' => env('DISCORD_LIVE_NOW'),
+    'geocodio' => [
+        'api_key' => env('GEOCODIO_API_KEY'),
     ],
 
-    'royal-tea' => [
-        'webhook_url' => env('ROYALTY_WEBHOOK_URL'),
-    ]
+    'discord' => [
+        'royalty' => [
+            'beans' => [
+                'webhook_url' => env('DISCORD_ROYALTY_BEANS_WEBHOOK_URL'),
+            ],
+            'weather-report' => [
+                'webhook_url' => env('DISCORD_ROYALTY_WEATHERREPORT_WEBHOOK_URL'),
+            ],
+            'roles' => [
+                'beans' => env('DISCORD_ROYALTY_BEANS_ROLE_ID'),
+            ],
+        ],
+        'song-rank' => [
+            'live-now' => [
+                'webhook_url' => env('DISCORD_SONGRANK_LIVENOW_WEBHOOK_URL'),
+            ],
+            'internal-updates' => [
+                'webhook_url' => env('DISCORD_SONGRANK_INTERNALUPDATES_WEBHOOK_URL'),
+            ],
+        ],
+    ],
 ];
